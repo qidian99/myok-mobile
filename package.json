@@ -1,6 +1,7 @@
 {
   "name": "myok-mobile",
-  "version": "0.0.1",
+  "description": "My Ok mobile for ISAFE Direct platform",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
