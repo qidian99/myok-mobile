@@ -6,7 +6,11 @@ Inside a directory, clone the following repositories using the following command
 
 `git clone ssh://git@phabricator.isafe.org:2222/source/myokmc.git myok-component`
 
-Install dependencies using `yarn install` or `npm install`
+## In myok-mobile directory
+
+Install dependencies using `yarn install` or `npm install`.
+
+CD into `ios/` directory and run `pod install`. After that, go back to root directoy.
 
 Run iOS simulator using `yarn run ios`, `npm run ios`, or `react-native run-ios`. There an optional
 `--simulator` argument which tell React Native which simulator to use.
