@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, Platform, TouchableOpacity} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {Button} from 'react-native-paper';
-import {styles} from './styles';
+import {globalStyles} from './styles';
 import {action} from 'reducers/index';
 import {types} from 'util/types';
 
@@ -14,8 +14,8 @@ const Feed = () => {
 
   let detailResult = route.params;
   return (
-    <View style={styles.center}>
-      <Text style={styles.title}>
+    <View style={globalStyles.center}>
+      <Text style={globalStyles.title}>
         {detailResult ? detailResult.title : 'Navigation Drawer'}
       </Text>
       <Button
@@ -38,7 +38,7 @@ const Feed = () => {
             onPress={() =>
               navigation.navigate('Detail', {foodName: 'Detail Screen'})
             }>
-            <Text style={styles.androidButtonText}>Go to FeedItem</Text>
+            <Text style={globalStyles.androidButtonText}>Go to FeedItem</Text>
           </TouchableOpacity>
         ),
       })}

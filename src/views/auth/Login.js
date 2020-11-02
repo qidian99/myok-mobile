@@ -1,12 +1,12 @@
 import AuthContainer from 'components/auth/AuthContainer';
-import AuthAccordion from 'components/auth/AuthAccordion';
+import AuthAccordion from 'components/auth/AuthForm';
 import React from 'react';
 import {ImageBackground, View, Image, SafeAreaView} from 'react-native';
 import {Button} from 'react-native-paper';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {loginAction} from 'sagas/actions';
-import {styles} from 'styles/index';
+import {globalStyles} from 'styles/index';
 
 const backgroundImage = require('assets/image/isafe_background.jpeg');
 const logo = require('assets/image/logo.png');
@@ -18,10 +18,10 @@ const Login = ({login}) => {
     </Button>
   );
   return (
-    <ImageBackground style={styles.background} source={backgroundImage}>
+    <ImageBackground style={globalStyles.background} source={backgroundImage}>
       <SafeAreaView>
-        <View style={styles.container}>
-          <Image style={styles.logo} source={logo} />
+        <View style={globalStyles.container}>
+          <Image style={globalStyles.logo} source={logo} />
           <AuthContainer>
             <AuthAccordion />
             {LoginButton}

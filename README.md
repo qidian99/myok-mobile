@@ -15,3 +15,9 @@ CD into `ios/` directory and run `pod install`. After that, go back to root dire
 Run iOS simulator using `yarn run ios`, `npm run ios`, or `react-native run-ios`. There an optional
 `--simulator` argument which tell React Native which simulator to use.
 
+
+
+## Misc
+
+### List of all Material Icons
+https://oblador.github.io/react-native-vector-icons/

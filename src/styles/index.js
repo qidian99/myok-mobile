@@ -3,7 +3,7 @@
 import {StyleSheet} from 'react-native';
 import {appColors} from 'theme';
 
-export const styles = StyleSheet.create({
+export const globalStyles = StyleSheet.create({
   androidButtonText: {
     color: 'blue',
     fontSize: 20,
@@ -38,10 +38,5 @@ export const styles = StyleSheet.create({
     marginTop: 16,
     paddingHorizontal: 0,
     width: '90%',
-  },
-  authAccordionStyle: {
-    margin: 16,
-    backgroundColor: appColors.primary,
-    color: appColors.text,
   },
 });

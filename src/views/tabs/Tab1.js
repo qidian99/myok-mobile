@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {styles} from 'styles/index';
+import {globalStyles} from 'styles/index';
 
 const Tab1 = () => (
-  <View style={styles.center}>
-    <Text style={styles.title}>Tab 1</Text>
+  <View style={globalStyles.center}>
+    <Text style={globalStyles.title}>Tab 1</Text>
   </View>
 );
 

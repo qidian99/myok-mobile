@@ -23,6 +23,7 @@ const ListAccordion = ({
   titleNumberOfLines = 1,
   descriptionNumberOfLines = 2,
   style,
+  styles: extendedStyles,
   id,
   testID,
   onPress,
@@ -67,10 +68,17 @@ const ListAccordion = ({
         accessibilityComponentType="button"
         accessibilityRole="button"
         testID={testID}>
-        <View style={styles.row} pointerEvents="none">
+        <View
+          style={[
+            styles.row,
+            isExpanded && styles.rowExpanded,
+            isExpanded && extendedStyles.rowExpanded,
+          ]}
+          pointerEvents="none">
           {left
             ? left({
-                color: isExpanded ? theme.colors.primary : descriptionColor,
+                // color: isExpanded ? theme.colors.primary : descriptionColor,
+                color: descriptionColor,
               })
             : null}
           <View style={[styles.item, styles.content]}>
@@ -79,7 +87,8 @@ const ListAccordion = ({
               style={[
                 styles.title,
                 {
-                  color: isExpanded ? theme.colors.primary : titleColor,
+                  // color: isExpanded ? theme.colors.primary : titleColor,
+                  color: titleColor,
                 },
                 titleStyle,
               ]}>
@@ -137,7 +146,7 @@ const styles = StyleSheet.create({
     paddingLeft: 64,
   },
   container: {
-    padding: 8,
+    padding: 0,
   },
   content: {
     flex: 1,
@@ -158,6 +167,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
+  rowExpanded: {},
   title: {
     fontSize: 16,
   },

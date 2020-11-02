@@ -2,14 +2,14 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 
-import {styles} from 'styles/index';
+import {globalStyles} from 'styles/index';
 
 const Contacts = () => {
   const route = useRoute();
   console.log(route);
   return (
-    <View style={styles.center}>
-      <Text style={styles.title}>Contacts</Text>
+    <View style={globalStyles.center}>
+      <Text style={globalStyles.title}>Contacts</Text>
     </View>
   );
 };

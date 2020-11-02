@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {List, Divider} from 'react-native-paper';
 
-const AccordionList = ({titleStyle, dividerStyle, children, style}) => {
+const AccordionList = ({title, titleStyle, dividerStyle, children, style}) => {
   return (
-    <List.Section title="Accordions" titleStyle={titleStyle} style={style}>
+    <List.Section title={title} titleStyle={titleStyle} style={style}>
       <Divider style={dividerStyle} />
       {children}
     </List.Section>
@@ -11,6 +11,7 @@ const AccordionList = ({titleStyle, dividerStyle, children, style}) => {
 };
 
 AccordionList.defaultProps = {
+  title: 'title',
   titleStyle: {
     color: 'white',
     fontSize: 18,

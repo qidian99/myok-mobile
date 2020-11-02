@@ -7,7 +7,7 @@ import {
   useNavigationState,
 } from '@react-navigation/native';
 
-import {styles} from './styles';
+import {globalStyles} from './styles';
 
 const Detail = () => {
   const navigation = useNavigation();
@@ -30,8 +30,8 @@ const Detail = () => {
   )*/
 
   return (
-    <View style={styles.center}>
-      <Text style={styles.title}>{route.params.foodName}</Text>
+    <View style={globalStyles.center}>
+      <Text style={globalStyles.title}>{route.params.foodName}</Text>
       {Platform.select({
         ios: (
           <Button
@@ -78,7 +78,7 @@ const Detail = () => {
             onPress={() =>
               navigation.navigate('Feed', {data: 'We have new data!'})
             }>
-            <Text style={styles.androidButtonText}>Pass Data Back</Text>
+            <Text style={globalStyles.androidButtonText}>Pass Data Back</Text>
           </TouchableOpacity>
         ),
       })}

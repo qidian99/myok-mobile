@@ -2,7 +2,7 @@ import {Container} from 'components/base';
 import React from 'react';
 import {View} from 'react-native';
 import {useTheme} from 'react-native-paper';
-import {styles} from 'styles/index';
+import {globalStyles} from 'styles/index';
 
 const AuthContainer = ({children}) => {
   const {colors} = useTheme();
@@ -10,7 +10,7 @@ const AuthContainer = ({children}) => {
   return (
     <Container
       containerStyle={[
-        styles.authContainer,
+        globalStyles.authContainer,
         {backgroundColor: colors.background},
       ]}>
       {children}

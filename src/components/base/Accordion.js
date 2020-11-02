@@ -2,18 +2,18 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import {ViewPropTypes} from 'react-native';
 import ListAccordion from 'components/override/ListAccordion';
-import {List} from 'react-native-paper';
 
-const Accordion = ({title, children, style}) => {
-  const [expanded, setExpanded] = React.useState(true);
+const Accordion = ({title, left, children, style, styles}) => {
+  const [expanded, setExpanded] = React.useState(false);
 
   const handlePress = () => setExpanded(!expanded);
 
   return (
     <ListAccordion
       style={style}
+      styles={styles}
       title={title}
-      left={(props) => <List.Icon {...props} icon="folder" />}
+      left={left}
       expanded={expanded}
       onPress={handlePress}>
       {children}
@@ -23,7 +23,9 @@ const Accordion = ({title, children, style}) => {
 
 Accordion.prototype = {
   title: PropTypes.string,
+  left: PropTypes.func,
   style: ViewPropTypes.style,
+  styles: PropTypes.object,
 };
 
 Accordion.defaultProps = {

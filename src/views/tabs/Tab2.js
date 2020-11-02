@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 
-import {styles} from 'styles/index';
+import {globalStyles} from 'styles/index';
 
 const Tab2 = () => {
   const isFocused = useIsFocused();
@@ -10,8 +10,8 @@ const Tab2 = () => {
   console.log(isFocused);
 
   return (
-    <View style={styles.center}>
-      <Text style={styles.title}>Tab 2</Text>
+    <View style={globalStyles.center}>
+      <Text style={globalStyles.title}>Tab 2</Text>
     </View>
   );
 };
