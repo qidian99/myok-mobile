@@ -1,7 +1,8 @@
 import * as React from 'react';
-import {List} from 'react-native-paper';
 import PropTypes from 'prop-types';
 import {ViewPropTypes} from 'react-native';
+import ListAccordion from 'components/override/ListAccordion';
+import {List} from 'react-native-paper';
 
 const Accordion = ({title, children, style}) => {
   const [expanded, setExpanded] = React.useState(true);
@@ -9,14 +10,14 @@ const Accordion = ({title, children, style}) => {
   const handlePress = () => setExpanded(!expanded);
 
   return (
-    <List.Accordion
+    <ListAccordion
       style={style}
       title={title}
       left={(props) => <List.Icon {...props} icon="folder" />}
       expanded={expanded}
       onPress={handlePress}>
       {children}
-    </List.Accordion>
+    </ListAccordion>
   );
 };
 
