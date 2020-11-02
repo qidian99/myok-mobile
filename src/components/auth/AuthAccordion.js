@@ -1,13 +1,27 @@
-import { AccordionList} from 'components/base';
+import {AccordionList, Accordion} from 'components/base';
 import React from 'react';
 import {View} from 'react-native';
-import {useTheme} from 'react-native-paper';
+import {useTheme, List} from 'react-native-paper';
 import {styles} from 'styles/index';
 
-const Accordion = () => {
+const AuthAccordion = () => {
   const {colors} = useTheme();
   console.log('colors', colors.background);
-  return <AccordionList />;
+  return (
+    <AccordionList>
+      <Accordion
+        title="Uncontrolled Accordion"
+        style={styles.authAccordionStyle}>
+        <List.Item title="First item" />
+        <List.Item title="Second item" />
+      </Accordion>
+
+      <Accordion title="Controlled Accordion" style={styles.authAccordionStyle}>
+        <List.Item title="First item" />
+        <List.Item title="Second item" />
+      </Accordion>
+    </AccordionList>
+  );
 };
 
-export default Accordion;
+export default AuthAccordion;

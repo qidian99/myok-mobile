@@ -1,15 +1,12 @@
+/* eslint-disable react-native/sort-styles */
 /* eslint-disable react-native/no-color-literals */
 import {StyleSheet} from 'react-native';
+import {appColors} from 'theme';
 
 export const styles = StyleSheet.create({
   androidButtonText: {
     color: 'blue',
     fontSize: 20,
-  },
-  authContainer: {
-    marginTop: 16,
-    paddingHorizontal: 0,
-    width: '90%',
   },
   background: {
     height: '100%',
@@ -34,5 +31,17 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 36,
     marginBottom: 16,
+  },
+
+  /* Auth */
+  authContainer: {
+    marginTop: 16,
+    paddingHorizontal: 0,
+    width: '90%',
+  },
+  authAccordionStyle: {
+    margin: 16,
+    backgroundColor: appColors.primary,
+    color: appColors.text,
   },
 });

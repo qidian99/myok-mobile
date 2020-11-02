@@ -3,6 +3,7 @@ import {DefaultTheme} from 'react-native-paper';
 export const appColors = {
   primary: '#295FA0',
   background: 'rgba(88,129,144,0.7)',
+  text: 'white',
 };
 
 export const NavigationTheme = {
@@ -11,8 +12,8 @@ export const NavigationTheme = {
     primary: 'white',
     background: 'white',
     card: '#295FA0',
-    text: 'white',
     border: 'green',
+    text: 'white',
   },
 };
 

@@ -1,34 +1,16 @@
 import * as React from 'react';
 import {List, Divider} from 'react-native-paper';
 
-const Accordion = ({titleStyle, dividerStyle}) => {
-  const [expanded, setExpanded] = React.useState(true);
-
-  const handlePress = () => setExpanded(!expanded);
-
+const AccordionList = ({titleStyle, dividerStyle, children, style}) => {
   return (
-    <List.Section title="Accordions" titleStyle={titleStyle}>
+    <List.Section title="Accordions" titleStyle={titleStyle} style={style}>
       <Divider style={dividerStyle} />
-      <List.Accordion
-        title="Uncontrolled Accordion"
-        left={(props) => <List.Icon {...props} icon="folder" />}>
-        <List.Item title="First item" />
-        <List.Item title="Second item" />
-      </List.Accordion>
-
-      <List.Accordion
-        title="Controlled Accordion"
-        left={(props) => <List.Icon {...props} icon="folder" />}
-        expanded={expanded}
-        onPress={handlePress}>
-        <List.Item title="First item" />
-        <List.Item title="Second item" />
-      </List.Accordion>
+      {children}
     </List.Section>
   );
 };
 
-Accordion.defaultProps = {
+AccordionList.defaultProps = {
   titleStyle: {
     color: 'white',
     fontSize: 18,
@@ -38,4 +20,4 @@ Accordion.defaultProps = {
   },
 };
 
-export default Accordion;
+export default AccordionList;
