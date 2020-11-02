@@ -30,3 +30,6 @@ export const persistor = persistStore(store);
 sagaMiddleware.run(rootSaga);
 
 export const action = (type) => store.dispatch({type});
+
+// Uncomment to purge all redux state
+persistor.purge();

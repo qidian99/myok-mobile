@@ -1,3 +1,4 @@
+import {PURGE} from 'redux-persist';
 import {types} from 'util/types';
 
 const INITIAL_STATE = {
@@ -7,6 +8,9 @@ const INITIAL_STATE = {
 
 export const authReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case PURGE: {
+      return INITIAL_STATE;
+    }
     case types.LOGIN: {
       const {user, token} = action;
       return {
