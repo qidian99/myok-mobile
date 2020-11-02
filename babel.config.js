@@ -14,6 +14,7 @@ module.exports = {
           theme: './src/theme',
           util: './src/util',
           views: './src/views',
+          sagas: './src/sagas',
         },
       },
     ],

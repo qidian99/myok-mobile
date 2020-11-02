@@ -28,12 +28,11 @@
       "views": [
         "./src/views/*"
       ],
+      "sagas": [
+        "./src/sagas/*"
+      ],
     },
   },
-  "exclude": [
-    "node_modules",
-    "**/node_modules/*"
-  ],
   "include": [
     "src",
     "babel.config.js"
