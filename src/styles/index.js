@@ -1,22 +1,22 @@
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    margin: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
+  androidButtonText: {
+    color: 'blue',
+    fontSize: 20,
   },
   background: {
-    width: '100%',
     height: '100%',
+    width: '100%',
+  },
+  center: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+    margin: 24,
   },
   title: {
     fontSize: 36,
     marginBottom: 16,
-  },
-  androidButtonText: {
-    color: 'blue',
-    fontSize: 20,
   },
 });

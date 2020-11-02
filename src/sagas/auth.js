@@ -2,7 +2,7 @@
 import {delay, takeEvery, takeLatest, put} from 'redux-saga/effects';
 import {types} from 'util/types';
 // Worker: Increase Counter Async (Delayed By 4 Seconds)
-async function* loginAsync() {
+function* loginAsync() {
   try {
     // Delay 4 Seconds
     yield delay(1000);
@@ -20,7 +20,7 @@ async function* loginAsync() {
   }
 }
 // Watcher: Increase Counter Async
-export function* watchLogin() {
-  // Take Last Action Only
-  yield takeLatest('INCREASE_COUNTER', loginAsync);
+export function* watchLogin(action) {
+  console.log(action);
+  yield takeLatest(types.LOGIN_ASYNC, loginAsync);
 }
