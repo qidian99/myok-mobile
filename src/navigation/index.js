@@ -174,6 +174,7 @@ export const createAuthStack = () => (
       name="Login"
       component={Login}
       options={{
+        headerShown: false,
         title: 'ISAFE Direct My Ok',
       }}
     />

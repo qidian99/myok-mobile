@@ -4,7 +4,7 @@ module.exports = {
     [
       'module-resolver',
       {
-        root: ['./src'],
+        root: ['.'],
         alias: {
           components: './src/components',
           constants: './src/constants',
@@ -15,6 +15,7 @@ module.exports = {
           util: './src/util',
           views: './src/views',
           sagas: './src/sagas',
+          assets: './src/assets',
         },
       },
     ],

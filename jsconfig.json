@@ -2,9 +2,10 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "target": "ES6",
-    "baseUrl": ".",
+    "module": "commonjs",
+    "baseUrl": "./src",
     "paths": {
-      "components/*": [
+      "components": [
         "./src/components/*"
       ],
       "constants": [
@@ -31,10 +32,13 @@
       "sagas": [
         "./src/sagas/*"
       ],
+      "assets": [
+        "./src/assets/*"
+      ],
     },
   },
   "include": [
-    "src",
+    "src/**/*",
     "babel.config.js"
   ]
 }

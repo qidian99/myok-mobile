@@ -5,6 +5,10 @@ export const styles = StyleSheet.create({
     color: 'blue',
     fontSize: 20,
   },
+  authContainer: {
+    padding: 16,
+    width: '90%',
+  },
   background: {
     height: '100%',
     width: '100%',
@@ -14,6 +18,16 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     margin: 24,
+  },
+  container: {
+    alignItems: 'center',
+    display: 'flex',
+    justifyContent: 'center',
+    width: '100%',
+  },
+  logo: {
+    height: 100,
+    width: 240,
   },
   title: {
     fontSize: 36,

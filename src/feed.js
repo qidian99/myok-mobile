@@ -27,11 +27,11 @@ const Feed = () => {
       {Platform.select({
         ios: (
           <Button
-            title="Go to Feed Item"
             onPress={() =>
               navigation.navigate('Detail', {foodName: 'Detail Screen'})
-            }
-          />
+            }>
+            Go to Feed Item
+          </Button>
         ),
         android: (
           <TouchableOpacity
