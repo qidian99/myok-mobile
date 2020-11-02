@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-color-literals */
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -6,7 +7,8 @@ export const styles = StyleSheet.create({
     fontSize: 20,
   },
   authContainer: {
-    padding: 16,
+    marginTop: 16,
+    paddingHorizontal: 0,
     width: '90%',
   },
   background: {

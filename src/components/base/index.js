@@ -1,4 +1,4 @@
-import AuthContainerBase from './AuthContainer';
-import AccordionBase from './Accordion';
+import Container from './Container';
+import AccordionList from './AccordionList';
 
-export {AuthContainerBase, AccordionBase};
+export {Container, AccordionList};

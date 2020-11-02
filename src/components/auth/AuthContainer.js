@@ -1,4 +1,4 @@
-import {AuthContainerBase} from 'components/base';
+import {Container} from 'components/base';
 import React from 'react';
 import {View} from 'react-native';
 import {useTheme} from 'react-native-paper';
@@ -8,13 +8,13 @@ const AuthContainer = ({children}) => {
   const {colors} = useTheme();
   console.log('colors', colors.background);
   return (
-    <AuthContainerBase
+    <Container
       containerStyle={[
         styles.authContainer,
         {backgroundColor: colors.background},
       ]}>
       {children}
-    </AuthContainerBase>
+    </Container>
   );
 };
 

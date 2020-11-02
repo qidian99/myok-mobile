@@ -1,5 +1,5 @@
-import AuthContainer from 'components/AuthContainer';
-import Accordion from 'components/Accordion';
+import AuthContainer from 'components/auth/AuthContainer';
+import AuthAccordion from 'components/auth/AuthAccordion';
 import React from 'react';
 import {ImageBackground, View, Image, SafeAreaView} from 'react-native';
 import {Button} from 'react-native-paper';
@@ -23,7 +23,7 @@ const Login = ({login}) => {
         <View style={styles.container}>
           <Image style={styles.logo} source={logo} />
           <AuthContainer>
-            <Accordion />
+            <AuthAccordion />
             {LoginButton}
           </AuthContainer>
         </View>
