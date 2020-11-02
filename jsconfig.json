@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "target": "ES6",
+    "baseUrl": "./src",
+    "paths": {
+      "components/*": [
+        "src/components/*"
+      ],
+      "constants": [
+        "src/constants/*"
+      ],
+      "navigation": [
+        "src/navigation/*"
+      ],
+      "reducers": [
+        "src/reducers/*"
+      ],
+      "styles": [
+        "src/styles/*"
+      ],
+      "theme": [
+        "src/theme/*"
+      ],
+      "util": [
+        "src/util/*"
+      ],
+      "views": [
+        "src/views/*"
+      ],
+    },
+  },
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*"
+  ],
+  "include": [
+    "src",
+    "babel.config.js"
+  ]
+}

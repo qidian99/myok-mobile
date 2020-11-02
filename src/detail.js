@@ -7,7 +7,7 @@ import {
   useNavigationState,
 } from '@react-navigation/native';
 
-import {styles} from './styles/styles';
+import {styles} from './styles';
 
 const Detail = () => {
   const navigation = useNavigation();

@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, Button, Platform, TouchableOpacity} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 
-import {styles} from './styles/styles';
+import {styles} from './styles';
 
 const Feed = () => {
   const navigation = useNavigation();
