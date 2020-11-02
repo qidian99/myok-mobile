@@ -3,7 +3,7 @@ import {ImageBackground, View} from 'react-native';
 import {Button} from 'react-native-paper';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {login} from 'sagas/actions';
+import {loginAction} from 'sagas/actions';
 import {styles} from 'styles/index';
 
 const Login = ({login}) => {
@@ -23,7 +23,7 @@ const Login = ({login}) => {
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      login,
+      login: loginAction,
     },
     dispatch,
   );

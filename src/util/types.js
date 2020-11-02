@@ -3,4 +3,5 @@ export const types = {
   LOGIN: 'LOGIN',
   SIGNUP_ASYNC: 'LOGIN_ASYNC',
   SIGNUP: 'SIGNUP',
+  LOGOOUT: 'LOGOOUT',
 };

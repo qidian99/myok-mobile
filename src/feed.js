@@ -1,8 +1,10 @@
 import React from 'react';
-import {View, Text, Button, Platform, TouchableOpacity} from 'react-native';
+import {View, Text, Platform, TouchableOpacity} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
-
+import {Button} from 'react-native-paper';
 import {styles} from './styles';
+import {action} from 'reducers/index';
+import {types} from 'util/types';
 
 const Feed = () => {
   const navigation = useNavigation();
@@ -16,6 +18,12 @@ const Feed = () => {
       <Text style={styles.title}>
         {detailResult ? detailResult.title : 'Navigation Drawer'}
       </Text>
+      <Button
+        icon="camera"
+        mode="contained"
+        onPress={() => action(types.LOGOOUT)}>
+        Log out
+      </Button>
       {Platform.select({
         ios: (
           <Button

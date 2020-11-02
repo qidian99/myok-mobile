@@ -19,6 +19,9 @@ export const authReducer = (state = INITIAL_STATE, action) => {
         token,
       };
     }
+    case types.LOGOOUT: {
+      return INITIAL_STATE;
+    }
     default:
       return state;
   }
