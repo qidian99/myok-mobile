@@ -1,7 +1,7 @@
 import React from 'react';
 import {ImageBackground, View} from 'react-native';
 import {Text} from 'react-native-paper';
-import {styles} from 'styles';
+import {styles} from 'styles/index';
 
 const Login = () => {
   return (

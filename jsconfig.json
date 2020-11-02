@@ -2,31 +2,31 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "target": "ES6",
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
       "components/*": [
-        "src/components/*"
+        "./src/components/*"
       ],
       "constants": [
-        "src/constants/*"
+        "./src/constants/*"
       ],
       "navigation": [
-        "src/navigation/*"
+        "./src/navigation/*"
       ],
       "reducers": [
-        "src/reducers/*"
+        "./src/reducers/*"
       ],
       "styles": [
-        "src/styles/*"
+        "./src/styles/*"
       ],
       "theme": [
-        "src/theme/*"
+        "./src/theme/*"
       ],
       "util": [
-        "src/util/*"
+        "./src/util/*"
       ],
       "views": [
-        "src/views/*"
+        "./src/views/*"
       ],
     },
   },
