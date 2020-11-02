@@ -3,7 +3,7 @@ export const MyTheme = {
   colors: {
     primary: 'white',
     background: 'white',
-    card: '#65509f',
+    card: '#295FA0',
     text: 'white',
     border: 'green',
   },
