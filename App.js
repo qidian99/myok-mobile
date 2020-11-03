@@ -1,6 +1,11 @@
 import React from 'react';
 
-import {NavigationContainer, DarkTheme} from '@react-navigation/native';
+import {
+  NavigationContainer,
+  DarkTheme,
+  useTheme,
+  DefaultTheme,
+} from '@react-navigation/native';
 
 import {useColorScheme, AppearanceProvider} from 'react-native-appearance';
 import {linking} from './src/navigation';
@@ -13,12 +18,16 @@ import {NavigationTheme} from 'theme/index';
 
 const App = () => {
   const colorScheme = useColorScheme();
+  const theme = useTheme();
+  const navigationTheme = theme.dark ? DarkTheme : NavigationTheme;
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <AppearanceProvider>
           <NavigationContainer
-            theme={colorScheme === 'dark' ? DarkTheme : NavigationTheme}
+            theme={navigationTheme}
+            // theme={colorScheme === 'dark' ? DarkTheme : NavigationTheme}
             linking={linking}>
             <Main />
           </NavigationContainer>

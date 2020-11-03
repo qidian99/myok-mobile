@@ -1,11 +1,17 @@
-import {createAuthStack} from 'navigation';
-import {createHomeStack} from 'navigation';
+import {
+  createAuthStack,
+  createTestStack,
+  HomeNavigator,
+  HomeStack,
+} from 'navigation/index';
 import React from 'react';
 import {connect} from 'react-redux';
 
 const Main = ({loggedIn}) => {
   if (loggedIn) {
-    return createHomeStack();
+    return <HomeNavigator />;
+    // return HomeStack();
+    // return createTestStack();
   }
 
   return createAuthStack();
