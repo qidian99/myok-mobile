@@ -9,7 +9,7 @@ import {loginAdult} from 'sagas/actions';
 import {globalStyles} from 'styles/index';
 import {appColors} from 'theme';
 import ChildLoginForm from './ChildLoginForm';
-import ParentLoginForm from './ParentLoginForm';
+import ParentLoginForm from './AdultLoginForm';
 
 const PARENT_ACCORDION_ID = 'parentlogin';
 const CHILD_ACCORDION_ID = 'childlogin';

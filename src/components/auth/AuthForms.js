@@ -5,10 +5,11 @@ import {View, StyleSheet} from 'react-native';
 import {useTheme, List} from 'react-native-paper';
 import {globalStyles} from 'styles/index';
 import {appColors} from 'theme';
-import ParentLoginForm from './login/ParentLoginForm';
+import ParentLoginForm from './login/AdultLoginForm';
 import ChildLoginForm from './login/ChildLoginForm';
 import ListAccordionGroup from 'components/override/ListAccordionGroup';
-import LoginAccordions from './login/LoginAccordions';
+import LoginAccordions from './login/LoginOptions';
+import SignupOptions from './signup/SignupOptions';
 
 const AuthForms = () => {
   return (
@@ -32,7 +33,9 @@ const AuthForms = () => {
             title="I'm new here, and..."
             style={[styles.accordion, styles.accordionLast]}
             styles={extendedStyles}>
-            <View style={[styles.container]} />
+            <View style={[styles.container]}>
+              <SignupOptions />
+            </View>
           </Accordion>
         </ListAccordionGroup>
       </View>

@@ -1,7 +1,15 @@
 import AuthContainer from 'components/auth/AuthContainer';
 import AuthForms from 'components/auth/AuthForms';
 import React from 'react';
-import {ImageBackground, View, Image, SafeAreaView} from 'react-native';
+import {
+  ImageBackground,
+  View,
+  Image,
+  SafeAreaView,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+} from 'react-native';
 import {Button} from 'react-native-paper';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -15,12 +23,15 @@ const Login = ({login}) => {
   return (
     <ImageBackground style={globalStyles.background} source={backgroundImage}>
       <SafeAreaView>
-        <View style={globalStyles.container}>
-          <Image style={globalStyles.logo} source={logo} />
-          <AuthContainer>
-            <AuthForms />
-          </AuthContainer>
-        </View>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'position' : 'height'}>
+          <ScrollView contentContainerStyle={globalStyles.container}>
+            <Image style={globalStyles.logo} source={logo} />
+            <AuthContainer>
+              <AuthForms />
+            </AuthContainer>
+          </ScrollView>
+        </KeyboardAvoidingView>
       </SafeAreaView>
     </ImageBackground>
   );
