@@ -24,6 +24,10 @@ export const globalStyles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
   },
+  datepicker: {
+    paddingVertical: 28,
+    backgroundColor: '#FAFAFA',
+  },
   logo: {
     height: 100,
     width: 240,

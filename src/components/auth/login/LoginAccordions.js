@@ -2,12 +2,13 @@ import {AccordionList, Accordion} from 'components/base';
 import ListAccordionGroup from 'components/override/ListAccordionGroup';
 import React, {useCallback, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {useTheme, List, TextInput, Button} from 'react-native-paper';
+import {useTheme, List, Button} from 'react-native-paper';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {loginAction} from 'sagas/actions';
 import {globalStyles} from 'styles/index';
 import {appColors} from 'theme';
+import ChildLoginForm from './ChildLoginForm';
 import ParentLoginForm from './ParentLoginForm';
 
 const PARENT_ACCORDION_ID = 'parentlogin';
@@ -20,13 +21,6 @@ const LoginAccordions = ({login}) => {
   const [parentExpanded, setParentExpanded] = useState(false);
   const [childExpanded, setChildExpanded] = useState(false);
   const [expandedId, setExpandedId] = useState(null);
-  const onPress = useCallback(
-    (e, setExpanded) => () => {
-      console.log('on press', setExpanded);
-      setExpanded(!e);
-    },
-    [],
-  );
   const getIcon = useCallback(
     (expanded) => (props) => (
       <List.Icon {...props} icon={expanded ? 'minus' : 'plus'} />
@@ -34,24 +28,34 @@ const LoginAccordions = ({login}) => {
     [],
   );
 
-  const onAccordionPress = useCallback((id) => {
-    if (id === PARENT_ACCORDION_ID) {
-      setParentExpanded(true);
-      setChildExpanded(false);
-    }
+  const onAccordionPress = useCallback(
+    (id) => {
+      if (id === expandedId) {
+        setParentExpanded(false);
+        setChildExpanded(false);
+        setExpandedId(null);
+        return;
+      }
 
-    if (id === CHILD_ACCORDION_ID) {
-      setParentExpanded(false);
-      setChildExpanded(true);
-    }
+      if (id === PARENT_ACCORDION_ID) {
+        setParentExpanded(true);
+        setChildExpanded(false);
+      }
 
-    if (id === null) {
-      setParentExpanded(false);
-      setChildExpanded(false);
-    }
+      if (id === CHILD_ACCORDION_ID) {
+        setParentExpanded(false);
+        setChildExpanded(true);
+      }
 
-    setExpandedId(id);
-  }, []);
+      if (id === null) {
+        setParentExpanded(false);
+        setChildExpanded(false);
+      }
+
+      setExpandedId(id);
+    },
+    [expandedId],
+  );
   return (
     <ListAccordionGroup
       expandedId={expandedId}
@@ -70,9 +74,9 @@ const LoginAccordions = ({login}) => {
         left={getIcon(childExpanded)}
         title="I have a parent code"
         expanded={childExpanded}
-        style={[styles.accordion, styles.accordionFirst]}
+        style={[styles.accordion, styles.accordionLast]}
         styles={accordionStyle}>
-        <ParentLoginForm />
+        <ChildLoginForm />
       </Accordion>
     </ListAccordionGroup>
   );
@@ -97,10 +101,6 @@ const styles = StyleSheet.create({
   },
   accordionLast: {
     marginVertical: 16,
-  },
-  container: {
-    backgroundColor: '#EEE',
-    padding: 16,
   },
 });
 const mapDispatchToProps = (dispatch) =>

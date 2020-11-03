@@ -1,7 +1,8 @@
 import {AccordionList, Accordion} from 'components/base';
+import TextInput from 'components/common/TextInput';
 import React, {useCallback, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {useTheme, List, TextInput, Button} from 'react-native-paper';
+import {useTheme, Button} from 'react-native-paper';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {loginAction} from 'sagas/actions';
