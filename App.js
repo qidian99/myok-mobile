@@ -9,7 +9,7 @@ import {PersistGate} from 'redux-persist/integration/react';
 
 import {store, persistor} from 'reducers/index';
 import Main from 'navigation/Main';
-import {MyTheme} from 'theme/index';
+import {NavigationTheme} from 'theme/index';
 
 const App = () => {
   const colorScheme = useColorScheme();
@@ -18,7 +18,7 @@ const App = () => {
       <PersistGate loading={null} persistor={persistor}>
         <AppearanceProvider>
           <NavigationContainer
-            theme={colorScheme === 'dark' ? DarkTheme : MyTheme}
+            theme={colorScheme === 'dark' ? DarkTheme : NavigationTheme}
             linking={linking}>
             <Main />
           </NavigationContainer>

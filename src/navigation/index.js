@@ -17,7 +17,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Login from '../views/auth/Login';
+import Login from '../views/auth/Auth';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();

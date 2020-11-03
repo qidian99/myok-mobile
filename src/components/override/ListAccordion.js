@@ -28,6 +28,7 @@ const ListAccordion = ({
   testID,
   onPress,
   expanded: expandedProp,
+  noChevron,
 }) => {
   const [expanded, setExpanded] = React.useState(expandedProp || false);
 
@@ -47,6 +48,9 @@ const ListAccordion = ({
   const expandedInternal = expandedProp !== undefined ? expandedProp : expanded;
 
   const groupContext = React.useContext(ListAccordionGroupContext);
+  // console.log({
+  //   id,
+  // });
   if (groupContext !== null && !id) {
     throw new Error(
       'List.Accordion is used inside a List.AccordionGroup without specifying an id prop.',
@@ -71,6 +75,7 @@ const ListAccordion = ({
         <View
           style={[
             styles.row,
+            extendedStyles.row,
             isExpanded && styles.rowExpanded,
             isExpanded && extendedStyles.rowExpanded,
           ]}
@@ -86,6 +91,7 @@ const ListAccordion = ({
               numberOfLines={titleNumberOfLines}
               style={[
                 styles.title,
+                extendedStyles.title,
                 {
                   // color: isExpanded ? theme.colors.primary : titleColor,
                   color: titleColor,
@@ -108,15 +114,17 @@ const ListAccordion = ({
               </Text>
             )}
           </View>
-          <View
-            style={[styles.item, description ? styles.multiline : undefined]}>
-            <MaterialCommunityIcon
-              name={isExpanded ? 'chevron-up' : 'chevron-down'}
-              color={titleColor}
-              size={24}
-              direction={I18nManager.isRTL ? 'rtl' : 'ltr'}
-            />
-          </View>
+          {!noChevron && (
+            <View
+              style={[styles.item, description ? styles.multiline : undefined]}>
+              <MaterialCommunityIcon
+                name={isExpanded ? 'chevron-up' : 'chevron-down'}
+                color={titleColor}
+                size={24}
+                direction={I18nManager.isRTL ? 'rtl' : 'ltr'}
+              />
+            </View>
+          )}
         </View>
       </TouchableRipple>
       {isExpanded
@@ -128,7 +136,7 @@ const ListAccordion = ({
               !child.props.right
             ) {
               return React.cloneElement(child, {
-                style: [styles.child, child.props.style],
+                style: [styles.child, extendedStyles.child, child.props.style],
               });
             }
 
@@ -143,7 +151,7 @@ const ListAccordion = ({
 
 const styles = StyleSheet.create({
   child: {
-    paddingLeft: 64,
+    padding: 0,
   },
   container: {
     padding: 0,
@@ -172,5 +180,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
 });
+
+ListAccordion.defaultProps = {
+  styles: {},
+  titleStyle: {},
+};
 
 export default withTheme(ListAccordion);

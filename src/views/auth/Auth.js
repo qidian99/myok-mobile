@@ -1,5 +1,5 @@
 import AuthContainer from 'components/auth/AuthContainer';
-import AuthAccordion from 'components/auth/AuthForm';
+import AuthForms from 'components/auth/AuthForms';
 import React from 'react';
 import {ImageBackground, View, Image, SafeAreaView} from 'react-native';
 import {Button} from 'react-native-paper';
@@ -12,19 +12,13 @@ const backgroundImage = require('assets/image/isafe_background.jpeg');
 const logo = require('assets/image/logo.png');
 
 const Login = ({login}) => {
-  const LoginButton = (
-    <Button icon="camera" mode="contained" onPress={() => login('a', 'b')}>
-      Log in
-    </Button>
-  );
   return (
     <ImageBackground style={globalStyles.background} source={backgroundImage}>
       <SafeAreaView>
         <View style={globalStyles.container}>
           <Image style={globalStyles.logo} source={logo} />
           <AuthContainer>
-            <AuthAccordion />
-            {LoginButton}
+            <AuthForms />
           </AuthContainer>
         </View>
       </SafeAreaView>

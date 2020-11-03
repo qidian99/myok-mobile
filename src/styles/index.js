@@ -1,7 +1,7 @@
 /* eslint-disable react-native/sort-styles */
 /* eslint-disable react-native/no-color-literals */
 import {StyleSheet} from 'react-native';
-import {appColors} from 'theme';
+import {appColors} from 'theme/index';
 
 export const globalStyles = StyleSheet.create({
   androidButtonText: {

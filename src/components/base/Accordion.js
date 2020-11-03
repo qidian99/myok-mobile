@@ -3,19 +3,47 @@ import PropTypes from 'prop-types';
 import {ViewPropTypes} from 'react-native';
 import ListAccordion from 'components/override/ListAccordion';
 
-const Accordion = ({title, left, children, style, styles}) => {
-  const [expanded, setExpanded] = React.useState(false);
+const Accordion = ({
+  title,
+  left,
+  children,
+  style,
+  styles,
+  expanded,
+  onPress,
+  titleStyle,
+  noChevron,
+  id,
+}) => {
+  const [isExpanded, setExpanded] = React.useState(false);
+  const handlePress = () => setExpanded(!isExpanded);
 
-  const handlePress = () => setExpanded(!expanded);
+  if (expanded === undefined) {
+    return (
+      <ListAccordion
+        id={id}
+        style={style}
+        styles={styles}
+        title={title}
+        left={left}
+        noChevron={noChevron}
+        expanded={isExpanded}
+        onPress={handlePress}>
+        {children}
+      </ListAccordion>
+    );
+  }
 
   return (
     <ListAccordion
+      id={id}
       style={style}
       styles={styles}
       title={title}
       left={left}
       expanded={expanded}
-      onPress={handlePress}>
+      onPress={onPress}
+      titleStyle={titleStyle}>
       {children}
     </ListAccordion>
   );
