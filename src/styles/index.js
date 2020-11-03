@@ -26,7 +26,8 @@ export const globalStyles = StyleSheet.create({
   },
   datepicker: {
     paddingVertical: 28,
-    backgroundColor: '#FAFAFA',
+    backgroundColor: '#FCFCFC',
+    marginBottom: 16,
   },
   logo: {
     height: 100,

@@ -15,6 +15,7 @@ const ChildLoginForm = ({login}) => {
   const [date, setDate] = useState(new Date());
   const [mode] = useState('date');
   const [parentCode, setParentCode] = useState('');
+  const {colors} = useTheme();
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -47,8 +48,15 @@ const ChildLoginForm = ({login}) => {
         value={parentCode}
         onChangeText={onParentCodeChange}
       />
-      <HelperText type="error" visible={parentCodeError} style={errorStyle}>
+      <HelperText
+        type="error"
+        visible={parentCodeError}
+        //  style={errorStyle}
+      >
         Parent Code is invalid!
+      </HelperText>
+      <HelperText theme={{colors: {text: colors.primary}}} type="info" visible>
+        Date of Birth
       </HelperText>
       <DateTimePicker
         style={globalStyles.datepicker}
