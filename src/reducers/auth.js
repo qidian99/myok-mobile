@@ -4,6 +4,8 @@ import {types} from 'util/types';
 const INITIAL_STATE = {
   user: null,
   token: null,
+  securityQuestion: false,
+  tos: false,
 };
 
 export const authReducer = (state = INITIAL_STATE, action) => {
@@ -11,12 +13,14 @@ export const authReducer = (state = INITIAL_STATE, action) => {
     case PURGE: {
       return INITIAL_STATE;
     }
-    case types.LOGIN_PARENT: {
-      const {user, token} = action;
+    case types.LOGIN_ADULT: {
+      const {user, token, securityQuestion, tos} = action;
       return {
         ...state,
         user,
         token,
+        securityQuestion,
+        tos,
       };
     }
     case types.LOGIN_CHILD: {

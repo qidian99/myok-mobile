@@ -8,7 +8,7 @@ import {globalStyles} from 'styles/index';
 import {appColors} from 'theme';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {loginChild, loginParent} from 'sagas/actions';
+import {loginChild, loginAdult} from 'sagas/actions';
 import TextInput from 'components/common/TextInput';
 
 const ChildLoginForm = ({login}) => {

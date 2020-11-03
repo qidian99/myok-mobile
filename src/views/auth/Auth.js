@@ -5,7 +5,7 @@ import {ImageBackground, View, Image, SafeAreaView} from 'react-native';
 import {Button} from 'react-native-paper';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {loginAction} from 'sagas/actions';
+import {loginAdult} from 'sagas/actions';
 import {globalStyles} from 'styles/index';
 
 const backgroundImage = require('assets/image/isafe_background.jpeg');
@@ -29,7 +29,7 @@ const Login = ({login}) => {
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      login: loginAction,
+      login: loginAdult,
     },
     dispatch,
   );

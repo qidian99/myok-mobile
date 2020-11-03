@@ -10,17 +10,40 @@ const MOCK_USER = {
   email: 'test@isafeventures.com',
   username: 'test@isafeventures.com',
 };
-const MOCK_DOCUMENT = {
-  title: 'Mock Document',
-  body: 'This is a mock document',
-};
-const MOCK_DOCUMENTS = [MOCK_DOCUMENT, MOCK_DOCUMENT, MOCK_DOCUMENT];
-const MOCK_CHILD = {
-  first_name: 'Child',
-  last_name: 'One',
-  dob: new Date(),
-};
-const MOCK_CHILDREN = [MOCK_CHILD, MOCK_CHILD];
+const generateMockDocument = (
+  title = 'Mock Document',
+  body = 'This is the body of mock document',
+) => ({
+  title,
+  body,
+});
+const MOCK_DOCUMENTS = [
+  generateMockDocument(
+    'Mock Document 1',
+    'This is the body of mock document 1',
+  ),
+  generateMockDocument(
+    'Mock Document 2',
+    'This is the body of mock document 2',
+  ),
+  generateMockDocument(
+    'Mock Document 3',
+    'This is the body of mock document 3',
+  ),
+];
+const generateMockChild = (
+  firstName = 'Child',
+  lastName = 'One',
+  dob = new Date(),
+) => ({
+  first_name: firstName,
+  last_name: lastName,
+  dob,
+});
+const MOCK_CHILDREN = [
+  generateMockChild('Child', 'One'),
+  generateMockChild('Child', 'Two'),
+];
 const mockFetch = async (url, body = null, method = 'POST') => {
   let headers;
 
@@ -58,15 +81,62 @@ class API {
     return {
       user: MOCK_USER,
       token: MOCK_JWT,
+      securityQuestion: true,
+      tos: true,
+    };
+  }
+  static async sendSMSOTP(phone) {
+    console.log('sendSMSOTP', phone);
+    await timeout(1000);
+    await mockFetch(MOCK_ENDPOINT, {phone});
+    return {};
+  }
+  static async checkSMSOTP(phone, code) {
+    console.log('checkSMSOTP', phone, code);
+    await timeout(1000);
+    await mockFetch(MOCK_ENDPOINT, {phone, code});
+    return {
+      user: MOCK_USER,
+      token: MOCK_JWT,
+      securityQuestion: false,
+      tos: false,
+    };
+  }
+  static async sendEmailOTP(phone) {
+    console.log('sendSMSOTP', phone);
+    await timeout(1000);
+    await mockFetch(MOCK_ENDPOINT, {phone});
+    return {};
+  }
+  static async checkEmailOTP(email, code) {
+    console.log('checkSMSOTP', email, code);
+    await timeout(1000);
+    await mockFetch(MOCK_ENDPOINT, {email, code});
+    return {
+      user: MOCK_USER,
+      token: MOCK_JWT,
+      securityQuestion: false,
+      tos: false,
     };
   }
   static async loginChildUser(parentCode, dob) {
     console.log('loginChildUser', parentCode, dob);
     await timeout(1000);
-    await mockFetch(MOCK_ENDPOINT, {username: parentCode, password: dob});
+    await mockFetch(MOCK_ENDPOINT, {parentCode, dob});
     return {
       user: MOCK_USER,
       token: MOCK_JWT,
+    };
+  }
+  static async onboardChild(parentCode, dob) {
+    console.log('signupChildUser', parentCode, dob);
+    await timeout(1000);
+    await mockFetch(MOCK_ENDPOINT, {parentCode, dob});
+    return {
+      user: MOCK_USER,
+      token: MOCK_JWT,
+      securityQuestion: false,
+      tos: false,
     };
   }
   static async fetchDocuments() {

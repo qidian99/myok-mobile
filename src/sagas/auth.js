@@ -11,7 +11,7 @@ function* loginParentAsync(action) {
     const {user, token} = yield call(API.loginParentUser, username, password);
     // Dispatch Action To Redux Store
     yield put({
-      type: types.LOGIN_PARENT,
+      type: types.LOGIN_ADULT,
       user,
       token,
     });
@@ -38,7 +38,14 @@ function* loginChildAsync(action) {
   }
 }
 
+function* sendVerificationCode(action) {}
+function* signupAdult(action) {}
+function* signupChild(action) {}
+
 export function* authSaga() {
-  yield takeLatest(types.LOGIN_PARENT_ASYNC, loginParentAsync);
+  yield takeLatest(types.LOGIN_ADULT_ASYNC, loginParentAsync);
   yield takeLatest(types.LOGIN_CHILD_ASYNC, loginChildAsync);
+  yield takeLatest(types.SEND_VERIFICATION_CODE_ASYNC, sendVerificationCode);
+  yield takeLatest(types.SIGNUP_ADULT, signupAdult);
+  yield takeLatest(types.SIGNUP_CHILD, signupChild);
 }
