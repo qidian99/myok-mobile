@@ -3,7 +3,7 @@ import React, {useCallback, useState} from 'react';
 import {View, StyleSheet, Platform} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-import {useTheme, List, Button} from 'react-native-paper';
+import {useTheme, List, Button, HelperText} from 'react-native-paper';
 import {globalStyles} from 'styles/index';
 import {appColors} from 'theme';
 import {connect} from 'react-redux';
@@ -21,14 +21,35 @@ const ChildLoginForm = ({login}) => {
     setDate(currentDate);
   };
 
-  const {colors} = useTheme();
+  const onPress = useCallback(() => {
+    if (parentCode.length === 0) {
+      setParentCodeError(true);
+      return;
+    }
+    login(parentCode, date);
+  }, [date, parentCode, login]);
+
+  const [parentCodeError, setParentCodeError] = useState(false);
+
+  const onParentCodeChange = useCallback(
+    (text) => {
+      setParentCodeError(false);
+      setParentCode(text);
+    },
+    [setParentCode, setParentCodeError],
+  );
+
+  const errorStyle = {display: parentCodeError ? 'flex' : 'none'};
   return (
     <View style={styles.container}>
       <TextInput
         label="Parent Code"
         value={parentCode}
-        onChangeText={(text) => setParentCode(text)}
+        onChangeText={onParentCodeChange}
       />
+      <HelperText type="error" visible={parentCodeError} style={errorStyle}>
+        Parent Code is invalid!
+      </HelperText>
       <DateTimePicker
         style={globalStyles.datepicker}
         value={date}
@@ -37,7 +58,7 @@ const ChildLoginForm = ({login}) => {
         display="default"
         onChange={onChange}
       />
-      <Button mode="contained" onPress={() => login('parentCode', 'DoB')}>
+      <Button mode="contained" onPress={onPress}>
         Log in
       </Button>
     </View>
