@@ -1,12 +1,12 @@
 // Imports: Dependencies
 import {delay, takeEvery, takeLatest, put, call} from 'redux-saga/effects';
-import {types} from 'util/types';
+import {actions} from 'util/actions';
 import API from 'util/mock';
 function* fetchChildrenAsync(action) {
   try {
     const children = yield call(API.fetchChildren);
     yield put({
-      type: types.FETCH_CHILDREN,
+      type: actions.FETCH_CHILDREN,
       children,
     });
   } catch (error) {
@@ -15,5 +15,5 @@ function* fetchChildrenAsync(action) {
 }
 
 export function* childSaga() {
-  yield takeLatest(types.FETCH_CHILDREN_AYSNC, fetchChildrenAsync);
+  yield takeLatest(actions.FETCH_CHILDREN_AYSNC, fetchChildrenAsync);
 }

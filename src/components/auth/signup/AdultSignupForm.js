@@ -18,12 +18,16 @@ const AuthLoginForm = ({login}) => {
   const [passwordError, setPasswordError] = React.useState(false);
 
   const onSubmit = useCallback(() => {
+    let error = false;
     if (email.length === 0) {
       setEmailError(true);
-      return;
+      error = true;
     }
     if (password.length === 0) {
       setPasswordError(true);
+      error = true;
+    }
+    if (error) {
       return;
     }
     login(email, password);

@@ -1,35 +1,41 @@
 // Imports: Dependencies
 import {delay, takeEvery, takeLatest, put, call} from 'redux-saga/effects';
-import {types} from 'util/types';
+import {actions} from 'util/actions';
 import API from 'util/mock';
+import {OTP_METHODS} from 'util/actions';
 function* loginParentAsync(action) {
   const {username, password} = action;
 
   try {
-    // Network
-    // call
-    const {user, token} = yield call(API.loginParentUser, username, password);
-    // Dispatch Action To Redux Store
+    const {user, token, securityQuestion, tos} = yield call(
+      API.loginParentUser,
+      username,
+      password,
+    );
     yield put({
-      type: types.LOGIN_ADULT,
+      type: actions.LOGIN_ADULT,
       user,
       token,
+      securityQuestion,
+      tos,
     });
   } catch (error) {
     console.log(error);
   }
 }
 
-function* loginChildAsync(action) {
+function* onboardChildAsync(action) {
   const {parentCode, dob} = action;
-
   try {
-    // Network
-    // call
-    const {user, token} = yield call(API.loginChildUser, parentCode, dob);
-    // Dispatch Action To Redux Store
+    const {user, token, securityQuestion, tos} = yield call(
+      API.loginChildUser,
+      parentCode,
+      dob,
+      securityQuestion,
+      tos,
+    );
     yield put({
-      type: types.LOGIN_CHILD,
+      type: actions.LOGIN_CHILD,
       user,
       token,
     });
@@ -38,14 +44,99 @@ function* loginChildAsync(action) {
   }
 }
 
-function* sendVerificationCode(action) {}
-function* signupAdult(action) {}
-function* signupChild(action) {}
+function* sendVerificationCodeAsync(action) {
+  const {method, address} = action;
+  if (method !== OTP_METHODS.SMS && method !== OTP_METHODS.EMAIL) {
+    throw new Error('OTP method not allowed');
+  }
+  try {
+    let res;
+    if (method === OTP_METHODS.SMS) {
+      res = yield call(API.sendSMSOTP, address);
+    } else {
+      res = yield call(API.sendEmailOTP, address);
+    }
+    yield put({
+      type: actions.SEND_VERIFICATION_CODE,
+      method,
+      address,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+function* signupAdultAsync(action) {
+  const {method, code} = action;
+  if (method !== OTP_METHODS.SMS && method !== OTP_METHODS.EMAIL) {
+    throw new Error('Sign up method not allowed');
+  }
+  try {
+    let res;
+    if (method === OTP_METHODS.SMS) {
+      res = yield call(API.checkSMSOTP, code);
+    } else {
+      res = yield call(API.checkEmailOTP, code);
+    }
+    yield put({
+      type: actions.SIGNUP_ADULT,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+// function* signupChildAsync(action) {}
+function* resetPasswordAsync(action) {
+  const {email} = action;
+  try {
+    const res = yield call(API.resetPassword, email);
+  } catch (e) {
+    console.log(e);
+  }
+}
+function* forgetPasswordAsync(action) {
+  const {email} = action;
+  try {
+    const res = yield call(API.forgetPassword, email);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+function* fetchSecurityQuestionAsync(action) {
+  const {email} = action;
+  try {
+    const res = yield call(API.fetchSecurityQuestion, email);
+  } catch (e) {
+    console.log(e);
+  }
+}
+function* submitSecurityQuestionAsync(action) {
+  const {email, sqid, answer} = action;
+  try {
+    const res = yield call(API.submitSecurityQuestion, email, sqid, answer);
+  } catch (e) {
+    console.log(e);
+  }
+}
 
 export function* authSaga() {
-  yield takeLatest(types.LOGIN_ADULT_ASYNC, loginParentAsync);
-  yield takeLatest(types.LOGIN_CHILD_ASYNC, loginChildAsync);
-  yield takeLatest(types.SEND_VERIFICATION_CODE_ASYNC, sendVerificationCode);
-  yield takeLatest(types.SIGNUP_ADULT, signupAdult);
-  yield takeLatest(types.SIGNUP_CHILD, signupChild);
+  yield takeLatest(actions.LOGIN_ADULT_ASYNC, loginParentAsync);
+  yield takeLatest(actions.LOGIN_CHILD_ASYNC, onboardChildAsync);
+  yield takeLatest(
+    actions.SEND_VERIFICATION_CODE_ASYNC,
+    sendVerificationCodeAsync,
+  );
+  yield takeLatest(actions.SIGNUP_ADULT_ASYNC, signupAdultAsync);
+  yield takeLatest(actions.SIGNUP_CHILD_ASYNC, onboardChildAsync);
+  yield takeLatest(actions.RESET_PASSWORD_ASYNC, resetPasswordAsync);
+  yield takeLatest(actions.SIGNUP_CHILD_ASYNC, forgetPasswordAsync);
+
+  yield takeLatest(
+    actions.FETCH_SECURITY_QUESTION_ASYNC,
+    fetchSecurityQuestionAsync,
+  );
+  yield takeLatest(
+    actions.SUBMIT_SECURITY_QUESTION_ASYNC,
+    submitSecurityQuestionAsync,
+  );
 }

@@ -1,5 +1,5 @@
 import {PURGE} from 'redux-persist';
-import {types} from 'util/types';
+import {actions} from 'util/actions';
 
 const INITIAL_STATE = {
   documents: [],
@@ -10,7 +10,7 @@ export const documentReducer = (state = INITIAL_STATE, action) => {
     case PURGE: {
       return INITIAL_STATE;
     }
-    case types.FETCH_DOCUMENTS: {
+    case actions.FETCH_DOCUMENTS: {
       const {documents} = action;
       console.log('Getting documents in document reducer', documents);
       return {

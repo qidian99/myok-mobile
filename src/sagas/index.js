@@ -4,7 +4,13 @@ import {all, fork} from 'redux-saga/effects';
 import {authSaga} from './auth';
 import {documentSaga} from './document';
 import {childSaga} from './child';
+import {userSaga} from './user';
 // Redux Saga: Root Saga
 export function* rootSaga() {
-  yield all([fork(authSaga), fork(documentSaga), fork(childSaga)]);
+  yield all([
+    fork(authSaga),
+    fork(documentSaga),
+    fork(childSaga),
+    fork(userSaga),
+  ]);
 }

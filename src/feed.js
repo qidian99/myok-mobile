@@ -4,7 +4,7 @@ import {useNavigation, useRoute} from '@react-navigation/native';
 import {Button} from 'react-native-paper';
 import {globalStyles} from './styles';
 import {action} from 'reducers/index';
-import {types} from 'util/types';
+import {actions} from 'util/actions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchChildren, fetchDocuments} from 'sagas/actions';
@@ -24,7 +24,7 @@ const Feed = ({fetchDocuments, fetchChildren}) => {
       <Button
         icon="camera"
         mode="contained"
-        onPress={() => action(types.LOGOOUT)}>
+        onPress={() => action(actions.LOGOOUT)}>
         Log out
       </Button>
       <Button icon="camera" mode="contained" onPress={() => fetchDocuments()}>

@@ -1,5 +1,5 @@
 import {PURGE} from 'redux-persist';
-import {types} from 'util/types';
+import {actions} from 'util/actions';
 
 const INITIAL_STATE = {
   user: null,
@@ -13,7 +13,7 @@ export const authReducer = (state = INITIAL_STATE, action) => {
     case PURGE: {
       return INITIAL_STATE;
     }
-    case types.LOGIN_ADULT: {
+    case actions.LOGIN_ADULT: {
       const {user, token, securityQuestion, tos} = action;
       return {
         ...state,
@@ -23,7 +23,7 @@ export const authReducer = (state = INITIAL_STATE, action) => {
         tos,
       };
     }
-    case types.LOGIN_CHILD: {
+    case actions.LOGIN_CHILD: {
       const {user, token} = action;
       return {
         ...state,
@@ -31,7 +31,7 @@ export const authReducer = (state = INITIAL_STATE, action) => {
         token,
       };
     }
-    case types.LOGOOUT: {
+    case actions.LOGOOUT: {
       return INITIAL_STATE;
     }
     default:
