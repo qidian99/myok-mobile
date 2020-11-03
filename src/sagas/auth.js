@@ -1,17 +1,17 @@
 // Imports: Dependencies
-import {delay, takeEvery, takeLatest, put} from 'redux-saga/effects';
+import {delay, takeEvery, takeLatest, put, call} from 'redux-saga/effects';
 import {types} from 'util/types';
-// Worker: Increase Counter Async (Delayed By 4 Seconds)
-function* loginAsync() {
-  try {
-    // Delay 4 Seconds
-    yield delay(1000);
+import API from 'util/mock';
+function* loginParentAsync(action) {
+  const {username, password} = action;
 
-    const user = {name: 'mock user'};
-    const token = 'MOCK_TOKEN';
+  try {
+    // Network
+    // call
+    const {user, token} = yield call(API.loginParentUser, username, password);
     // Dispatch Action To Redux Store
     yield put({
-      type: types.LOGIN,
+      type: types.LOGIN_PARENT,
       user,
       token,
     });
@@ -19,8 +19,26 @@ function* loginAsync() {
     console.log(error);
   }
 }
-// Watcher: Increase Counter Async
-export function* watchLogin(action) {
-  console.log(action);
-  yield takeLatest(types.LOGIN_ASYNC, loginAsync);
+
+function* loginChildAsync(action) {
+  const {parentCode, dob} = action;
+
+  try {
+    // Network
+    // call
+    const {user, token} = yield call(API.loginChildUser, parentCode, dob);
+    // Dispatch Action To Redux Store
+    yield put({
+      type: types.LOGIN_CHILD,
+      user,
+      token,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* authSaga() {
+  yield takeLatest(types.LOGIN_PARENT_ASYNC, loginParentAsync);
+  yield takeLatest(types.LOGIN_CHILD_ASYNC, loginChildAsync);
 }

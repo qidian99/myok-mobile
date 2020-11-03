@@ -5,12 +5,15 @@ import {Button} from 'react-native-paper';
 import {globalStyles} from './styles';
 import {action} from 'reducers/index';
 import {types} from 'util/types';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {fetchChildren, fetchDocuments} from 'sagas/actions';
 
-const Feed = () => {
+const Feed = ({fetchDocuments, fetchChildren}) => {
   const navigation = useNavigation();
   const route = useRoute();
 
-  console.log(route);
+  // console.log(route);
 
   let detailResult = route.params;
   return (
@@ -23,6 +26,12 @@ const Feed = () => {
         mode="contained"
         onPress={() => action(types.LOGOOUT)}>
         Log out
+      </Button>
+      <Button icon="camera" mode="contained" onPress={() => fetchDocuments()}>
+        Fetch Documents
+      </Button>
+      <Button icon="camera" mode="contained" onPress={() => fetchChildren()}>
+        Fetch Children
       </Button>
       {Platform.select({
         ios: (
@@ -46,4 +55,13 @@ const Feed = () => {
   );
 };
 
-export default Feed;
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      fetchDocuments,
+      fetchChildren,
+    },
+    dispatch,
+  );
+
+export default connect(null, mapDispatchToProps)(Feed);

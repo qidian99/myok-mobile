@@ -12,8 +12,8 @@ const Main = ({loggedIn}) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log('State:');
-  console.log(state);
+  // console.log('State:');
+  // console.log(state);
   return {
     loggedIn: state.auth.token !== null,
   };

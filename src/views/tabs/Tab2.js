@@ -7,7 +7,7 @@ import {globalStyles} from 'styles/index';
 const Tab2 = () => {
   const isFocused = useIsFocused();
 
-  console.log(isFocused);
+  // console.log(isFocused);
 
   return (
     <View style={globalStyles.center}>

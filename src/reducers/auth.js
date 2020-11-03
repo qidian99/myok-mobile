@@ -11,7 +11,15 @@ export const authReducer = (state = INITIAL_STATE, action) => {
     case PURGE: {
       return INITIAL_STATE;
     }
-    case types.LOGIN: {
+    case types.LOGIN_PARENT: {
+      const {user, token} = action;
+      return {
+        ...state,
+        user,
+        token,
+      };
+    }
+    case types.LOGIN_CHILD: {
       const {user, token} = action;
       return {
         ...state,

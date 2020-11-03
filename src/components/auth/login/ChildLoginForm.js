@@ -8,7 +8,7 @@ import {globalStyles} from 'styles/index';
 import {appColors} from 'theme';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {loginAction} from 'sagas/actions';
+import {loginChild, loginParent} from 'sagas/actions';
 import TextInput from 'components/common/TextInput';
 
 const ChildLoginForm = ({login}) => {
@@ -37,7 +37,7 @@ const ChildLoginForm = ({login}) => {
         display="default"
         onChange={onChange}
       />
-      <Button mode="contained" onPress={() => login('a', 'b')}>
+      <Button mode="contained" onPress={() => login('parentCode', 'DoB')}>
         Log in
       </Button>
     </View>
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      login: loginAction,
+      login: loginChild,
     },
     dispatch,
   );

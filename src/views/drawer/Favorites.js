@@ -6,7 +6,7 @@ import {globalStyles} from 'styles/index';
 
 const Favorites = () => {
   const route = useRoute();
-  console.log(route);
+  // console.log(route);
   return (
     <View style={globalStyles.center}>
       <Text style={globalStyles.title}>Favorites</Text>

@@ -5,7 +5,7 @@ import {View, StyleSheet} from 'react-native';
 import {useTheme, Button} from 'react-native-paper';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {loginAction} from 'sagas/actions';
+import {loginParent} from 'sagas/actions';
 import {globalStyles} from 'styles/index';
 import {appColors} from 'theme';
 
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      login: loginAction,
+      login: loginParent,
     },
     dispatch,
   );

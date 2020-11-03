@@ -16,7 +16,6 @@ const CHILD_ACCORDION_ID = 'childlogin';
 
 const LoginAccordions = ({login}) => {
   const {colors} = useTheme();
-  console.log('colors', colors.background);
 
   const [parentExpanded, setParentExpanded] = useState(false);
   const [childExpanded, setChildExpanded] = useState(false);

@@ -21,3 +21,6 @@ Run iOS simulator using `yarn run ios`, `npm run ios`, or `react-native run-ios`
 
 ### List of all Material Icons
 https://oblador.github.io/react-native-vector-icons/
+
+### Write tests in Redux
+https://redux.js.org/recipes/writing-tests

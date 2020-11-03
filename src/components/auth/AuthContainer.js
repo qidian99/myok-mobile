@@ -7,7 +7,6 @@ import {appColors} from 'theme/index';
 
 const AuthContainer = ({children}) => {
   const {colors} = useTheme();
-  console.log('colors', colors.background);
   return (
     <Container
       containerStyle={[

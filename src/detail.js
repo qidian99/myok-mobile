@@ -14,7 +14,7 @@ const Detail = () => {
   const route = useRoute();
   // const index = useNavigationState(state => console.log(state));
 
-  console.log(route);
+  // console.log(route);
 
   /*useFocusEffect(
     React.useCallback(() => {
