@@ -4,6 +4,7 @@ const PRIMARY_COLOR = '#295FA0';
 
 export const appColors = {
   primary: PRIMARY_COLOR,
+  surface: PRIMARY_COLOR,
   background: '#FFF',
   backgroundContainer: 'rgba(88,129,144,0.7)',
   text: 'white',

@@ -23,7 +23,6 @@ const rootReducer = combineReducers({
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = createStore(
@@ -39,4 +38,4 @@ sagaMiddleware.run(rootSaga);
 export const action = (type) => store.dispatch({type});
 
 // Uncomment to purge all redux state
-persistor.purge();
+// persistor.purge();

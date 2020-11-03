@@ -16,6 +16,7 @@ module.exports = {
           views: './src/views',
           sagas: './src/sagas',
           assets: './src/assets',
+          context: './src/context',
         },
       },
     ],

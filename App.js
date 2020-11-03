@@ -17,20 +17,11 @@ import Main from 'navigation/Main';
 import {NavigationTheme} from 'theme/index';
 
 const App = () => {
-  const colorScheme = useColorScheme();
-  const theme = useTheme();
-  const navigationTheme = theme.dark ? DarkTheme : NavigationTheme;
-
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <AppearanceProvider>
-          <NavigationContainer
-            theme={navigationTheme}
-            // theme={colorScheme === 'dark' ? DarkTheme : NavigationTheme}
-            linking={linking}>
-            <Main />
-          </NavigationContainer>
+          <Main />
         </AppearanceProvider>
       </PersistGate>
     </Provider>
