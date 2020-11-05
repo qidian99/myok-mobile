@@ -18,7 +18,7 @@ import Animated from 'react-native-reanimated';
 
 export function DrawerContent(props) {
   const paperTheme = useTheme();
-  const {rtl, theme, toggleRTL, toggleTheme} = React.useContext(
+  const {rtl, theme, size, toggleRTL, toggleTheme, toggleFont} = React.useContext(
     PreferencesContext,
   );
 
@@ -97,6 +97,14 @@ export function DrawerContent(props) {
               <Text>Dark Theme</Text>
               <View pointerEvents="none">
                 <Switch value={theme === 'dark'} />
+              </View>
+            </View>
+          </TouchableRipple>
+          <TouchableRipple onPress={toggleFont}>
+            <View style={styles.preference}>
+              <Text>Large Font</Text>
+              <View pointerEvents="none">
+                <Switch value={size === 'large'} />
               </View>
             </View>
           </TouchableRipple>
