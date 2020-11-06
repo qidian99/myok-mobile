@@ -52,7 +52,7 @@ export const submitSecurityQuestion = (email, sqid, answer) => ({
 });
 /* User */
 export const changeProfile = (profile) => ({
-  types: actions.CHANGE_PROFILE_ASYNC,
+  type: actions.CHANGE_PROFILE_ASYNC,
   profile,
 });
 
