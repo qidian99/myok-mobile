@@ -1,9 +1,8 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
-import {mapDocumentTypeToIcon, mapDocumentStatus} from 'util/general';
 
 const ChildRow = ({child, colors, isLast}) => {
-  const {student_id, first_name, last_name, parent_code, dob} = child;
+  const {first_name, parent_code, dob} = child;
 
   const {
     containerStyle,
