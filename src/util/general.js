@@ -31,3 +31,19 @@ export const fetchWithToken = async (url, body = null, method = 'POST') => {
 
   return fetch(url, options);
 };
+
+export const mapDocumentTypeToIcon = (documentTypeId) => {
+  return require('assets/image/aup_icon.png');
+};
+
+export const mapDocumentStatus = (has_responded, has_agreed) => {
+  if (has_responded) {
+    if (has_agreed) {
+      return {statusText: 'Signed', statusColor: '#28A885'};
+    } else {
+      return {statusText: 'Denied', statusColor: '#E55151'};
+    }
+  }
+
+  return {statusText: 'Pending', statusColor: '#E1AA4B'};
+};
