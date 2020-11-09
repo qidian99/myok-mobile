@@ -25,7 +25,10 @@ export function* documentSaga() {
   yield takeLatest(actions.FETCH_DOCUMENTS_ASYNC, fetchDocumentsAsync);
   yield takeLatest(actions.FETCH_DOCUMENT_ASYNC, fetchDocumentAsync);
   yield takeLatest(actions.SIGN_DOCUMENT_ASYNC, signDocumentAsync);
-  yield takeLatest(actions.FINISH_DOCUMENT_VIDEO_ASYNC, finishDocumentVideoAsync);
+  yield takeLatest(
+    actions.FINISH_DOCUMENT_VIDEO_ASYNC,
+    finishDocumentVideoAsync,
+  );
   yield takeLatest(
     actions.SUBMIT_DOCUMENT_QUESTIONS_ASYNC,
     submitDocumentQuestionsAsync,

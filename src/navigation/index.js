@@ -1,7 +1,13 @@
 import React from 'react';
 import Feed from '../feed';
 import Detail from '../detail';
-import {SafeAreaView, TouchableOpacity} from 'react-native';
+import {
+  SafeAreaView,
+  TouchableOpacity,
+  ImageBackground,
+  View,
+  Text,
+} from 'react-native';
 import Contacts from '../views/drawer/Contacts';
 import Favorites from '../views/drawer/Favorites';
 import Settings from '../views/drawer/Settings';
@@ -71,41 +77,70 @@ const Header = ({scene, previous, navigation}) => {
       : options.title !== undefined
       ? options.title
       : scene.route.name;
+  console.log(title);
   return (
-    <Appbar.Header theme={{colors: {primary: theme.colors.surface}}}>
-      {previous ? (
-        <Appbar.BackAction
-          onPress={navigation.pop}
-          color={theme.colors.primary}
-        />
-      ) : (
-        <TouchableOpacity
-          onPress={() => {
-            navigation.openDrawer();
-          }}>
-          <Avatar.Image
-            size={40}
-            source={{
-              uri:
-                'https://pbs.twimg.com/profile_images/952545910990495744/b59hSXUd_400x400.jpg',
-            }}
-          />
-        </TouchableOpacity>
-      )}
-      <Appbar.Content
-        title={previous ? title : <Icon name="twitter" size={40} />}
+    <ImageBackground
+      source={require('assets/image/father_children.png')}
+      style={{width: '100%'}}>
+      <View
+        style={{
+          backgroundColor: 'rgba(0, 0, 0, 0.4)',
+          height: '100%',
+          width: '100%',
+          position: 'absolute',
+        }}
       />
-    </Appbar.Header>
+      <Appbar.Header style={{backgroundColor: 'transparent'}}>
+        {/* {previous ? (
+          <Appbar.BackAction
+            onPress={navigation.pop}
+            color={theme.colors.primary}
+          />
+        ) : (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.openDrawer();
+            }}>
+            <Avatar.Image
+              size={40}
+              source={{
+                uri:
+                  'https://pbs.twimg.com/profile_images/952545910990495744/b59hSXUd_400x400.jpg',
+              }}
+            />
+          </TouchableOpacity>
+        )} */}
+        <Appbar.Content
+          title={title}
+          titleStyle={{
+            fontWeight: '600',
+            fontSize: 22,
+            color: 'white',
+            textShadowColor: 'rgba(0, 0, 0, 0.4)',
+            textShadowOffset: {width: 0, height: 2},
+            textShadowRadius: 4,
+          }}
+          style={{
+            justifyContent: 'center',
+            paddingBottom: 10,
+          }}
+        />
+      </Appbar.Header>
+    </ImageBackground>
   );
 };
 
 const DashboardTopTabs = (props) => {
   return (
-    <MaterialTopTabs.Navigator>
-      <MaterialTopTabs.Screen name="Dashboard" component={Dashboard} />
-      <MaterialTopTabs.Screen name="My Documents" component={Documents} />
-      <MaterialTopTabs.Screen name="My Profile" component={Profile} />
-    </MaterialTopTabs.Navigator>
+    <ImageBackground
+      source={require('assets/image/isafe_background.jpeg')}
+      style={{width: '100%', height: '100%'}}>
+      <MaterialTopTabs.Navigator>
+        <MaterialTopTabs.Screen name="Dashboard" component={Dashboard} />
+        <MaterialTopTabs.Screen name="My Documents" component={Documents} />
+        <MaterialTopTabs.Screen name="My Profile" component={Profile} />
+      </MaterialTopTabs.Navigator>
+    </ImageBackground>
   );
 };
 
@@ -151,7 +186,7 @@ export const HomeStack = () => (
     <Stack.Screen
       name="Dashboard"
       component={HomeBottomTabs}
-      options={{headerTitle: 'ISAFE Direct My Ok'}}
+      options={{headerTitle: 'ISAFE Direct MyOk'}}
     />
   </Stack.Navigator>
 );
