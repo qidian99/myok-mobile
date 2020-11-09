@@ -20,6 +20,7 @@ import {
   DefaultTheme,
 } from '@react-navigation/native';
 import RNRestart from 'react-native-restart';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 import {useColorScheme, AppearanceProvider} from 'react-native-appearance';
 import {linking} from './src/navigation';
@@ -52,6 +53,7 @@ export default function Main() {
     colorScheme === 'dark' ? 'dark' : 'light',
   );
   const [rtl] = React.useState(I18nManager.isRTL);
+  const [size, setSize] = React.useState('small');
 
   const toggleRTL = React.useCallback(() => {
     I18nManager.forceRTL(!rtl);
@@ -62,17 +64,25 @@ export default function Main() {
     function toggleTheme() {
       setTheme(theme === 'light' ? 'dark' : 'light');
     }
+    function toggleFont() {
+      setSize(size === 'small' ? 'large' : 'small');
+    }
     return {
       toggleTheme,
       toggleRTL,
+      toggleFont,
       theme,
       rtl: rtl ? 'right' : 'left',
+      size,
     };
-  }, [rtl, theme, toggleRTL]);
+  }, [rtl, theme, size, toggleRTL]);
 
   const navigationTheme =
     theme === 'dark' ? NavigationDarkTheme : NavigationTheme;
   const appTheme = theme === 'dark' ? PaperDarkTheme : AppTheme;
+
+  // Need to build and re-render
+  EStyleSheet.build(size === 'small' ? {$rem: 10} : {$rem: 12});
 
   return (
     <PreferencesContext.Provider value={preferences}>

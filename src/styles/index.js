@@ -1,9 +1,11 @@
 /* eslint-disable react-native/sort-styles */
 /* eslint-disable react-native/no-color-literals */
-import {StyleSheet} from 'react-native';
+//import {StyleSheet} from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet'
+
 import {appColors} from 'theme/index';
 
-export const globalStyles = StyleSheet.create({
+export const globalStyles = EStyleSheet.create({
   androidButtonText: {
     color: 'blue',
     fontSize: 20,
@@ -34,7 +36,7 @@ export const globalStyles = StyleSheet.create({
     width: 240,
   },
   title: {
-    fontSize: 36,
+    fontSize: '4rem',
     marginBottom: 16,
   },
 

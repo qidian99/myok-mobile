@@ -18,9 +18,14 @@ import Animated from 'react-native-reanimated';
 
 export function DrawerContent(props) {
   const paperTheme = useTheme();
-  const {rtl, theme, toggleRTL, toggleTheme} = React.useContext(
-    PreferencesContext,
-  );
+  const {
+    rtl,
+    theme,
+    size,
+    toggleRTL,
+    toggleTheme,
+    toggleFont,
+  } = React.useContext(PreferencesContext);
 
   const translateX = Animated.interpolate(props.progress, {
     inputRange: [0, 0.5, 0.7, 0.8, 1],
@@ -97,6 +102,14 @@ export function DrawerContent(props) {
               <Text>Dark Theme</Text>
               <View pointerEvents="none">
                 <Switch value={theme === 'dark'} />
+              </View>
+            </View>
+          </TouchableRipple>
+          <TouchableRipple onPress={toggleFont}>
+            <View style={styles.preference}>
+              <Text>Large Font</Text>
+              <View pointerEvents="none">
+                <Switch value={size === 'large'} />
               </View>
             </View>
           </TouchableRipple>
