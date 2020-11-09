@@ -40,6 +40,9 @@ import {DrawerContent} from './drawer';
 import {createTestStack} from './test';
 import Children from 'views/children/children';
 
+const HEADER_BACKGROUND = require('assets/image/father_children.png');
+const APP_BACKGROUND = require('assets/image/isafe_background.jpeg');
+
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const MaterialBottomTabs = createMaterialBottomTabNavigator();
@@ -80,8 +83,11 @@ const Header = ({scene, previous, navigation}) => {
   console.log(title);
   return (
     <ImageBackground
-      source={require('assets/image/father_children.png')}
-      style={{width: '100%'}}>
+      source={HEADER_BACKGROUND}
+      style={{
+        width: '100%',
+        height: 140,
+      }}>
       <View
         style={{
           backgroundColor: 'rgba(0, 0, 0, 0.4)',
@@ -132,62 +138,66 @@ const Header = ({scene, previous, navigation}) => {
 
 const DashboardTopTabs = (props) => {
   return (
-    <ImageBackground
-      source={require('assets/image/isafe_background.jpeg')}
-      style={{width: '100%', height: '100%'}}>
-      <MaterialTopTabs.Navigator>
-        <MaterialTopTabs.Screen name="Dashboard" component={Dashboard} />
-        <MaterialTopTabs.Screen name="My Documents" component={Documents} />
-        <MaterialTopTabs.Screen name="My Profile" component={Profile} />
-      </MaterialTopTabs.Navigator>
-    </ImageBackground>
+    <MaterialTopTabs.Navigator>
+      <MaterialTopTabs.Screen name="Dashboard" component={Dashboard} />
+      <MaterialTopTabs.Screen name="My Documents" component={Documents} />
+      <MaterialTopTabs.Screen name="My Profile" component={Profile} />
+    </MaterialTopTabs.Navigator>
   );
 };
 
 const HomeBottomTabs = (props) => (
-  <MaterialBottomTabs.Navigator>
-    <MaterialBottomTabs.Screen
-      name="Home"
-      style={{marginBottom: 16}}
-      component={DashboardTopTabs}
-      options={{
-        tabBarLabel: 'Home',
-        tabBarIcon: () => (
-          <Icon style={[{color: 'white'}]} size={25} name={'home'} />
-        ),
-      }}
-    />
-    <MaterialBottomTabs.Screen
-      name="Documents"
-      component={Children}
-      options={{
-        tabBarLabel: 'Documents',
-        tabBarIcon: () => (
-          <Icon style={[{color: 'white'}]} size={25} name={'file-document'} />
-        ),
-      }}
-    />
-    <MaterialBottomTabs.Screen
-      name="Announcements"
-      component={Children}
-      options={{
-        tabBarLabel: 'Announcements',
-        tabBarIcon: () => (
-          <Icon style={[{color: 'white'}]} size={25} name={'email'} />
-        ),
-      }}
-    />
-    <MaterialBottomTabs.Screen
-      name="Profile"
-      component={Children}
-      options={{
-        tabBarLabel: 'Profile',
-        tabBarIcon: () => (
-          <Icon style={[{color: 'white'}]} size={25} name={'account'} />
-        ),
-      }}
-    />
-  </MaterialBottomTabs.Navigator>
+  <ImageBackground
+    source={APP_BACKGROUND}
+    style={{width: '100%', height: '100%'}}>
+    <MaterialBottomTabs.Navigator>
+      <MaterialBottomTabs.Screen
+        name="Home"
+        style={{marginBottom: 16}}
+        component={Dashboard}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Home',
+          tabBarIcon: () => (
+            <Icon style={[{color: 'white'}]} size={25} name={'home'} />
+          ),
+        }}
+      />
+      <MaterialBottomTabs.Screen
+        name="Documents"
+        component={Children}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Documents',
+          tabBarIcon: () => (
+            <Icon style={[{color: 'white'}]} size={25} name={'file-document'} />
+          ),
+        }}
+      />
+      <MaterialBottomTabs.Screen
+        name="Announcements"
+        component={Children}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Announcements',
+          tabBarIcon: () => (
+            <Icon style={[{color: 'white'}]} size={25} name={'email'} />
+          ),
+        }}
+      />
+      <MaterialBottomTabs.Screen
+        name="Profile"
+        component={Children}
+        options={{
+          headerShown: false,
+          tabBarLabel: 'Profile',
+          tabBarIcon: () => (
+            <Icon style={[{color: 'white'}]} size={25} name={'account'} />
+          ),
+        }}
+      />
+    </MaterialBottomTabs.Navigator>
+  </ImageBackground>
 );
 
 export const HomeStack = () => (
@@ -210,7 +220,11 @@ export const HomeStack = () => (
 export const HomeNavigator = () => {
   return (
     <Drawer.Navigator drawerContent={(props) => <DrawerContent {...props} />}>
-      <Drawer.Screen name="Home" component={HomeStack} />
+      <Drawer.Screen
+        name="Home"
+        component={HomeStack}
+        options={{headerShown: false}}
+      />
       {/* <Drawer.Screen name="Feed" component={Feed} /> */}
     </Drawer.Navigator>
   );
