@@ -2,21 +2,24 @@
  * @format
  */
 
-import React from 'react';
-import {AppRegistry, I18nManager} from 'react-native';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import {AppRegistry, I18nManager, ImageBackground, View} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
 import {
   Provider as PaperProvider,
   DarkTheme as PaperDarkTheme,
   DefaultTheme as PaperDefaultTheme,
+  ActivityIndicator,
+  useTheme,
+  Colors,
+  Text,
 } from 'react-native-paper';
 import {AppTheme} from 'theme/index';
 import {
   NavigationContainer,
   DefaultTheme as NavigationDefaultTheme,
   DarkTheme as NavigationDarkTheme,
-  useTheme,
   DefaultTheme,
 } from '@react-navigation/native';
 import RNRestart from 'react-native-restart';
@@ -30,6 +33,10 @@ import {PersistGate} from 'redux-persist/integration/react';
 import {store, persistor} from 'reducers/index';
 import {NavigationTheme} from 'theme/index';
 import {PreferencesContext} from './src/context/preferencesContext';
+import {globalStyles} from './src/styles';
+
+const APP_BACKGROUND = require('assets/image/isafe_background.jpeg');
+
 const CombinedDarkTheme = {
   ...PaperDarkTheme,
   ...NavigationDarkTheme,
@@ -49,23 +56,31 @@ export default function Main() {
   // const theme = useTheme();
 
   const colorScheme = useColorScheme();
-  const [theme, setTheme] = React.useState(
-    colorScheme === 'dark' ? 'dark' : 'light',
-  );
-  const [rtl] = React.useState(I18nManager.isRTL);
-  const [size, setSize] = React.useState('small');
+  const [theme, setTheme] = useState(colorScheme === 'dark' ? 'dark' : 'light');
+  const [rtl] = useState(I18nManager.isRTL);
+  const [size, setSize] = useState('small');
 
-  const toggleRTL = React.useCallback(() => {
+  const [render, setRender] = useState(true);
+
+  useEffect(() => {
+    if (!render) {
+      EStyleSheet.clearCache();
+      setTimeout(() => setRender(true), 600);
+    }
+  }, [render, size]);
+
+  const toggleRTL = useCallback(() => {
     I18nManager.forceRTL(!rtl);
     RNRestart.Restart();
   }, [rtl]);
 
-  const preferences = React.useMemo(() => {
+  const preferences = useMemo(() => {
     function toggleTheme() {
       setTheme(theme === 'light' ? 'dark' : 'light');
     }
     function toggleFont() {
       setSize(size === 'small' ? 'large' : 'small');
+      setRender(false);
     }
     return {
       toggleTheme,
@@ -82,7 +97,7 @@ export default function Main() {
   const appTheme = theme === 'dark' ? PaperDarkTheme : AppTheme;
 
   // Need to build and re-render
-  EStyleSheet.build(size === 'small' ? {$rem: 10} : {$rem: 12});
+  EStyleSheet.build(size === 'small' ? {$rem: 14} : {$rem: 20});
 
   return (
     <PreferencesContext.Provider value={preferences}>
@@ -91,11 +106,29 @@ export default function Main() {
           theme={navigationTheme}
           // theme={colorScheme === 'dark' ? DarkTheme : NavigationTheme}
           linking={linking}>
-          <App />
+          {render ? <App /> : <LoadingView />}
         </NavigationContainer>
       </PaperProvider>
     </PreferencesContext.Provider>
   );
 }
+
+const LoadingView = () => {
+  const theme = useTheme();
+
+  return (
+    <View
+      style={[
+        globalStyles.loading,
+        {backgroundColor: theme.colors.background},
+      ]}>
+      <ActivityIndicator
+        animating={true}
+        size="large"
+        color={theme.colors.primary}
+      />
+    </View>
+  );
+};
 
 AppRegistry.registerComponent(appName, () => Main);

@@ -6,6 +6,7 @@ import {bindActionCreators} from 'redux';
 import {useTheme} from 'react-native-paper';
 import DocumentCard from 'components/dashboard/DocumentCard';
 import DashboardListContainer from 'components/dashboard/DashboardListContainer';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 const Dashboard = ({
   dispatchFetchDocuments,
@@ -55,7 +56,7 @@ const mapDispatchToProps = (dispatch) =>
     dispatch,
   );
 
-const styles = {
+const styles = EStyleSheet.create({
   containerStyle: {
     margin: 24,
   },
@@ -68,14 +69,14 @@ const styles = {
   recentDocTextStyle: {
     fontStyle: 'normal',
     fontWeight: 'bold',
-    fontSize: 14,
+    fontSize: '1rem',
   },
   recentDocViewAllStyle: {
     fontStyle: 'normal',
     fontWeight: 'bold',
-    fontSize: 14,
+    fontSize: '1rem',
     color: '#7CB0D7',
   },
-};
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

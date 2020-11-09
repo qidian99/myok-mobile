@@ -1,7 +1,7 @@
 /* eslint-disable react-native/sort-styles */
 /* eslint-disable react-native/no-color-literals */
 //import {StyleSheet} from 'react-native';
-import EStyleSheet from 'react-native-extended-stylesheet'
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 import {appColors} from 'theme/index';
 
@@ -13,6 +13,11 @@ export const globalStyles = EStyleSheet.create({
   background: {
     height: '100%',
     width: '100%',
+  },
+  loading: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   center: {
     alignItems: 'center',
@@ -36,7 +41,7 @@ export const globalStyles = EStyleSheet.create({
     width: 240,
   },
   title: {
-    fontSize: '4rem',
+    fontSize: '3rem',
     marginBottom: 16,
   },
 
