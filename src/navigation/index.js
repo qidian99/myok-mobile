@@ -187,7 +187,7 @@ const HomeBottomTabs = (props) => (
       />
       <MaterialBottomTabs.Screen
         name="Profile"
-        component={Children}
+        component={Profile}
         options={{
           headerShown: false,
           tabBarLabel: 'Profile',
