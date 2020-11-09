@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   container: {
-    backgroundColor: '#EEE',
+    backgroundColor: 'transparent',
     paddingLeft: 16,
     paddingRight: 16,
   },

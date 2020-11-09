@@ -7,6 +7,7 @@ import {
   ImageBackground,
   View,
   Text,
+  Dimensions,
 } from 'react-native';
 import Contacts from '../views/drawer/Contacts';
 import Favorites from '../views/drawer/Favorites';
@@ -40,6 +41,7 @@ import {Appbar, Avatar, useTheme} from 'react-native-paper';
 import {DrawerContent} from './drawer';
 import {createTestStack} from './test';
 import Children from 'views/children/children';
+import Announcements from 'views/announcements/announcements';
 
 const HEADER_BACKGROUND = require('assets/image/father_children.png');
 const APP_BACKGROUND = require('assets/image/isafe_background.jpeg');
@@ -87,7 +89,7 @@ const Header = ({scene, previous, navigation}) => {
       source={HEADER_BACKGROUND}
       style={{
         width: '100%',
-        height: 140,
+        height: 140, // TODO: make it dynamic, in particular for iPhone X and above
       }}>
       <View
         style={{
@@ -97,7 +99,12 @@ const Header = ({scene, previous, navigation}) => {
           position: 'absolute',
         }}
       />
-      <Appbar.Header style={{backgroundColor: 'transparent'}}>
+      <Appbar.Header
+        style={{
+          backgroundColor: 'transparent',
+          // borderWidth: 1,
+          // borderColor: 'red',
+        }}>
         {/* {previous ? (
           <Appbar.BackAction
             onPress={navigation.pop}
@@ -129,7 +136,11 @@ const Header = ({scene, previous, navigation}) => {
           }}
           style={{
             justifyContent: 'center',
-            paddingBottom: 10,
+            // alignItems: 'flex-start',
+            alignItems: 'center',
+            paddingBottom: 0,
+            paddingHorizontal: 0,
+            // borderWidth: 1,
           }}
         />
       </Appbar.Header>
@@ -167,7 +178,7 @@ const HomeBottomTabs = (props) => (
       />
       <MaterialBottomTabs.Screen
         name="Documents"
-        component={Children}
+        component={Documents}
         options={{
           // headerShown: false,
           tabBarLabel: 'Documents',
@@ -178,7 +189,7 @@ const HomeBottomTabs = (props) => (
       />
       <MaterialBottomTabs.Screen
         name="Announcements"
-        component={Children}
+        component={Announcements}
         options={{
           // headerShown: false,
           tabBarLabel: 'Announcements',
