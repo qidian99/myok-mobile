@@ -158,16 +158,32 @@ const HomeBottomTabs = (props) => (
       }}
     />
     <MaterialBottomTabs.Screen
-      name="My Children"
+      name="Documents"
       component={Children}
       options={{
-        tabBarLabel: 'My Children',
+        tabBarLabel: 'Documents',
         tabBarIcon: () => (
-          <Icon
-            style={[{color: 'white'}]}
-            size={25}
-            name={'human-male-child'}
-          />
+          <Icon style={[{color: 'white'}]} size={25} name={'file-document'} />
+        ),
+      }}
+    />
+    <MaterialBottomTabs.Screen
+      name="Announcements"
+      component={Children}
+      options={{
+        tabBarLabel: 'Announcements',
+        tabBarIcon: () => (
+          <Icon style={[{color: 'white'}]} size={25} name={'email'} />
+        ),
+      }}
+    />
+    <MaterialBottomTabs.Screen
+      name="Profile"
+      component={Children}
+      options={{
+        tabBarLabel: 'Profile',
+        tabBarIcon: () => (
+          <Icon style={[{color: 'white'}]} size={25} name={'account'} />
         ),
       }}
     />
