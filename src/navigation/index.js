@@ -21,6 +21,7 @@ import {
   DefaultTheme,
   DarkTheme,
   NavigationContainer,
+  getFocusedRouteNameFromRoute,
 } from '@react-navigation/native';
 
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -73,6 +74,7 @@ const MaterialTopTabs = createMaterialTopTabNavigator();
 
 const Header = ({scene, previous, navigation}) => {
   const {options} = scene.descriptor;
+  // console.log({options});
   const theme = useTheme();
   const title =
     options.headerTitle !== undefined
@@ -80,7 +82,6 @@ const Header = ({scene, previous, navigation}) => {
       : options.title !== undefined
       ? options.title
       : scene.route.name;
-  console.log(title);
   return (
     <ImageBackground
       source={HEADER_BACKGROUND}
@@ -156,7 +157,8 @@ const HomeBottomTabs = (props) => (
         style={{marginBottom: 16}}
         component={Dashboard}
         options={{
-          headerShown: false,
+          headerTitle: 'Test',
+          // headerShown: false,
           tabBarLabel: 'Home',
           tabBarIcon: () => (
             <Icon style={[{color: 'white'}]} size={25} name={'home'} />
@@ -167,7 +169,7 @@ const HomeBottomTabs = (props) => (
         name="Documents"
         component={Children}
         options={{
-          headerShown: false,
+          // headerShown: false,
           tabBarLabel: 'Documents',
           tabBarIcon: () => (
             <Icon style={[{color: 'white'}]} size={25} name={'file-document'} />
@@ -178,7 +180,7 @@ const HomeBottomTabs = (props) => (
         name="Announcements"
         component={Children}
         options={{
-          headerShown: false,
+          // headerShown: false,
           tabBarLabel: 'Announcements',
           tabBarIcon: () => (
             <Icon style={[{color: 'white'}]} size={25} name={'email'} />
@@ -189,7 +191,7 @@ const HomeBottomTabs = (props) => (
         name="Profile"
         component={Profile}
         options={{
-          headerShown: false,
+          // headerShown: false,
           tabBarLabel: 'Profile',
           tabBarIcon: () => (
             <Icon style={[{color: 'white'}]} size={25} name={'account'} />
@@ -212,10 +214,33 @@ export const HomeStack = () => (
     <Stack.Screen
       name="Dashboard"
       component={HomeBottomTabs}
-      options={{headerTitle: 'ISAFE Direct MyOk'}}
+      options={({route}) => ({
+        headerTitle: getHeaderTitle(route),
+      })}
     />
   </Stack.Navigator>
 );
+
+function getHeaderTitle(route) {
+  // If the focused route is not found, we need to assume it's the initial screen
+  // This can happen during if there hasn't been any navigation inside the screen
+  // In our case, it's "Feed" as that's the first screen inside the navigator
+  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Home';
+
+  console.log({routeName});
+  switch (routeName) {
+    case 'Home':
+      return 'Dashboard';
+    case 'Documents':
+      return 'My Documents';
+    case 'Announcements':
+      return 'Announcements';
+    case 'Profile':
+      return 'Profile';
+    default:
+      return routeName;
+  }
+}
 
 export const HomeNavigator = () => {
   return (
@@ -225,7 +250,6 @@ export const HomeNavigator = () => {
         component={HomeStack}
         options={{headerShown: false}}
       />
-      {/* <Drawer.Screen name="Feed" component={Feed} /> */}
     </Drawer.Navigator>
   );
 };
@@ -236,7 +260,6 @@ export const createAuthStack = () => (
       name="Login"
       component={Login}
       options={{
-        headerShown: false,
         title: 'ISAFE Direct My Ok',
       }}
     />
