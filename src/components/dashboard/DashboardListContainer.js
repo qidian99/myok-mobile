@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text} from 'react-native';
 import DocumentRow from './DocumentRow';
 import ChildRow from './ChildRow';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 const DashboardListContainer = ({documents, children, colors}) => {
   const {containerStyle, titleContainerStyle, dataContainerStyle} = styles;
@@ -50,7 +51,7 @@ const DashboardListContainer = ({documents, children, colors}) => {
   );
 };
 
-const styles = {
+const styles = EStyleSheet.create({
   containerStyle: {
     marginTop: 18,
     borderRadius: 5,
@@ -64,12 +65,12 @@ const styles = {
   },
   titleTextStyle: {
     fontWeight: '600',
-    fontSize: 14,
+    fontSize: '1rem',
   },
   dataContainerStyle: {
     paddingHorizontal: 9,
     paddingBottom: 5,
   },
-};
+});
 
 export default DashboardListContainer;

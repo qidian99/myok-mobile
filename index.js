@@ -3,7 +3,7 @@
  */
 
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {AppRegistry, I18nManager, ImageBackground, View} from 'react-native';
+import {AppRegistry, I18nManager, ImageBackground, View, StyleSheet} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
 import {
