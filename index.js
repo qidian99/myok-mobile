@@ -20,7 +20,7 @@ import {
   DefaultTheme,
 } from '@react-navigation/native';
 import RNRestart from 'react-native-restart';
-import EStyleSheet from 'react-native-extended-stylesheet'
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 import {useColorScheme, AppearanceProvider} from 'react-native-appearance';
 import {linking} from './src/navigation';

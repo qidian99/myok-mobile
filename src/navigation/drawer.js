@@ -18,9 +18,14 @@ import Animated from 'react-native-reanimated';
 
 export function DrawerContent(props) {
   const paperTheme = useTheme();
-  const {rtl, theme, size, toggleRTL, toggleTheme, toggleFont} = React.useContext(
-    PreferencesContext,
-  );
+  const {
+    rtl,
+    theme,
+    size,
+    toggleRTL,
+    toggleTheme,
+    toggleFont,
+  } = React.useContext(PreferencesContext);
 
   const translateX = Animated.interpolate(props.progress, {
     inputRange: [0, 0.5, 0.7, 0.8, 1],
