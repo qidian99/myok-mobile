@@ -5965,10 +5965,9 @@ react-native-appearance@^0.3.4:
     invariant "^2.2.4"
     use-subscription "^1.0.0"
 
-react-native-extended-stylesheet@^0.12.0:
+"react-native-extended-stylesheet@https://github.com/qidian99/react-native-extended-stylesheet":
   version "0.12.0"
-  resolved "https://registry.yarnpkg.com/react-native-extended-stylesheet/-/react-native-extended-stylesheet-0.12.0.tgz#ebacf22d78a8e2173bdef2a08cbf1acba4dc051f"
-  integrity sha512-y4MEI+a9F8qtAKEjxKbwqotJg1FqKfl6vaiF25ULZ/VGkWI4GNTnsFunU9x6B3XJ6ly1E8O9fybO63u6UazL/A==
+  resolved "https://github.com/qidian99/react-native-extended-stylesheet#b86cf3a7c4f9b0fc9e6a01cd21443019ccacd977"
   dependencies:
     css-mediaquery "^0.1.2"
     object-resolve-path "^1.1.0"
