@@ -28,7 +28,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Login from '../views/auth/Auth';
 import Dashboard from 'views/home/dashboard';
 import Documents from 'views/home/documents';
-import Profile from 'views/home/profile';
+import Profile from 'views/profile/profile';
 import {Appbar, Avatar, useTheme} from 'react-native-paper';
 import {DrawerContent} from './drawer';
 

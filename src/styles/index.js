@@ -51,4 +51,8 @@ export const globalStyles = EStyleSheet.create({
     paddingHorizontal: 0,
     width: '90%',
   },
+
+  rule: {
+    paddingHorizontal: 0,
+  },
 });
