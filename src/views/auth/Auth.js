@@ -2,38 +2,34 @@ import AuthContainer from 'components/auth/AuthContainer';
 import AuthForms from 'components/auth/AuthForms';
 import React from 'react';
 import {
-  ImageBackground,
-  View,
   Image,
   SafeAreaView,
   KeyboardAvoidingView,
   Platform,
-  ScrollView,
+  View,
 } from 'react-native';
-import {Button} from 'react-native-paper';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {loginAdult} from 'sagas/actions';
 import {globalStyles} from 'styles/index';
+import {useTheme} from 'react-native-paper';
 
-const backgroundImage = require('assets/image/isafe_background.jpeg');
-const logo = require('assets/image/logo.png');
+const logo = require('assets/image/ISAFE-direct-myok-logo.png');
 
-const Login = ({login}) => {
+const Auth = ({login}) => {
+  const {colors} = useTheme();
   return (
-    <ImageBackground style={globalStyles.background} source={backgroundImage}>
-      <SafeAreaView>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'position' : 'height'}>
-          <ScrollView contentContainerStyle={globalStyles.container}>
-            <Image style={globalStyles.logo} source={logo} />
-            <AuthContainer>
-              <AuthForms />
-            </AuthContainer>
-          </ScrollView>
-        </KeyboardAvoidingView>
-      </SafeAreaView>
-    </ImageBackground>
+    <SafeAreaView>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'position' : 'height'}>
+        <View style={globalStyles.container}>
+          <Image style={globalStyles.logo} source={logo} />
+          <AuthContainer>
+            <AuthForms colors={colors} />
+          </AuthContainer>
+        </View>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 
@@ -45,4 +41,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch,
   );
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Auth);
