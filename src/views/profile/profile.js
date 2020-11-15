@@ -1,110 +1,193 @@
 import React, {useCallback, useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, ScrollView, Picker} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 
 import TextInput from 'components/common/TextInput';
 import {useTheme, Button} from 'react-native-paper';
-import {connect} from 'react-redux';
+import {connect, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {changeProfile} from 'sagas/actions';
 import {globalStyles} from 'styles/index';
+import EStyleSheet from 'react-native-extended-stylesheet';
 
 const Profile = ({update}) => {
   const route = useRoute();
   // console.log(route);
 
+  const user = useSelector(state => state.auth.user);
+
   // Hard code initial state for now
-  const [firstName, changeFirstName] = useState('Dawid');
-  const [lastName, changeLastName] = useState('Urbaniak');
+  const [firstName, changeFirstName] = useState(user.first_name);
+  const [lastName, changeLastName] = useState(user.last_name);
   const [address, changeAddress] = useState('9999 Address Drive');
   const [city, changeCity] = useState('Carlsbad');
   const [state, changeState] = useState('CA');
   const [zip, changeZip] = useState('99999');
   const [phone, changePhone] = useState('012-345-6789');
-  const [email, changeEmail] = useState('durbaniak@.com');
-
-  const personalInfo = [
-    {label: 'First Name', state: firstName, change: changeFirstName},
-    {label: 'Last Name', state: lastName, change: changeLastName},
-    {label: 'Address', state: address, change: changeAddress},
-    {label: 'City', state: city, change: changeCity},
-    {label: 'State', state: state, change: changeState},
-    {label: 'Zip', state: zip, change: changeZip},
-  ];
-
-  const contactInfo = [
-    {label: 'Phone Number', state: phone, change: changePhone},
-    {label: 'Email Address', state: email, change: changeEmail},
-  ];
+  const [email, changeEmail] = useState(user.email);
 
   const [buttonEnable, enable] = useState(false);
 
   const onSubmit = () => {
-    const profile = {personalInfo: personalInfo, contactInfo: contactInfo};
+    const profile = {
+      firstName: firstName, 
+      lastName: lastName, 
+      address: address,
+      city: city,
+      state: state,
+      zip: zip,
+      phone: phone,
+      email: email
+    };
     update(profile);
     enable(false);
   };
 
   return (
-    <View style={styles.container}>
-      {/* <Text style={styles.title}>Edit Profile</Text> */}
+    <ScrollView> 
+      <View style={styles.container}>
+        <Text style={styles.title}>Personal Info</Text>
 
-      <Text style={styles.title}>Personal Info</Text>
-
-      {personalInfo.map((field) => (
+        <Text style={styles.label}>First Name</Text>
         <TextInput
           style={styles.field}
-          label={field.label}
-          value={field.state}
+          value={firstName}
           onChangeText={(text) => {
-            field.change(text);
+            changeFirstName(text);
             enable(true);
           }}
-          key={field.label}
         />
-      ))}
 
-      <Text style={styles.title}>Contact Info</Text>
-
-      {contactInfo.map((field) => (
+        <Text style={styles.label}>Last Name</Text>
         <TextInput
           style={styles.field}
-          label={field.label}
-          value={field.state}
+          value={lastName}
           onChangeText={(text) => {
-            field.change(text);
+            changeLastName(text);
             enable(true);
           }}
-          key={field.label}
         />
-      ))}
 
-      <Button
-        mode="contained"
-        onPress={onSubmit}
-        disabled={buttonEnable ? false : true}
-        style={styles.button}>
-        Save Changes
-      </Button>
-    </View>
+        <Text style={styles.label}>Street Address</Text>
+        <TextInput
+          style={styles.field}
+          value={address}
+          onChangeText={(text) => {
+            changeAddress(text);
+            enable(true);
+          }}
+        />
+
+        <Text style={styles.label}>City</Text>
+        <TextInput
+          style={styles.field}
+          value={city}
+          onChangeText={(text) => {
+            changeCity(text);
+            enable(true);
+          }}
+        />
+
+
+        <View style={styles.locationFieldRow}>
+          <View style={styles.locationFieldContainer}>
+            <Text style={styles.label}>State</Text>
+            <TextInput
+              style={styles.field}
+              value={state}
+              onChangeText={(text) => {
+                changeState(text);
+                enable(true);
+              }}
+            />
+          </View>
+
+          <View style={styles.locationFieldContainer}>
+            <Text style={styles.label}>Zip Code</Text>
+            <TextInput
+              style={styles.field}
+              value={zip}
+              onChangeText={(text) => {
+                changeZip(text);
+                enable(true);
+              }}
+            />
+          </View>
+        </View>
+
+        <Text style={styles.title}>Contact Info</Text>
+
+        <Text style={styles.label}>Phone Number</Text>
+        <TextInput
+          style={styles.field}
+          value={phone}
+          onChangeText={(text) => {
+            changePhone(text);
+            enable(true);
+          }}
+        />
+
+        <Text style={styles.label}>Email Address</Text>
+        <TextInput
+          style={styles.field}
+          value={email}
+          onChangeText={(text) => {
+            changeEmail(text);
+            enable(true);
+          }}
+        />
+        
+        <Button
+          style={styles.button}
+          mode="contained"
+          onPress={onSubmit}
+          disabled={buttonEnable ? false : true}
+          color={buttonEnable ? '#2374A5' : '#707070'}
+          labelStyle={{fontSize: 16}}>
+          Save Changes
+        </Button>
+      </View>
+    </ScrollView>
   );
 };
 
-const styles = StyleSheet.create({
+const styles = EStyleSheet.create({
   button: {
-    marginTop: 24,
+    borderRadius: 5,
   },
   container: {
-    backgroundColor: 'transparent',
-    paddingLeft: 16,
-    paddingRight: 16,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    margin: 24,
+    borderRadius: 5,
+    padding: 12,
   },
   field: {
-    height: 52,
+    height: 40,
+    marginBottom: 16,
+    backgroundColor: 'rgba(17, 78, 117, 0.1)',
+    borderRadius: 4,
+    fontSize: '1rem',
+  },
+  locationFieldContainer: {
+    width: '48%',
+  },
+  locationFieldRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  label: {
+    fontStyle: 'normal',
+    fontSize: '1rem',
+    color: '#195174',
+    marginBottom: 3,
   },
   title: {
-    fontSize: 24,
-    margin: 8,
+    fontStyle: 'normal',
+    fontWeight: 'bold',
+    fontSize: '1.5rem',
+    color: '#195174',
+    marginBottom: 10,
   },
 });
 
