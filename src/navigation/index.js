@@ -8,6 +8,7 @@ import {
   View,
   Text,
   Dimensions,
+  Animated,
 } from 'react-native';
 import Contacts from '../views/drawer/Contacts';
 import Favorites from '../views/drawer/Favorites';
@@ -50,6 +51,7 @@ import Children from 'views/children/children';
 import Announcements from 'views/announcements/announcements';
 import MaterialIcon from 'react-native-vector-icons/dist/MaterialIcons';
 import {globalStyles} from 'styles';
+import StackScreen, {HeaderBackImage} from './StackScreen';
 
 const HEADER_BACKGROUND = require('assets/image/father_children.png');
 const APP_BACKGROUND = require('assets/image/isafe_background.jpeg');
@@ -274,11 +276,68 @@ export const HomeNavigator = () => {
   );
 };
 
+/*
+
+The interpolator will be called for each screen. For example, say you have a 2 screens in the stack, A & B. B is the new screen coming into focus and A is the previous screen. The interpolator will be called for each screen:
+
+The interpolator is called for B: Here, the current.progress value represents the progress of the transition, which will start at 0 and end at 1. There won't be a next.progress since B is the last screen.
+The interpolator is called for A: Here, the current.progress will stay at the value of 1 and won't
+change, since the current transition is running for B, not A. The next.progress value represents the
+progress of B and will start at 0 and end at 1.
+
+
+*/
+
 export const createAuthStack = () => (
   <ImageBackground
     source={APP_BACKGROUND}
     style={{width: '100%', height: '100%'}}>
-    <Stack.Navigator initialRouteName="Auth">
+    <Stack.Navigator
+      initialRouteName="Auth"
+      screenOptions={{
+        cardStyle: {backgroundColor: 'transparent'},
+        cardStyleInterpolator: ({
+          current,
+          next,
+          inverted,
+          layouts: {screen},
+        }) => {
+          const progress = Animated.add(
+            current.progress.interpolate({
+              inputRange: [0, 1],
+              outputRange: [0, 1],
+              extrapolate: 'clamp',
+            }),
+            next
+              ? next.progress.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, 1],
+                  extrapolate: 'clamp',
+                })
+              : 0,
+          );
+          return {
+            cardStyle: {
+              transform: [
+                {
+                  translateX: Animated.multiply(
+                    progress.interpolate({
+                      inputRange: [0, 1, 2],
+                      outputRange: [
+                        screen.width, // Focused, but offscreen in the beginning
+                        0, // Fully focused
+                        screen.width * -1, // Fully unfocused
+                      ],
+                      extrapolate: 'clamp',
+                    }),
+                    inverted,
+                  ),
+                },
+              ],
+            },
+          };
+        },
+      }}>
       <Stack.Screen
         name="Auth"
         component={Auth}
@@ -290,22 +349,23 @@ export const createAuthStack = () => (
       <Stack.Screen
         name="Login"
         component={Login}
-        options={({navigation, route}) => ({
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => navigation.pop()}
-              style={globalStyles.headerButton}>
-              <MaterialIcon name="keyboard-arrow-left" size={20} color="#FFF" />
-            </TouchableOpacity>
-          ),
-        })}
+        options={{
+          headerBackImage: HeaderBackImage,
+        }}
       />
-      <Stack.Screen name="Register" component={Register} />
+      <Stack.Screen
+        name="Register"
+        component={Register}
+        options={{
+          headerBackImage: HeaderBackImage,
+        }}
+      />
       <Stack.Screen
         name="EmailLogin"
         component={EmailLogin}
         options={{
           title: 'Email Login',
+          headerBackImage: HeaderBackImage,
         }}
       />
       <Stack.Screen
@@ -313,6 +373,7 @@ export const createAuthStack = () => (
         component={ParentCodeLogin}
         options={{
           title: 'Parent Code Login',
+          headerBackImage: HeaderBackImage,
         }}
       />
       <Stack.Screen
@@ -320,6 +381,7 @@ export const createAuthStack = () => (
         component={GuardianRegister}
         options={{
           title: 'Register Guardian',
+          headerBackImage: HeaderBackImage,
         }}
       />
       <Stack.Screen
@@ -327,6 +389,7 @@ export const createAuthStack = () => (
         component={EmployeeRegister}
         options={{
           title: 'Register Employee',
+          headerBackImage: HeaderBackImage,
         }}
       />
     </Stack.Navigator>
