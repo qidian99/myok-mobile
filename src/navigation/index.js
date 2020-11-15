@@ -33,7 +33,13 @@ import {
   MaterialTopTabBar,
 } from '@react-navigation/material-top-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Login from '../views/auth/Auth';
+import Auth from '../views/auth/Auth';
+import Login from '../views/auth/login';
+import Register from '../views/auth/register';
+import EmailLogin from '../views/auth/login/EmailLogin';
+import ParentCodeLogin from '../views/auth/login/ParentCodeLogin';
+import GuardianRegister from '../views/auth/register/GuardianRegister';
+import EmployeeRegister from '../views/auth/register/EmployeeRegister';
 import Dashboard from 'views/home/dashboard';
 import Documents from 'views/home/documents';
 import Profile from 'views/profile/profile';
@@ -267,15 +273,49 @@ export const HomeNavigator = () => {
 };
 
 export const createAuthStack = () => (
-  <Stack.Navigator>
-    <Stack.Screen
-      name="Login"
-      component={Login}
-      options={{
-        title: 'ISAFE Direct My Ok',
-      }}
-    />
-  </Stack.Navigator>
+  <ImageBackground
+    source={APP_BACKGROUND}
+    style={{width: '100%', height: '100%'}}>
+    <Stack.Navigator initialRouteName="Auth">
+      <Stack.Screen
+        name="Auth"
+        component={Auth}
+        options={{
+          title: 'ISAFE Direct My Ok',
+        }}
+      />
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Register" component={Register} />
+      <Stack.Screen
+        name="EmailLogin"
+        component={EmailLogin}
+        options={{
+          title: 'Email Login',
+        }}
+      />
+      <Stack.Screen
+        name="ParentCodeLogin"
+        component={ParentCodeLogin}
+        options={{
+          title: 'Parent Code Login',
+        }}
+      />
+      <Stack.Screen
+        name="GuardianRegister"
+        component={GuardianRegister}
+        options={{
+          title: 'Register Guardian',
+        }}
+      />
+      <Stack.Screen
+        name="EmployeeRegister"
+        component={EmployeeRegister}
+        options={{
+          title: 'Register Employee',
+        }}
+      />
+    </Stack.Navigator>
+  </ImageBackground>
 );
 
 export {createTestStack};
