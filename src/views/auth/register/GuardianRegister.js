@@ -53,7 +53,7 @@ const GuardianRegister = () => {
     <SafeAreaView>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'position' : 'height'}>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View style={globalStyles.container}>
             <AuthContainer>
               <View style={globalStyles.authCard}>

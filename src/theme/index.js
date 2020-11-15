@@ -1,5 +1,5 @@
 import {DefaultTheme} from 'react-native-paper';
-
+import {DefaultTheme as NavigationDefaultTheme} from '@react-navigation/native';
 const PRIMARY_COLOR = '#295FA0';
 
 export const appColors = {
@@ -11,10 +11,12 @@ export const appColors = {
 };
 
 export const NavigationTheme = {
+  ...NavigationDefaultTheme,
   dark: false,
   colors: {
+    ...NavigationDefaultTheme.colors,
     primary: PRIMARY_COLOR,
-    background: 'transparent',
+    // background: 'transparent',
     card: PRIMARY_COLOR,
     border: 'green',
     text: 'white',

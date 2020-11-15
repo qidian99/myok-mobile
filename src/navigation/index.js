@@ -43,11 +43,13 @@ import EmployeeRegister from '../views/auth/register/EmployeeRegister';
 import Dashboard from 'views/home/dashboard';
 import Documents from 'views/home/documents';
 import Profile from 'views/profile/profile';
-import {Appbar, Avatar, useTheme} from 'react-native-paper';
+import {Appbar, Avatar, Button, useTheme} from 'react-native-paper';
 import {DrawerContent} from './drawer';
 import {createTestStack} from './test';
 import Children from 'views/children/children';
 import Announcements from 'views/announcements/announcements';
+import MaterialIcon from 'react-native-vector-icons/dist/MaterialIcons';
+import {globalStyles} from 'styles';
 
 const HEADER_BACKGROUND = require('assets/image/father_children.png');
 const APP_BACKGROUND = require('assets/image/isafe_background.jpeg');
@@ -282,9 +284,22 @@ export const createAuthStack = () => (
         component={Auth}
         options={{
           title: 'ISAFE Direct My Ok',
+          headerShown: false,
         }}
       />
-      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={({navigation, route}) => ({
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.pop()}
+              style={globalStyles.headerButton}>
+              <MaterialIcon name="keyboard-arrow-left" size={20} color="#FFF" />
+            </TouchableOpacity>
+          ),
+        })}
+      />
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen
         name="EmailLogin"

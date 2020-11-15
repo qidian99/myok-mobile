@@ -6,6 +6,9 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import {appColors} from 'theme/index';
 
 export const globalStyles = EStyleSheet.create({
+  headerButton: {
+    paddingLeft: 16,
+  },
   androidButtonText: {
     color: 'blue',
     fontSize: 20,
