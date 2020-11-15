@@ -14,7 +14,7 @@ const Profile = ({update}) => {
   const route = useRoute();
   // console.log(route);
 
-  const user = useSelector(state => state.auth.user);
+  const user = useSelector((state) => state.auth.user);
 
   // Hard code initial state for now
   const [firstName, changeFirstName] = useState(user.first_name);
@@ -30,21 +30,21 @@ const Profile = ({update}) => {
 
   const onSubmit = () => {
     const profile = {
-      firstName: firstName, 
-      lastName: lastName, 
+      firstName: firstName,
+      lastName: lastName,
       address: address,
       city: city,
       state: state,
       zip: zip,
       phone: phone,
-      email: email
+      email: email,
     };
     update(profile);
     enable(false);
   };
 
   return (
-    <ScrollView> 
+    <ScrollView>
       <View style={styles.container}>
         <Text style={styles.title}>Personal Info</Text>
 
@@ -87,7 +87,6 @@ const Profile = ({update}) => {
             enable(true);
           }}
         />
-
 
         <View style={styles.locationFieldRow}>
           <View style={styles.locationFieldContainer}>
@@ -136,7 +135,7 @@ const Profile = ({update}) => {
             enable(true);
           }}
         />
-        
+
         <Button
           style={styles.button}
           mode="contained"
