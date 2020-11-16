@@ -41,6 +41,8 @@ import EmailLogin from '../views/auth/login/EmailLogin';
 import ParentCodeLogin from '../views/auth/login/ParentCodeLogin';
 import GuardianRegister from '../views/auth/register/GuardianRegister';
 import EmployeeRegister from '../views/auth/register/EmployeeRegister';
+import EducatorRegister from '../views/auth/register/EducatorRegister';
+import StudentRegister from '../views/auth/register/StudentRegister';
 import Dashboard from 'views/home/dashboard';
 import Documents from 'views/home/documents';
 import Profile from 'views/profile/profile';
@@ -381,6 +383,22 @@ export const createAuthStack = () => (
         component={GuardianRegister}
         options={{
           title: 'Register Guardian',
+          headerBackImage: HeaderBackImage,
+        }}
+      />
+      <Stack.Screen
+        name="EducatorRegister"
+        component={EducatorRegister}
+        options={{
+          title: 'Register Educator',
+          headerBackImage: HeaderBackImage,
+        }}
+      />
+      <Stack.Screen
+        name="StudentRegister"
+        component={StudentRegister}
+        options={{
+          title: 'Register Student',
           headerBackImage: HeaderBackImage,
         }}
       />

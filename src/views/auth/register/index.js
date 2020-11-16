@@ -24,8 +24,14 @@ const Register = () => {
                 text="I’m a guardian"
                 onPress={() => navigation.push('GuardianRegister')}
               />
-              <GotoButton text="I’m a student" />
-              <GotoButton text="I’m an educator" />
+              <GotoButton
+                text="I’m a student"
+                onPress={() => navigation.push('StudentRegister')}
+              />
+              <GotoButton
+                text="I’m an educator"
+                onPress={() => navigation.push('EducatorRegister')}
+              />
               <GotoButton
                 text="I’m a school district employee"
                 onPress={() => navigation.push('EmployeeRegister')}
