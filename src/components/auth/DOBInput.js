@@ -1,71 +1,20 @@
-import React, {useCallback, useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import MaterialIcon from 'react-native-vector-icons/dist/MaterialIcons';
-import {Button, Menu, Divider, Provider} from 'react-native-paper';
-const DOBInput = ({title = 'Date of Birth'}) => {
-  const {
-    containerStyle,
-    titleStyle,
-    inputContainerStyle,
-    entryStyle,
-    entryContainerStyle,
-    entryTextStyle,
-  } = styles;
+import React from 'react';
+import {View, Text, StyleSheet} from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
-  const [visible, setVisible] = useState(false);
-
-  const [month, setMonth] = useState('Month');
-
-  const onOptionPress = useCallback(
-    (text, setText) => () => {
-      setText(text);
-      closeMenu();
-    },
-    [closeMenu],
-  );
-
-  const openMenu = () => setVisible(true);
-
-  const closeMenu = () => setVisible(false);
+const DOBInput = ({date, onChange, title = 'Date of Birth'}) => {
+  const {containerStyle, titleStyle, entryContainerStyle} = styles;
 
   return (
     <View style={containerStyle}>
       <Text style={titleStyle}>{title}</Text>
-      <View style={inputContainerStyle}>
-        <View style={entryContainerStyle}>
-          <Menu
-            visible={visible}
-            onDismiss={closeMenu}
-            anchor={
-              <TouchableOpacity style={entryStyle} onPress={openMenu}>
-                <Text style={entryTextStyle}>{month}</Text>
-                <MaterialIcon name="expand-more" color="#2374A5" size={24} />
-              </TouchableOpacity>
-            }>
-            <Menu.Item
-              onPress={onOptionPress('January', setMonth)}
-              title="January"
-            />
-            <Menu.Item
-              onPress={onOptionPress('February', setMonth)}
-              title="February"
-            />
-            <Divider />
-            <Menu.Item
-              onPress={onOptionPress('March', setMonth)}
-              title="March"
-            />
-          </Menu>
-        </View>
-        <View style={entryContainerStyle}>
-          <Text style={entryTextStyle}>Day</Text>
-          <MaterialIcon name="expand-more" color="#2374A5" size={24} />
-        </View>
-        <View style={entryContainerStyle}>
-          <Text style={entryTextStyle}>Year</Text>
-          <MaterialIcon name="expand-more" color="#2374A5" size={24} />
-        </View>
-      </View>
+      <DateTimePicker
+        style={entryContainerStyle}
+        value={date}
+        mode="date"
+        is24Hour={true}
+        onChange={onChange}
+      />
     </View>
   );
 };
@@ -80,9 +29,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 8,
     paddingVertical: 8,
-    width: '30%',
   },
   entryStyle: {
     alignItems: 'center',

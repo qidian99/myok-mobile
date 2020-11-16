@@ -20,6 +20,7 @@ const GuardianRegister = () => {
   const [email, setEmail] = useState('');
   const [studentId, setStudentId] = useState('');
   const [school, setSchool] = useState('');
+  const [date, setDate] = useState(new Date());
 
   const onEmailChange = useCallback(
     (text) => {
@@ -48,6 +49,11 @@ const GuardianRegister = () => {
     },
     [setSchool],
   );
+
+  const onDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setDate(currentDate);
+  };
 
   return (
     <SafeAreaView>
@@ -78,7 +84,11 @@ const GuardianRegister = () => {
                   textStyle={{fontWeight: '600'}}
                 />
                 <AuthHeader intro="If you haven’t provided the school with your email address, create an account by filling out the information below." />
-                <DOBInput title="Child’s Date of Birth" />
+                <DOBInput
+                  title="Child’s Date of Birth"
+                  date={date}
+                  onChange={onDateChange}
+                />
                 <AuthInput
                   title="Student ID (SID)"
                   value={studentId}
