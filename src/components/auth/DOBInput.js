@@ -1,32 +1,20 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import MaterialIcon from 'react-native-vector-icons/dist/MaterialIcons';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
-const DOBInput = ({title = 'Date of Birth'}) => {
-  const {
-    containerStyle,
-    titleStyle,
-    inputContainerStyle,
-    entryContainerStyle,
-    entryTextStyle,
-  } = styles;
+const DOBInput = ({date, onChange, title = 'Date of Birth'}) => {
+  const {containerStyle, titleStyle, entryContainerStyle} = styles;
+
   return (
     <View style={containerStyle}>
       <Text style={titleStyle}>{title}</Text>
-      <View style={inputContainerStyle}>
-        <View style={entryContainerStyle}>
-          <Text style={entryTextStyle}>Month</Text>
-          <MaterialIcon name="expand-more" color="#2374A5" size={24} />
-        </View>
-        <View style={entryContainerStyle}>
-          <Text style={entryTextStyle}>Day</Text>
-          <MaterialIcon name="expand-more" color="#2374A5" size={24} />
-        </View>
-        <View style={entryContainerStyle}>
-          <Text style={entryTextStyle}>Year</Text>
-          <MaterialIcon name="expand-more" color="#2374A5" size={24} />
-        </View>
-      </View>
+      <DateTimePicker
+        style={entryContainerStyle}
+        value={date}
+        mode="date"
+        is24Hour={true}
+        onChange={onChange}
+      />
     </View>
   );
 };
@@ -41,9 +29,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 8,
     paddingVertical: 8,
-    width: '30%',
   },
   entryTextStyle: {
     color: '#2374A5',

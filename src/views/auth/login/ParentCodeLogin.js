@@ -16,6 +16,13 @@ const ParentCodeLogin = () => {
     },
     [setParentCode],
   );
+
+  const [date, setDate] = useState(new Date());
+
+  const onDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setDate(currentDate);
+  };
   return (
     <SafeAreaView>
       <KeyboardAvoidingView
@@ -33,7 +40,7 @@ const ParentCodeLogin = () => {
                 hint="Parent Code"
                 onChangeText={onParentCodeChange}
               />
-              <DOBInput />
+              <DOBInput date={date} onChange={onDateChange} />
               <CenterButton text="Login" disabled={parentCode.length === 0} />
             </View>
           </AuthContainer>
