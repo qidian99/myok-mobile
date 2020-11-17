@@ -20,6 +20,7 @@ const GuardianRegister = () => {
   const [email, setEmail] = useState('');
   const [studentId, setStudentId] = useState('');
   const [school, setSchool] = useState('');
+  const [district, setDistrict] = useState('');
   const [date, setDate] = useState(new Date());
 
   const onEmailChange = useCallback(
@@ -41,6 +42,13 @@ const GuardianRegister = () => {
       setState(text);
     },
     [setState],
+  );
+
+  const onDistrictChange = useCallback(
+    (text) => {
+      setDistrict(text);
+    },
+    [setDistrict],
   );
 
   const onSchoolChange = useCallback(
@@ -100,6 +108,12 @@ const GuardianRegister = () => {
                   value={state}
                   hint="Select State"
                   onChangeText={onStateChange}
+                />
+                <AuthInput
+                  title="School District"
+                  value={district}
+                  hint="Select District"
+                  onChangeText={onDistrictChange}
                 />
                 <AuthInput
                   title="School Name"
