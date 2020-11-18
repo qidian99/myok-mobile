@@ -175,7 +175,7 @@ const HomeBottomTabs = (props) => (
   <ImageBackground
     source={APP_BACKGROUND}
     style={{width: '100%', height: '100%'}}>
-    <MaterialBottomTabs.Navigator>
+    <MaterialBottomTabs.Navigator barStyle={{backgroundColor: '#195174'}}>
       <MaterialBottomTabs.Screen
         name="Home"
         style={{marginBottom: 16}}

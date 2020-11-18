@@ -36,14 +36,19 @@ export const mapDocumentTypeToIcon = (documentTypeId) => {
   return require('assets/image/aup_icon.png');
 };
 
+const PENDING_COLOR = '#E1AA4B';
+const DENIED_COLOR = '#E55151';
+const SIGNED_COLOR = '#28A885';
+const EXPIRED_COLOR = '#A8A8A8';
+
 export const mapDocumentStatus = (has_responded, has_agreed) => {
   if (has_responded) {
     if (has_agreed) {
-      return {statusText: 'Signed', statusColor: '#28A885'};
+      return {statusText: 'Signed', statusColor: SIGNED_COLOR};
     } else {
-      return {statusText: 'Denied', statusColor: '#E55151'};
+      return {statusText: 'Denied', statusColor: DENIED_COLOR};
     }
   }
 
-  return {statusText: 'Pending', statusColor: '#E1AA4B'};
+  return {statusText: 'Pending', statusColor: PENDING_COLOR};
 };

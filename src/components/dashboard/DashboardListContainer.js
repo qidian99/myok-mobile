@@ -43,7 +43,7 @@ const DashboardListContainer = ({documents, children, colors}) => {
 
   return (
     <View style={containerStyle}>
-      <View style={titleContainerStyle}>
+      <View style={[titleContainerStyle, {backgroundColor: colors.darkBlue}]}>
         <Text style={titleTextStyle}>{title}</Text>
         <Text style={titleTextStyle}>VIEW ALL</Text>
       </View>
@@ -64,7 +64,6 @@ const styles = EStyleSheet.create({
     padding: 9,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#7CB0D7',
   },
   titleTextStyle: {
     fontWeight: '600',

@@ -10,6 +10,24 @@ const MOCK_USER = {
   email: 'test@isafeventures.com',
   username: 'test@isafeventures.com',
 };
+const generateMockChild = (
+  firstName = 'Child',
+  lastName = 'One',
+  dob = '04/18/2007',
+  parentCode = 'empty001',
+) => ({
+  student_id: '_' + Math.random().toString(36).substr(2, 9),
+  first_name: firstName,
+  last_name: lastName,
+  parent_code: parentCode,
+  dob,
+  organization: 'Del Mar Union',
+  grade: 2,
+});
+const MOCK_CHILDREN = [
+  generateMockChild('Susanna', 'Bryant', '04/18/2007', 'lightning436'),
+  generateMockChild('Mark', 'Bryant', '04/18/2007', 'chair831'),
+];
 const generateMockDocument = (
   title = 'Mock Document',
   body = 'This is the body of mock document',
@@ -18,10 +36,10 @@ const generateMockDocument = (
   body,
   document_id: '_' + Math.random().toString(36).substr(2, 9),
   document_type_id: 1,
-  created_by: 'Susanna',
   inserted: 'October 15, 2020',
   has_responded: Math.random() >= 0.5,
   has_agreed: Math.random() >= 0.5,
+  ...generateMockChild('Susanna', 'Bryant', '04/18/2007', 'lightning436'),
 });
 const MOCK_DOCUMENTS = [
   generateMockDocument(
@@ -36,22 +54,6 @@ const MOCK_DOCUMENTS = [
     'Google Apps and Education',
     'This is the body of mock document 3',
   ),
-];
-const generateMockChild = (
-  firstName = 'Child',
-  lastName = 'One',
-  dob = '04/18/2007',
-  parentCode = 'empty001',
-) => ({
-  student_id: '_' + Math.random().toString(36).substr(2, 9),
-  first_name: firstName,
-  last_name: lastName,
-  parent_code: parentCode,
-  dob,
-});
-const MOCK_CHILDREN = [
-  generateMockChild('Susanna', 'Bryant', '04/18/2007', 'lightning436'),
-  generateMockChild('Mark', 'Bryant', '04/18/2007', 'chair831'),
 ];
 const mockFetch = async (url, body = null, method = 'POST') => {
   let headers;

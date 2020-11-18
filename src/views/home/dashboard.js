@@ -23,9 +23,8 @@ const Dashboard = ({
     <View style={styles.containerStyle}>
       <View style={styles.recentDocContainerStyle}>
         <Text style={[styles.recentDocTextStyle, {color: colors.primary}]}>
-          Recent Document
+          Document Types
         </Text>
-        <Text style={styles.recentDocViewAllStyle}>VIEW ALL</Text>
       </View>
       <FlatList
         data={documents}
@@ -69,7 +68,7 @@ const styles = EStyleSheet.create({
   recentDocTextStyle: {
     fontStyle: 'normal',
     fontWeight: 'bold',
-    fontSize: '1rem',
+    fontSize: '1.2rem',
   },
   recentDocViewAllStyle: {
     fontStyle: 'normal',
