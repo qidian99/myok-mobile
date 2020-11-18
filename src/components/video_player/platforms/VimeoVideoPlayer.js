@@ -1,12 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
-import Video from 'react-native-video';
+//import Video from 'react-native-video';
+import VideoPlayer from 'react-native-video-controls';
 import {globalStyles} from 'styles/index';
 import EStyleSheet from 'react-native-extended-stylesheet';
  
 const VimeoVideoPlayer = (props) => {
   const [videoUrl, setUrl] = useState('');
   const [error, toggleError] = useState(false);
+  const [ended, toggleEnded] = useState(false);
 
   async function getUrl() {
     fetch(`https://player.vimeo.com/video/${props.id}/config`)
@@ -21,32 +23,43 @@ const VimeoVideoPlayer = (props) => {
       });
   }
 
+  const onEnd = () => {
+    console.log('Video Ended');
+    toggleEnded(true)
+    props.toggleComplete();
+  }
+
   useEffect(() => {
     getUrl();
   });
 
   return (
-    <View style={globalStyles.center}>
-      {
-        error ?
-          <Text style={styles.text}>
-            Failed to Load
-          </Text>
-        : 
-          videoUrl === '' ?
+    error ?
+      <View style={globalStyles.center}>
+        <Text style={styles.text}>
+          Failed to Load
+        </Text>
+      </View>
+    : 
+      videoUrl === '' ?
+        <View style={globalStyles.center}>
           <Text style={styles.text}>
             Loading...
-          </Text> 
-        :
-          <Video 
-            source={{ uri: videoUrl }}                                    
-            resizeMode='contain'
-            fullscreen
-            controls      
-            style={styles.video} 
-          />
-      }
-    </View>
+          </Text>
+        </View>
+    :
+      <VideoPlayer 
+        source={{ uri: videoUrl }}                                    
+        resizeMode='contain'
+        paused
+        //fullscreen
+        onEnd={onEnd}
+        disableFullscreen
+        disableSeekbar={!ended}
+        disableBack
+        style={styles.video} 
+      />
+      
   );
 };
 
@@ -56,11 +69,8 @@ const styles = EStyleSheet.create({
     marginBottom: 16,
   },
   video: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
+    margin: 10,
+    height: 200,
   },
 });
 

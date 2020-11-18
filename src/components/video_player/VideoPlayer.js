@@ -6,7 +6,7 @@ const VideoPlayer = (props) => {
   return (
     props.platform === 'Youtube' ? 
     <YoutubeVideoPlayer id={props.id}></YoutubeVideoPlayer> :
-    <VimeoVideoPlayer id={props.id}></VimeoVideoPlayer>
+    <VimeoVideoPlayer id={props.id} toggleComplete={props.toggleComplete}></VimeoVideoPlayer>
   );
 };
 
