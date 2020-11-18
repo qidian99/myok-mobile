@@ -40,7 +40,7 @@ const DocumentCard = ({item, colors}) => {
           />
         </View>
       </View>
-      <View style={cardBottomStyle}>
+      <View style={[cardBottomStyle, {backgroundColor: colors.darkBlue}]}>
         <View style={{paddingBottom: 7, marginHorizontal: 10}}>
           <Text
             numberOfLines={1}
@@ -66,13 +66,12 @@ const styles = {
     flex: 1,
     height: 130,
     width: 179,
-    backgroundColor: 'red',
     marginRight: 10,
     borderRadius: 5,
     overflow: 'hidden',
   },
   cardTopStyle: {
-    flex: 1 / 2,
+    flex: 3 / 5,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#538BBD',
@@ -84,9 +83,8 @@ const styles = {
     height: '100%',
   },
   cardBottomStyle: {
-    flex: 1 / 2,
+    flex: 2 / 5,
     justifyContent: 'center',
-    backgroundColor: '#195174',
   },
   statusContainerStyle: {
     position: 'absolute',

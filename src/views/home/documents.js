@@ -39,12 +39,14 @@ const DocumentHeader = () => {
     iconStyle,
   } = styles;
   return (
-    <View style={headerContainerStyle}>
+    <View style={[headerContainerStyle, {backgroundColor: colors.darkBlue}]}>
       <Text style={[headerTextStyle, {color: colors.background}]}>
         My Documents
       </Text>
       <View style={searchContainerStyle}>
-        <TouchableOpacity activeOpacity={0.8} style={filterContainerStyle}>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          style={[filterContainerStyle, {backgroundColor: colors.myokBlue}]}>
           <Text style={[filterTextStyle, {color: colors.background}]}>
             Filter
           </Text>
@@ -58,7 +60,9 @@ const DocumentHeader = () => {
               style={inputStyle}
             />
           </View>
-          <TouchableOpacity activeOpacity={0.8} style={buttonStyle}>
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={[buttonStyle, {backgroundColor: colors.myokBlue}]}>
             <MaterialIcon
               name="search"
               style={[iconStyle, {color: colors.background}]}
@@ -163,11 +167,14 @@ const DocumentCard = ({document, isLast}) => {
 const Documents = ({dispatchFetchDocuments, documents}) => {
   dispatchFetchDocuments();
 
+  const {colors} = useTheme();
+
   const {containerStyle, documentContainerStyle} = styles;
   return (
     <ScrollView style={containerStyle}>
       <DocumentHeader />
-      <View style={documentContainerStyle}>
+      <View
+        style={[documentContainerStyle, {backgroundColor: colors.myokBlue}]}>
         {documents.map((document, index) => (
           <DocumentCard
             isLast={index === documents.length - 1}
@@ -201,7 +208,6 @@ const styles = EStyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 6,
     paddingVertical: 1,
-    backgroundColor: '#2374A5',
   },
   containerStyle: {
     padding: 24,
@@ -220,12 +226,12 @@ const styles = EStyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: 10,
+    marginTop: 10,
+    marginBottom: 5,
   },
   filterContainerStyle: {
     borderRadius: 4,
     overflow: 'hidden',
-    backgroundColor: '#2374A5',
     paddingHorizontal: 15,
     paddingVertical: 3,
   },
@@ -271,7 +277,6 @@ const styles = EStyleSheet.create({
     marginHorizontal: 10,
   },
   documentContainerStyle: {
-    backgroundColor: '#2374A5',
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
     marginBottom: 45,
