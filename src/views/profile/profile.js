@@ -1,9 +1,9 @@
 import React, {useCallback, useState} from 'react';
-import {View, Text, ScrollView, Picker} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 
 import TextInput from 'components/common/TextInput';
-import {useTheme, Button} from 'react-native-paper';
+import {Button} from 'react-native-paper';
 import {connect, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {changeProfile} from 'sagas/actions';
@@ -16,7 +16,6 @@ const Profile = ({update}) => {
 
   const user = useSelector((state) => state.auth.user);
 
-  // Hard code initial state for now
   const [firstName, changeFirstName] = useState(user.first_name);
   const [lastName, changeLastName] = useState(user.last_name);
   const [address, changeAddress] = useState('9999 Address Drive');
@@ -26,7 +25,7 @@ const Profile = ({update}) => {
   const [phone, changePhone] = useState('012-345-6789');
   const [email, changeEmail] = useState(user.email);
 
-  const [buttonEnable, enable] = useState(false);
+  const [buttonEnable, toggleButtonEnable] = useState(false);
 
   const onSubmit = () => {
     const profile = {
@@ -40,7 +39,7 @@ const Profile = ({update}) => {
       email: email,
     };
     update(profile);
-    enable(false);
+    toggleButtonEnable(false);
   };
 
   return (
@@ -54,7 +53,7 @@ const Profile = ({update}) => {
           value={firstName}
           onChangeText={(text) => {
             changeFirstName(text);
-            enable(true);
+            toggleButtonEnable(true);
           }}
         />
 
@@ -64,7 +63,7 @@ const Profile = ({update}) => {
           value={lastName}
           onChangeText={(text) => {
             changeLastName(text);
-            enable(true);
+            toggleButtonEnable(true);
           }}
         />
 
@@ -74,7 +73,7 @@ const Profile = ({update}) => {
           value={address}
           onChangeText={(text) => {
             changeAddress(text);
-            enable(true);
+            toggleButtonEnable(true);
           }}
         />
 
@@ -84,7 +83,7 @@ const Profile = ({update}) => {
           value={city}
           onChangeText={(text) => {
             changeCity(text);
-            enable(true);
+            toggleButtonEnable(true);
           }}
         />
 
@@ -96,7 +95,7 @@ const Profile = ({update}) => {
               value={state}
               onChangeText={(text) => {
                 changeState(text);
-                enable(true);
+                toggleButtonEnable(true);
               }}
             />
           </View>
@@ -108,7 +107,7 @@ const Profile = ({update}) => {
               value={zip}
               onChangeText={(text) => {
                 changeZip(text);
-                enable(true);
+                toggleButtonEnable(true);
               }}
             />
           </View>
@@ -122,7 +121,7 @@ const Profile = ({update}) => {
           value={phone}
           onChangeText={(text) => {
             changePhone(text);
-            enable(true);
+            toggleButtonEnable(true);
           }}
         />
 
@@ -132,7 +131,7 @@ const Profile = ({update}) => {
           value={email}
           onChangeText={(text) => {
             changeEmail(text);
-            enable(true);
+            toggleButtonEnable(true);
           }}
         />
 
