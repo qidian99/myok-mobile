@@ -86,8 +86,8 @@ const mockFetch = async (url, body = null, method = 'POST') => {
 
 class API {
   /* Auth */
-  static async loginParentUser(username, password) {
-    console.log('loginParentUser', username, password);
+  static async loginAdult(username, password) {
+    console.log('loginAdult', username, password);
     await timeout(1000);
     await mockFetch(MOCK_ENDPOINT, {username, password});
     return {

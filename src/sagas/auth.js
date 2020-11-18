@@ -1,23 +1,22 @@
 // Imports: Dependencies
 import {delay, takeEvery, takeLatest, put, call} from 'redux-saga/effects';
 import {actions} from 'util/actions';
-import API from 'util/mock';
+// import API from 'util/mock';
+import API from 'util/api';
 import {OTP_METHODS} from 'util/actions';
-function* loginParentAsync(action) {
+function* loginAdultAsync(action) {
   const {username, password} = action;
-
+  console.log(action);
   try {
-    const {user, token, securityQuestion, tos} = yield call(
-      API.loginParentUser,
-      username,
-      password,
-    );
+    const loginResponse = yield call(API.loginAdult, username, password);
+    console.log(loginResponse);
+    const {cookie, expires, token, user} = loginResponse;
     yield put({
       type: actions.LOGIN_ADULT,
       user,
       token,
-      securityQuestion,
-      tos,
+      cookie,
+      expires,
     });
   } catch (error) {
     console.log(error);
@@ -120,7 +119,7 @@ function* submitSecurityQuestionAsync(action) {
 }
 
 export function* authSaga() {
-  yield takeLatest(actions.LOGIN_ADULT_ASYNC, loginParentAsync);
+  yield takeLatest(actions.LOGIN_ADULT_ASYNC, loginAdultAsync);
   yield takeLatest(actions.LOGIN_CHILD_ASYNC, onboardChildAsync);
   yield takeLatest(
     actions.SEND_VERIFICATION_CODE_ASYNC,

@@ -4,6 +4,8 @@ import {actions} from 'util/actions';
 const INITIAL_STATE = {
   user: null,
   token: null,
+  cookie: null,
+  expires: null,
   securityQuestion: false,
   tos: false,
 };
@@ -14,11 +16,13 @@ export const authReducer = (state = INITIAL_STATE, action) => {
       return INITIAL_STATE;
     }
     case actions.LOGIN_ADULT: {
-      const {user, token, securityQuestion, tos} = action;
+      const {user, token, cookie, expires, securityQuestion, tos} = action;
       return {
         ...state,
         user,
         token,
+        cookie,
+        expires,
         securityQuestion,
         tos,
       };
