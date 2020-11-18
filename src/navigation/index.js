@@ -7,6 +7,8 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import {MODE} from '@env';
+
 import Auth from '../views/auth/Auth';
 import Login from '../views/auth/login';
 import Register from '../views/auth/register';
@@ -17,6 +19,7 @@ import EmployeeRegister from '../views/auth/register/EmployeeRegister';
 import EducatorRegister from '../views/auth/register/EducatorRegister';
 import StudentRegister from '../views/auth/register/StudentRegister';
 import Dashboard from 'views/home/dashboard';
+import Dev from 'views/dev/index';
 import Documents from 'views/home/documents';
 import Profile from 'views/profile/profile';
 import {Appbar} from 'react-native-paper';
@@ -24,7 +27,6 @@ import {DrawerContent} from './drawer';
 import {createTestStack} from './test';
 import Announcements from 'views/announcements/announcements';
 import {HeaderBackImage} from './StackScreen';
-
 const HEADER_BACKGROUND = require('assets/image/father_children.png');
 const APP_BACKGROUND = require('assets/image/isafe_background.jpeg');
 
@@ -91,6 +93,19 @@ const HomeBottomTabs = (props) => (
     <MaterialBottomTabs.Navigator
       style={{}}
       barStyle={{backgroundColor: '#195174'}}>
+      {MODE === 'DEV' && (
+        <MaterialBottomTabs.Screen
+          name="Dev"
+          style={{}}
+          component={Dev}
+          options={{
+            tabBarLabel: 'Dev',
+            tabBarIcon: () => (
+              <Icon style={[{color: 'white'}]} size={25} name={'dev-to'} />
+            ),
+          }}
+        />
+      )}
       <MaterialBottomTabs.Screen
         name="Home"
         style={{}}
@@ -138,7 +153,7 @@ const HomeBottomTabs = (props) => (
 
 export const HomeStack = () => (
   <Stack.Navigator
-    initialRouteName="Dashboard"
+    initialRouteName={MODE === 'DEV' ? 'Dev' : 'Dashboard'}
     headerMode="screen"
     screenOptions={{
       header: ({scene, previous, navigation}) => (

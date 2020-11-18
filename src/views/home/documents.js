@@ -170,6 +170,8 @@ const Documents = ({dispatchFetchDocuments, documents}) => {
   const {colors} = useTheme();
 
   const {containerStyle, documentContainerStyle} = styles;
+  // TODO: The scrollview should be wrapping DocumentCards
+  // put the DocumentHeader outside
   return (
     <ScrollView style={containerStyle}>
       <DocumentHeader />

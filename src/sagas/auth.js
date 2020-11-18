@@ -4,6 +4,8 @@ import {actions} from 'util/actions';
 // import API from 'util/mock';
 import API from 'util/api';
 import {OTP_METHODS} from 'util/actions';
+import {instanceOf} from 'prop-types';
+import {ApiError} from 'util/error';
 function* loginAdultAsync(action) {
   const {username, password} = action;
   console.log(action);
@@ -45,6 +47,7 @@ function* onboardChildAsync(action) {
 
 function* sendVerificationCodeAsync(action) {
   const {method, address} = action;
+  console.log('sendVerificationCodeAsync', action);
   if (method !== OTP_METHODS.SMS && method !== OTP_METHODS.EMAIL) {
     throw new Error('OTP method not allowed');
   }
@@ -61,6 +64,13 @@ function* sendVerificationCodeAsync(action) {
       address,
     });
   } catch (error) {
+    console.log('test', error instanceof ApiError);
+    if (error instanceof ApiError) {
+      alert(error.message);
+      yield put({
+        type: actions.LOGOOUT,
+      });
+    }
     console.log(error);
   }
 }

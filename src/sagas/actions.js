@@ -13,6 +13,10 @@ export const loginChild = (parentCode, dob) => ({
   dob,
 });
 
+export const logout = () => ({
+  type: actions.LOGOOUT,
+});
+
 export const sendVerificationCode = (method, address) => ({
   type: actions.SEND_VERIFICATION_CODE_ASYNC,
   method,

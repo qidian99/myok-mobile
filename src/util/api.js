@@ -14,12 +14,15 @@ import {
 } from './mock';
 import moment from 'moment';
 import setCookieParser from 'set-cookie-parser';
+import {ApiError} from './error';
 
 const RESPONSE_CODE = {
   UNAUTHORIZED: 401,
   ACESS_DENIED: 403,
 };
+const API_V = API_ENDPOINT + '/' + API_VERSION;
 const LOGIN_ENDPOINT = API_ENDPOINT + '/user/login';
+const VERIFICATION_ENDPOINT = API_V + '/verification';
 
 const parseSetCookie = (response) => {
   const combinedCookieHeader = response.headers.get('Set-Cookie');
@@ -51,11 +54,12 @@ const parseSetCookie = (response) => {
 const authorizedFetch = async (url, body = null, method = 'POST') => {
   let headers;
   await CookieManager.clearAll();
+  const test = await CookieManager.get(API_ENDPOINT);
+  console.log({test});
 
-  const token = store.getState().auth.token;
-  const cookie = store.getState().auth.cookie;
+  const {token, cookie, expires} = store.getState().auth;
 
-  if (token) {
+  if (token && cookie && moment(expires) > moment()) {
     headers = {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -77,20 +81,30 @@ const authorizedFetch = async (url, body = null, method = 'POST') => {
 
   console.log(url, options);
   const response = await fetch(url, options);
+  const responsePaylod = await response.json();
+
   const setCookie = parseSetCookie(response);
   const {status, headers: responseHeaders} = response;
+  console.log(responseHeaders, responseHeaders.get('set-cookie'));
+
   if (
     status === RESPONSE_CODE.ACESS_DENIED ||
     status === RESPONSE_CODE.UNAUTHORIZED
   ) {
+    throw new ApiError(
+      'Authentication error: ' + getErrorMessgage(responsePaylod),
+    );
   }
-  console.log(responseHeaders, responseHeaders.get('set-cookie'));
 
-  const responsePaylod = await response.json();
   return {...responsePaylod, ...setCookie};
 };
+const getErrorMessgage = (res) => {
+  if (Array.isArray(res)) {
+    return res[0];
+  }
 
-const handleReponse = () => {};
+  return res;
+};
 
 class API {
   /* Auth */
@@ -112,8 +126,7 @@ class API {
   }
   static async sendSMSOTP(phone) {
     console.log('sendSMSOTP', phone);
-    await timeout(1000);
-    await authorizedFetch(API_ENDPOINT, {phone});
+    await authorizedFetch(VERIFICATION_ENDPOINT, {email: 1, mobile: 1});
     return {};
   }
   static async checkSMSOTP(phone, code) {
@@ -127,10 +140,13 @@ class API {
       tos: false,
     };
   }
-  static async sendEmailOTP(phone) {
-    console.log('sendSMSOTP', phone);
-    await timeout(1000);
-    await authorizedFetch(API_ENDPOINT, {phone});
+  static async sendEmailOTP(email) {
+    console.log('sendEmailOTP', email);
+    const otpReponsePayload = await authorizedFetch(VERIFICATION_ENDPOINT, {
+      email: 1,
+      mobile: 1,
+    });
+    console.log(otpReponsePayload);
     return {};
   }
   static async checkEmailOTP(email, code) {
