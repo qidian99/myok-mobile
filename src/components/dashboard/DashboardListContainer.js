@@ -47,9 +47,7 @@ const DashboardListContainer = ({documents, children, colors}) => {
         <Text style={titleTextStyle}>{title}</Text>
         <Text style={titleTextStyle}>VIEW ALL</Text>
       </View>
-      <View style={[dataContainerStyle, {backgroundColor: colors.primary}]}>
-        {rows}
-      </View>
+      <View style={dataContainerStyle}>{rows}</View>
     </View>
   );
 };
@@ -64,7 +62,7 @@ const styles = EStyleSheet.create({
     padding: 9,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#7CB0D7',
+    backgroundColor: '#195174',
   },
   titleTextStyle: {
     fontWeight: '600',
@@ -73,6 +71,7 @@ const styles = EStyleSheet.create({
   dataContainerStyle: {
     paddingHorizontal: 9,
     paddingBottom: 5,
+    backgroundColor: '#2374A5',
   },
 });
 

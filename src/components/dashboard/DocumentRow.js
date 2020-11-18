@@ -6,7 +6,7 @@ const DocumentRow = ({document, colors, isLast}) => {
   const {
     document_type_id,
     title,
-    created_by,
+    first_name,
     inserted,
     has_responded,
     has_agreed,
@@ -47,7 +47,7 @@ const DocumentRow = ({document, colors, isLast}) => {
           {title}
         </Text>
         <Text style={subtitleTextStyle} numberOfLines={1}>
-          {`${created_by} | ${inserted}`}
+          {`${first_name} | ${inserted}`}
         </Text>
         <View style={[statusContainerStyle, {backgroundColor: statusColor}]}>
           <Text style={[statusTextStyle, {color: colors.background}]}>
