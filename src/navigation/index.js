@@ -1,38 +1,11 @@
 import React from 'react';
-import Feed from '../feed';
-import Detail from '../detail';
-import {
-  SafeAreaView,
-  TouchableOpacity,
-  ImageBackground,
-  View,
-  Text,
-  Dimensions,
-  Animated,
-} from 'react-native';
-import Contacts from '../views/drawer/Contacts';
-import Favorites from '../views/drawer/Favorites';
-import Settings from '../views/drawer/Settings';
+import {ImageBackground, View, Animated} from 'react-native';
 
-import Tab1 from '../views/tabs/Tab1';
-import Tab2 from '../views/tabs/Tab2';
-import Tab3 from '../views/tabs/Tab3';
-
-import {
-  DrawerActions,
-  DefaultTheme,
-  DarkTheme,
-  NavigationContainer,
-  getFocusedRouteNameFromRoute,
-} from '@react-navigation/native';
+import {getFocusedRouteNameFromRoute} from '@react-navigation/native';
 
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import {
-  createMaterialTopTabNavigator,
-  MaterialTopTabBar,
-} from '@react-navigation/material-top-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Auth from '../views/auth/Auth';
 import Login from '../views/auth/login';
@@ -46,14 +19,11 @@ import StudentRegister from '../views/auth/register/StudentRegister';
 import Dashboard from 'views/home/dashboard';
 import Documents from 'views/home/documents';
 import Profile from 'views/profile/profile';
-import {Appbar, Avatar, Button, useTheme} from 'react-native-paper';
+import {Appbar} from 'react-native-paper';
 import {DrawerContent} from './drawer';
 import {createTestStack} from './test';
-import Children from 'views/children/children';
 import Announcements from 'views/announcements/announcements';
-import MaterialIcon from 'react-native-vector-icons/dist/MaterialIcons';
-import {globalStyles} from 'styles';
-import StackScreen, {HeaderBackImage} from './StackScreen';
+import {HeaderBackImage} from './StackScreen';
 
 const HEADER_BACKGROUND = require('assets/image/father_children.png');
 const APP_BACKGROUND = require('assets/image/isafe_background.jpeg');
@@ -61,35 +31,9 @@ const APP_BACKGROUND = require('assets/image/isafe_background.jpeg');
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const MaterialBottomTabs = createMaterialBottomTabNavigator();
-const MaterialTopTabs = createMaterialTopTabNavigator();
-
-// TODO: the below approach is used in react-navigation 4.x but not in 5.x
-// const SafeAreaMaterialTopTabBar = ({...props}) => (
-//   <SafeAreaView>
-//     <MaterialTopTabBar {...props} />
-//   </SafeAreaView>
-// );
-
-// const options = {
-//   tabBarComponent: (props) => <SafeAreaMaterialTopTabBar {...props} />,
-// };
-
-// const HomeTopTabs = createMaterialTopTabNavigator(
-//   {
-//     dashboard: {
-//       screen: Dashboard,
-//       navigationOptions: {
-//         title: 'Dashboard',
-//       },
-//     },
-//   },
-//   options,
-// );
 
 const Header = ({scene, previous, navigation}) => {
   const {options} = scene.descriptor;
-  // console.log({options});
-  const theme = useTheme();
   const title =
     options.headerTitle !== undefined
       ? options.headerTitle
@@ -114,28 +58,7 @@ const Header = ({scene, previous, navigation}) => {
       <Appbar.Header
         style={{
           backgroundColor: 'transparent',
-          // borderWidth: 1,
-          // borderColor: 'red',
         }}>
-        {/* {previous ? (
-          <Appbar.BackAction
-            onPress={navigation.pop}
-            color={theme.colors.primary}
-          />
-        ) : (
-          <TouchableOpacity
-            onPress={() => {
-              navigation.openDrawer();
-            }}>
-            <Avatar.Image
-              size={40}
-              source={{
-                uri:
-                  'https://pbs.twimg.com/profile_images/952545910990495744/b59hSXUd_400x400.jpg',
-              }}
-            />
-          </TouchableOpacity>
-        )} */}
         <Appbar.Content
           title={title}
           titleStyle={{
@@ -158,16 +81,6 @@ const Header = ({scene, previous, navigation}) => {
         />
       </Appbar.Header>
     </ImageBackground>
-  );
-};
-
-const DashboardTopTabs = (props) => {
-  return (
-    <MaterialTopTabs.Navigator>
-      <MaterialTopTabs.Screen name="Dashboard" component={Dashboard} />
-      <MaterialTopTabs.Screen name="My Documents" component={Documents} />
-      <MaterialTopTabs.Screen name="My Profile" component={Profile} />
-    </MaterialTopTabs.Navigator>
   );
 };
 

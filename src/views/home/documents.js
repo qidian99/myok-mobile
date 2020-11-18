@@ -211,6 +211,7 @@ const styles = EStyleSheet.create({
   },
   containerStyle: {
     padding: 24,
+    backgroundColor: 'transparent',
   },
   headerContainerStyle: {
     backgroundColor: '#195174',
