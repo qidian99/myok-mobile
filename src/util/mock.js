@@ -1,16 +1,16 @@
 import {store} from 'reducers';
 import {timeout} from './general';
 
-const MOCK_ENDPOINT = 'http://localhost:8886/api/myok';
-const MOCK_JWT =
+export const MOCK_ENDPOINT = 'http://localhost:8886/api/myok';
+export const MOCK_JWT =
   'eyJpc3MiOiJ0b3B0YWwuY29tIiwiZXhwIjoxNDI2NDIwODAwLCJodHRwOi8vdG9wdGFsLmNvbS9qd3RfY2xhaW1zL2lzX2FkbWluIjp0cnVlLCJjb21wYW55IjoiVG9wdGFsIiwiYXdlc29tZSI6dHJ1ZX0';
-const MOCK_USER = {
+export const MOCK_USER = {
   first_name: 'First',
   last_name: 'Last',
   email: 'test@isafeventures.com',
   username: 'test@isafeventures.com',
 };
-const generateMockChild = (
+export const generateMockChild = (
   firstName = 'Child',
   lastName = 'One',
   dob = '04/18/2007',
@@ -24,11 +24,11 @@ const generateMockChild = (
   organization: 'Del Mar Union',
   grade: 2,
 });
-const MOCK_CHILDREN = [
+export const MOCK_CHILDREN = [
   generateMockChild('Susanna', 'Bryant', '04/18/2007', 'lightning436'),
   generateMockChild('Mark', 'Bryant', '04/18/2007', 'chair831'),
 ];
-const generateMockDocument = (
+export const generateMockDocument = (
   title = 'Mock Document',
   body = 'This is the body of mock document',
 ) => ({
@@ -41,7 +41,7 @@ const generateMockDocument = (
   has_agreed: Math.random() >= 0.5,
   ...generateMockChild('Susanna', 'Bryant', '04/18/2007', 'lightning436'),
 });
-const MOCK_DOCUMENTS = [
+export const MOCK_DOCUMENTS = [
   generateMockDocument(
     'Acceptable Use Policy Agreement',
     'This is the body of mock document 1',
