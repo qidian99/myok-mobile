@@ -58,7 +58,6 @@ const mapDispatchToProps = (dispatch) =>
 const styles = EStyleSheet.create({
   containerStyle: {
     margin: 24,
-    backgroundColor: 'transparent',
   },
   recentDocContainerStyle: {
     width: '100%',

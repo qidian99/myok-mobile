@@ -3,16 +3,18 @@ import {View, Text} from 'react-native';
 import Video from 'react-native-video';
 import {globalStyles} from 'styles/index';
 import EStyleSheet from 'react-native-extended-stylesheet';
- 
+
 const VimeoVideoPlayer = (props) => {
   const [videoUrl, setUrl] = useState('');
   const [error, toggleError] = useState(false);
 
   async function getUrl() {
     fetch(`https://player.vimeo.com/video/${props.id}/config`)
-      .then(res => res.json())
-      .then(res => {
-        setUrl(res.request.files.hls.cdns[res.request.files.hls.default_cdn].url);
+      .then((res) => res.json())
+      .then((res) => {
+        setUrl(
+          res.request.files.hls.cdns[res.request.files.hls.default_cdn].url,
+        );
         toggleError(false);
       })
       .catch((error) => {
@@ -27,25 +29,19 @@ const VimeoVideoPlayer = (props) => {
 
   return (
     <View style={globalStyles.center}>
-      {
-        error ?
-          <Text style={styles.text}>
-            Failed to Load
-          </Text>
-        : 
-          videoUrl === '' ?
-          <Text style={styles.text}>
-            Loading...
-          </Text> 
-        :
-          <Video 
-            source={{ uri: videoUrl }}                                    
-            resizeMode='contain'
-            fullscreen
-            controls      
-            style={styles.video} 
-          />
-      }
+      {error ? (
+        <Text style={styles.text}>Failed to Load</Text>
+      ) : videoUrl === '' ? (
+        <Text style={styles.text}>Loading...</Text>
+      ) : (
+        <Video
+          source={{uri: videoUrl}}
+          resizeMode="contain"
+          fullscreen
+          controls
+          style={styles.video}
+        />
+      )}
     </View>
   );
 };

@@ -88,14 +88,14 @@ const HomeBottomTabs = (props) => (
   <ImageBackground
     source={APP_BACKGROUND}
     style={{width: '100%', height: '100%'}}>
-    <MaterialBottomTabs.Navigator barStyle={{backgroundColor: '#195174'}}>
+    <MaterialBottomTabs.Navigator
+      style={{}}
+      barStyle={{backgroundColor: '#195174'}}>
       <MaterialBottomTabs.Screen
         name="Home"
-        style={{marginBottom: 16}}
+        style={{}}
         component={Dashboard}
         options={{
-          headerTitle: 'Test',
-          // headerShown: false,
           tabBarLabel: 'Home',
           tabBarIcon: () => (
             <Icon style={[{color: 'white'}]} size={25} name={'home'} />
@@ -106,7 +106,6 @@ const HomeBottomTabs = (props) => (
         name="Documents"
         component={Documents}
         options={{
-          // headerShown: false,
           tabBarLabel: 'Documents',
           tabBarIcon: () => (
             <Icon style={[{color: 'white'}]} size={25} name={'file-document'} />
@@ -117,7 +116,6 @@ const HomeBottomTabs = (props) => (
         name="Announcements"
         component={Announcements}
         options={{
-          // headerShown: false,
           tabBarLabel: 'Announcements',
           tabBarIcon: () => (
             <Icon style={[{color: 'white'}]} size={25} name={'email'} />
@@ -128,7 +126,6 @@ const HomeBottomTabs = (props) => (
         name="Profile"
         component={Profile}
         options={{
-          // headerShown: false,
           tabBarLabel: 'Profile',
           tabBarIcon: () => (
             <Icon style={[{color: 'white'}]} size={25} name={'account'} />
