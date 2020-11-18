@@ -20,6 +20,9 @@ const RESPONSE_CODE = {
   UNAUTHORIZED: 401,
   ACESS_DENIED: 403,
 };
+
+const CSRF_ERROR_MSG = 'CSRF validation failed';
+
 const API_V = API_ENDPOINT + '/' + API_VERSION;
 const LOGIN_ENDPOINT = API_ENDPOINT + '/user/login';
 const VERIFICATION_ENDPOINT = API_V + '/verification';
@@ -54,7 +57,7 @@ const parseSetCookie = (response) => {
 const authorizedFetch = async (url, body = null, method = 'POST') => {
   let headers;
   await CookieManager.clearAll();
-  const test = await CookieManager.get(API_ENDPOINT);
+  const test = await CookieManager.getAll();
   console.log({test});
 
   const {token, cookie, expires} = store.getState().auth;
