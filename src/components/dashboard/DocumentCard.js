@@ -5,7 +5,7 @@ import {mapDocumentTypeToIcon, mapDocumentStatus} from 'util/general';
 const DocumentCard = ({item, colors}) => {
   const {
     title,
-    created_by,
+    first_name,
     document_type_id,
     inserted,
     has_responded,
@@ -20,7 +20,6 @@ const DocumentCard = ({item, colors}) => {
     statusTextStyle,
     imageContainerStyle,
     titleTextStyle,
-    subtitleTextStyle,
     viewDocumentStyle,
   } = styles;
 
@@ -31,7 +30,7 @@ const DocumentCard = ({item, colors}) => {
 
   return (
     <View style={cardContainerStyle}>
-      <View style={[cardTopStyle, {backgroundColor: colors.primary}]}>
+      <View style={cardTopStyle}>
         <View style={imageContainerStyle}>
           <Image
             style={{width: '100%', height: '100%'}}
@@ -41,18 +40,17 @@ const DocumentCard = ({item, colors}) => {
           />
         </View>
       </View>
-      <View style={[cardBottomStyle, {backgroundColor: colors.background}]}>
-        <View style={{marginTop: 7, marginHorizontal: 10}}>
+      <View style={[cardBottomStyle, {backgroundColor: colors.darkBlue}]}>
+        <View style={{paddingBottom: 7, marginHorizontal: 10}}>
           <Text
             numberOfLines={1}
-            style={[titleTextStyle, {color: colors.primary}]}>
+            style={[titleTextStyle, {color: colors.background}]}>
             {title}
           </Text>
-          <Text
-            numberOfLines={2}
-            style={subtitleTextStyle}>{`${created_by} | ${inserted}`}</Text>
         </View>
-        <Text style={[viewDocumentStyle, {color: colors.primary}]}>VIEW</Text>
+        <Text style={[viewDocumentStyle, {color: colors.background}]}>
+          VIEW
+        </Text>
       </View>
       <View style={[statusContainerStyle, {backgroundColor: statusColor}]}>
         <Text style={[statusTextStyle, {color: colors.background}]}>
@@ -68,15 +66,15 @@ const styles = {
     flex: 1,
     height: 130,
     width: 179,
-    backgroundColor: 'red',
     marginRight: 10,
     borderRadius: 5,
     overflow: 'hidden',
   },
   cardTopStyle: {
-    flex: 1 / 2,
+    flex: 3 / 5,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#538BBD',
   },
   imageContainerStyle: {
     margin: 10,
@@ -85,8 +83,8 @@ const styles = {
     height: '100%',
   },
   cardBottomStyle: {
-    flex: 1 / 2,
-    justifyContent: 'space-between',
+    flex: 2 / 5,
+    justifyContent: 'center',
   },
   statusContainerStyle: {
     position: 'absolute',

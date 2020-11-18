@@ -9,29 +9,32 @@ const DashboardListContainer = ({documents, children, colors}) => {
   const titleTextStyle = {...styles.titleTextStyle, color: colors.background};
 
   // Trim only first three rows
-  let title, rows;
+  let title, rows, size;
+
   if (documents) {
     title = 'My Documents';
+    size = Math.min(documents.length, 2);
     rows = documents
-      .slice(0, 2)
+      .slice(0, size)
       .map((doc, index) => (
         <DocumentRow
           key={doc.document_id}
           document={doc}
           colors={colors}
-          isLast={index === 1}
+          isLast={index === size - 1}
         />
       ));
   } else if (children) {
     title = 'My Children';
+    size = Math.min(children.length, 2);
     rows = children
-      .slice(0, 2)
+      .slice(0, size)
       .map((child, index) => (
         <ChildRow
           key={child.student_id}
           child={child}
           colors={colors}
-          isLast={index === 1}
+          isLast={index === size - 1}
         />
       ));
   } else {
@@ -40,7 +43,7 @@ const DashboardListContainer = ({documents, children, colors}) => {
 
   return (
     <View style={containerStyle}>
-      <View style={titleContainerStyle}>
+      <View style={[titleContainerStyle, {backgroundColor: colors.darkBlue}]}>
         <Text style={titleTextStyle}>{title}</Text>
         <Text style={titleTextStyle}>VIEW ALL</Text>
       </View>
@@ -61,7 +64,6 @@ const styles = EStyleSheet.create({
     padding: 9,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: '#7CB0D7',
   },
   titleTextStyle: {
     fontWeight: '600',

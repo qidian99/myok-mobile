@@ -13,8 +13,8 @@ const Main = ({loggedIn}) => {
     // return HomeStack();
     // return createTestStack();
   }
-
-  return createAuthStack();
+  return <HomeNavigator />;
+  // return createAuthStack();
 };
 
 const mapStateToProps = (state) => {

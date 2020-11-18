@@ -8,6 +8,7 @@ import {
   View,
   Text,
   Dimensions,
+  Animated,
 } from 'react-native';
 import Contacts from '../views/drawer/Contacts';
 import Favorites from '../views/drawer/Favorites';
@@ -33,15 +34,26 @@ import {
   MaterialTopTabBar,
 } from '@react-navigation/material-top-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Login from '../views/auth/Auth';
+import Auth from '../views/auth/Auth';
+import Login from '../views/auth/login';
+import Register from '../views/auth/register';
+import EmailLogin from '../views/auth/login/EmailLogin';
+import ParentCodeLogin from '../views/auth/login/ParentCodeLogin';
+import GuardianRegister from '../views/auth/register/GuardianRegister';
+import EmployeeRegister from '../views/auth/register/EmployeeRegister';
+import EducatorRegister from '../views/auth/register/EducatorRegister';
+import StudentRegister from '../views/auth/register/StudentRegister';
 import Dashboard from 'views/home/dashboard';
 import Documents from 'views/home/documents';
 import Profile from 'views/profile/profile';
-import {Appbar, Avatar, useTheme} from 'react-native-paper';
+import {Appbar, Avatar, Button, useTheme} from 'react-native-paper';
 import {DrawerContent} from './drawer';
 import {createTestStack} from './test';
 import Children from 'views/children/children';
 import Announcements from 'views/announcements/announcements';
+import MaterialIcon from 'react-native-vector-icons/dist/MaterialIcons';
+import {globalStyles} from 'styles';
+import StackScreen, {HeaderBackImage} from './StackScreen';
 
 const HEADER_BACKGROUND = require('assets/image/father_children.png');
 const APP_BACKGROUND = require('assets/image/isafe_background.jpeg');
@@ -163,7 +175,7 @@ const HomeBottomTabs = (props) => (
   <ImageBackground
     source={APP_BACKGROUND}
     style={{width: '100%', height: '100%'}}>
-    <MaterialBottomTabs.Navigator>
+    <MaterialBottomTabs.Navigator barStyle={{backgroundColor: '#195174'}}>
       <MaterialBottomTabs.Screen
         name="Home"
         style={{marginBottom: 16}}
@@ -266,16 +278,140 @@ export const HomeNavigator = () => {
   );
 };
 
+/*
+
+The interpolator will be called for each screen. For example, say you have a 2 screens in the stack, A & B. B is the new screen coming into focus and A is the previous screen. The interpolator will be called for each screen:
+
+The interpolator is called for B: Here, the current.progress value represents the progress of the transition, which will start at 0 and end at 1. There won't be a next.progress since B is the last screen.
+The interpolator is called for A: Here, the current.progress will stay at the value of 1 and won't
+change, since the current transition is running for B, not A. The next.progress value represents the
+progress of B and will start at 0 and end at 1.
+
+
+*/
+
 export const createAuthStack = () => (
-  <Stack.Navigator>
-    <Stack.Screen
-      name="Login"
-      component={Login}
-      options={{
-        title: 'ISAFE Direct My Ok',
-      }}
-    />
-  </Stack.Navigator>
+  <ImageBackground
+    source={APP_BACKGROUND}
+    style={{width: '100%', height: '100%'}}>
+    <Stack.Navigator
+      initialRouteName="Auth"
+      screenOptions={{
+        cardStyle: {backgroundColor: 'transparent'},
+        cardStyleInterpolator: ({
+          current,
+          next,
+          inverted,
+          layouts: {screen},
+        }) => {
+          const progress = Animated.add(
+            current.progress.interpolate({
+              inputRange: [0, 1],
+              outputRange: [0, 1],
+              extrapolate: 'clamp',
+            }),
+            next
+              ? next.progress.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, 1],
+                  extrapolate: 'clamp',
+                })
+              : 0,
+          );
+          return {
+            cardStyle: {
+              transform: [
+                {
+                  translateX: Animated.multiply(
+                    progress.interpolate({
+                      inputRange: [0, 1, 2],
+                      outputRange: [
+                        screen.width, // Focused, but offscreen in the beginning
+                        0, // Fully focused
+                        screen.width * -1, // Fully unfocused
+                      ],
+                      extrapolate: 'clamp',
+                    }),
+                    inverted,
+                  ),
+                },
+              ],
+            },
+          };
+        },
+      }}>
+      <Stack.Screen
+        name="Auth"
+        component={Auth}
+        options={{
+          title: 'ISAFE Direct My Ok',
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{
+          headerBackImage: HeaderBackImage,
+        }}
+      />
+      <Stack.Screen
+        name="Register"
+        component={Register}
+        options={{
+          headerBackImage: HeaderBackImage,
+        }}
+      />
+      <Stack.Screen
+        name="EmailLogin"
+        component={EmailLogin}
+        options={{
+          title: 'Email Login',
+          headerBackImage: HeaderBackImage,
+        }}
+      />
+      <Stack.Screen
+        name="ParentCodeLogin"
+        component={ParentCodeLogin}
+        options={{
+          title: 'Parent Code Login',
+          headerBackImage: HeaderBackImage,
+        }}
+      />
+      <Stack.Screen
+        name="GuardianRegister"
+        component={GuardianRegister}
+        options={{
+          title: 'Register Guardian',
+          headerBackImage: HeaderBackImage,
+        }}
+      />
+      <Stack.Screen
+        name="EducatorRegister"
+        component={EducatorRegister}
+        options={{
+          title: 'Register Educator',
+          headerBackImage: HeaderBackImage,
+        }}
+      />
+      <Stack.Screen
+        name="StudentRegister"
+        component={StudentRegister}
+        options={{
+          title: 'Register Student',
+          headerBackImage: HeaderBackImage,
+        }}
+      />
+      <Stack.Screen
+        name="EmployeeRegister"
+        component={EmployeeRegister}
+        options={{
+          title: 'Register Employee',
+          headerBackImage: HeaderBackImage,
+        }}
+      />
+    </Stack.Navigator>
+  </ImageBackground>
 );
 
 export {createTestStack};

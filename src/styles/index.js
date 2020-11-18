@@ -6,6 +6,9 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import {appColors} from 'theme/index';
 
 export const globalStyles = EStyleSheet.create({
+  headerButton: {
+    paddingLeft: 16,
+  },
   androidButtonText: {
     color: 'blue',
     fontSize: 20,
@@ -37,8 +40,9 @@ export const globalStyles = EStyleSheet.create({
     marginBottom: 16,
   },
   logo: {
-    height: 100,
-    width: 240,
+    marginTop: 30,
+    height: 73,
+    width: 200,
   },
   title: {
     fontSize: '3rem',
@@ -50,6 +54,13 @@ export const globalStyles = EStyleSheet.create({
     marginTop: 16,
     paddingHorizontal: 0,
     width: '90%',
+  },
+
+  authCard: {
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    borderRadius: 5,
+    overflow: 'hidden',
+    padding: 16,
   },
 
   rule: {
