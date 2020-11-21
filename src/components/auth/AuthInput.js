@@ -1,27 +1,53 @@
 import React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
+import MaterialIcon from 'react-native-vector-icons/dist/MaterialIcons';
 
 const AuthInput = ({
   title,
   value,
   hint,
   onChangeText = () => {},
-  secureTextEntry,
+  secureTextEntry = false,
+  picker = false,
+  items = [],
 }) => {
-  const {containerStyle, titleStyle, inputContainerStyle, inputStyle} = styles;
+  const {
+    containerStyle,
+    titleStyle,
+    inputContainerStyle,
+    inputStyle,
+    placeholder,
+    inputIOS,
+    inputAndroid,
+  } = styles;
   return (
     <View style={containerStyle}>
       <Text style={titleStyle}>{title}</Text>
       <View style={inputContainerStyle}>
-        <TextInput
-          value={value}
-          placeholder={hint}
-          onChangeText={onChangeText}
-          style={inputStyle}
-          placeholderTextColor="#2374A5"
-          autoCapitalize="none"
-          secureTextEntry={secureTextEntry}
-        />
+        {picker ? (
+          <RNPickerSelect
+            onValueChange={onChangeText}
+            items={items}
+            style={{placeholder, inputIOS, inputAndroid}}
+            placeholder={{label: hint}}
+            Icon={() => {
+              return (
+                <MaterialIcon name="expand-more" size={20} color="#2374A5" />
+              );
+            }}
+          />
+        ) : (
+          <TextInput
+            value={value}
+            placeholder={hint}
+            onChangeText={onChangeText}
+            style={inputStyle}
+            placeholderTextColor="#2374A5"
+            autoCapitalize="none"
+            secureTextEntry={secureTextEntry}
+          />
+        )}
       </View>
     </View>
   );
@@ -31,6 +57,10 @@ const styles = StyleSheet.create({
   containerStyle: {
     marginTop: 15,
   },
+  inputAndroid: {
+    color: '#2374A5',
+    fontSize: 14,
+  },
   inputContainerStyle: {
     backgroundColor: 'rgba(17, 78, 117, 0.1);',
     borderRadius: 4,
@@ -38,7 +68,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 12,
   },
+  inputIOS: {
+    color: '#2374A5',
+    fontSize: 14,
+  },
   inputStyle: {
+    color: '#2374A5',
+    fontSize: 14,
+  },
+  placeholder: {
     color: '#2374A5',
     fontSize: 14,
   },
