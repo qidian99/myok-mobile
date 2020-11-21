@@ -5,9 +5,13 @@ import {
   SafeAreaView,
   Platform,
   ScrollView,
+  Text,
 } from 'react-native';
-import DOBInput from 'components/auth/DOBInput';
+import RNPickerSelect from 'react-native-picker-select';
+import MaterialIcon from 'react-native-vector-icons/dist/MaterialIcons';
 
+import DOBInput from 'components/auth/DOBInput';
+import {STATES} from 'util/constant';
 import {globalStyles} from 'styles/index';
 import AuthHeader from 'components/auth/AuthHeader';
 import AuthContainer from 'components/auth/AuthContainer';
@@ -16,7 +20,7 @@ import Separator from 'components/common/Separator';
 import {CenterButton} from 'components/auth/AuthButton';
 
 const GuardianRegister = () => {
-  const [state, setState] = React.useState('');
+  const [state, setState] = React.useState('java');
   const [email, setEmail] = useState('');
   const [studentId, setStudentId] = useState('');
   const [school, setSchool] = useState('');
@@ -105,9 +109,15 @@ const GuardianRegister = () => {
                 />
                 <AuthInput
                   title="State"
-                  value={state}
-                  hint="Select State"
+                  items={Object.entries(STATES).map(
+                    ([fullname, abbreviation]) => ({
+                      label: `${fullname} (${abbreviation})`,
+                      value: abbreviation,
+                    }),
+                  )}
+                  picker
                   onChangeText={onStateChange}
+                  hint="Select a State"
                 />
                 <AuthInput
                   title="School District"
