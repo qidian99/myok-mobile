@@ -48,12 +48,27 @@ export const fetchSecurityQuestion = (email) => ({
   type: actions.FETCH_SECURITY_QUESTION_ASYNC,
   email,
 });
+
 export const submitSecurityQuestion = (email, sqid, answer) => ({
   type: actions.SUMIT_ECURITY_QUESTION_ASYNC,
   email,
   sqid,
   answer,
 });
+
+export const getDistrictByState = (state, district) => ({
+  type: actions.GET_DISTRICT_BY_STATE_ASYNC,
+  state,
+  district,
+});
+
+export const getSchoolByDistrict = (state, district, school) => ({
+  type: actions.GET_SCHOOL_BY_DISTRICT_ASYNC,
+  state,
+  district,
+  school,
+});
+
 /* User */
 export const changeProfile = (profile) => ({
   type: actions.CHANGE_PROFILE_ASYNC,
