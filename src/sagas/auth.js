@@ -1,23 +1,24 @@
 // Imports: Dependencies
 import {delay, takeEvery, takeLatest, put, call} from 'redux-saga/effects';
 import {actions} from 'util/actions';
-import API from 'util/mock';
+// import API from 'util/mock';
+import API from 'util/api';
 import {OTP_METHODS} from 'util/actions';
-function* loginParentAsync(action) {
+import {instanceOf} from 'prop-types';
+import {ApiError} from 'util/error';
+function* loginAdultAsync(action) {
   const {username, password} = action;
-
+  console.log(action);
   try {
-    const {user, token, securityQuestion, tos} = yield call(
-      API.loginParentUser,
-      username,
-      password,
-    );
+    const loginResponse = yield call(API.loginAdult, username, password);
+    console.log(loginResponse);
+    const {cookie, expires, token, user} = loginResponse;
     yield put({
       type: actions.LOGIN_ADULT,
       user,
       token,
-      securityQuestion,
-      tos,
+      cookie,
+      expires,
     });
   } catch (error) {
     console.log(error);
@@ -46,6 +47,7 @@ function* onboardChildAsync(action) {
 
 function* sendVerificationCodeAsync(action) {
   const {method, address} = action;
+  console.log('sendVerificationCodeAsync', action);
   if (method !== OTP_METHODS.SMS && method !== OTP_METHODS.EMAIL) {
     throw new Error('OTP method not allowed');
   }
@@ -62,6 +64,13 @@ function* sendVerificationCodeAsync(action) {
       address,
     });
   } catch (error) {
+    console.log('test', error instanceof ApiError);
+    if (error instanceof ApiError) {
+      alert(error.message);
+      yield put({
+        type: actions.LOGOOUT,
+      });
+    }
     console.log(error);
   }
 }
@@ -120,7 +129,7 @@ function* submitSecurityQuestionAsync(action) {
 }
 
 export function* authSaga() {
-  yield takeLatest(actions.LOGIN_ADULT_ASYNC, loginParentAsync);
+  yield takeLatest(actions.LOGIN_ADULT_ASYNC, loginAdultAsync);
   yield takeLatest(actions.LOGIN_CHILD_ASYNC, onboardChildAsync);
   yield takeLatest(
     actions.SEND_VERIFICATION_CODE_ASYNC,

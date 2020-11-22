@@ -170,10 +170,12 @@ const Documents = ({dispatchFetchDocuments, documents}) => {
   const {colors} = useTheme();
 
   const {containerStyle, documentContainerStyle} = styles;
+  // TODO: The scrollview should be wrapping DocumentCards
+  // put the DocumentHeader outside
   return (
-    <ScrollView style={containerStyle}>
+    <View style={containerStyle}>
       <DocumentHeader />
-      <View
+      <ScrollView
         style={[documentContainerStyle, {backgroundColor: colors.myokBlue}]}>
         {documents.map((document, index) => (
           <DocumentCard
@@ -182,8 +184,8 @@ const Documents = ({dispatchFetchDocuments, documents}) => {
             document={document}
           />
         ))}
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 
@@ -211,6 +213,7 @@ const styles = EStyleSheet.create({
   },
   containerStyle: {
     padding: 24,
+    flex: 1,
   },
   headerContainerStyle: {
     backgroundColor: '#195174',
@@ -279,7 +282,6 @@ const styles = EStyleSheet.create({
   documentContainerStyle: {
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
-    marginBottom: 45,
   },
   itemContainerStyle: {
     marginTop: 10,

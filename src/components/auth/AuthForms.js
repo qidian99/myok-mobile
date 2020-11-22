@@ -3,8 +3,12 @@ import {View, StyleSheet, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {CenterButton} from 'components/auth/AuthButton';
 import {globalStyles} from 'styles/index';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {loginAdult} from 'sagas/actions';
+import {DRUPAL_USER, DRUPAL_PASSWORD, MODE} from '@env';
 
-const AuthForms = ({colors}) => {
+const AuthForms = ({colors, login}) => {
   const navigation = useNavigation();
 
   const {titleTextStyle, titleContainerStyle, introTextStyle} = styles;
@@ -27,6 +31,14 @@ const AuthForms = ({colors}) => {
         text="Register"
         onPress={() => navigation.push('Register')}
       />
+      {MODE === 'DEV' && (
+        <CenterButton
+          text="Admin Login"
+          onPress={() => {
+            login(DRUPAL_USER, DRUPAL_PASSWORD);
+          }}
+        />
+      )}
     </View>
   );
 };
@@ -49,4 +61,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AuthForms;
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      login: loginAdult,
+    },
+    dispatch,
+  );
+
+export default connect(null, mapDispatchToProps)(AuthForms);

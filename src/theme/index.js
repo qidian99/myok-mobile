@@ -19,7 +19,7 @@ export const NavigationTheme = {
   colors: {
     ...NavigationDefaultTheme.colors,
     primary: PRIMARY_COLOR,
-    // background: 'transparent',
+    background: 'transparent',
     card: PRIMARY_COLOR,
     border: 'green',
     text: 'white',
