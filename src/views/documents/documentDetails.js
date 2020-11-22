@@ -16,7 +16,7 @@ const DocumentDeatils = ({
   console.log(documents);
   const [videoComplete, toggleComplete] = useState(false);
 
-  function gen (info) {
+  function mockBody(info) {
     let res = '';
     for(let i = 0; i < 20; i++) {
       res += info + ' ';
@@ -33,24 +33,29 @@ const DocumentDeatils = ({
         </Text>
 
         <Text style={styles.body}>
-          {gen(documents[0].body)}
+          {mockBody(documents[0].body)}
         </Text>
 
-        <Text style={styles.body}>
+        <Text style={styles.videoText}>
           Video
         </Text>
 
-        {/* //<VideoPlayer platform='Youtube' id='KVZ-P-ZI6W4'/>   */}
         <VideoPlayer 
-          platform='Vimeo' 
-          id='76979871'
-          toggleComplete={() => {toggleComplete(true); console.log("here")}}
+          style={styles.video}
+          // url="https://www.youtube.com/watch?v=M7lc1UVf-VE"
+          url='https://vimeo.com/76979871'
+          toggleComplete={() => {toggleComplete(true)}}
         /> 
 
-        <Text style={videoComplete ? styles.completeVideo : styles.incompleteVideo}>
-          The Video section is {videoComplete ? '' : 'not'} complete
-        </Text>
-
+        {
+          videoComplete ? 
+            <Text style={styles.completeVideo}>
+              The video section is complete
+            </Text>
+          : 
+            null
+        }
+        
       </View>
     </ScrollView>
   );
@@ -71,37 +76,42 @@ const mapDispatchToProps = (dispatch) =>
 );
 
 const styles = EStyleSheet.create({
-  title: {
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: '1.5rem',
-    color: '#195174',
-    marginBottom: 10,
-  },
   body: {
     fontStyle: 'normal',
     fontSize: '1rem',
-    color: '#195174',
-    marginBottom: 3,
+    color: '#000000',
+    marginBottom: 16,
+  },
+  completeVideo: {
+    fontStyle: 'normal',
+    fontSize: '1rem',
+    color: '#28A885',
+    marginTop: 8,
   },
   container: {
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
     margin: 24,
     borderRadius: 5,
-    padding: 12,
+    padding: 8,
   },
-  completeVideo: {
+  title: {
     fontStyle: 'normal',
-    fontSize: '1rem',
-    color: '#008000',
+    fontWeight: 'bold',
+    fontSize: '1.2rem',
+    marginBottom: 5,
+    color: '#000000',
+    textAlign: 'center',
+    textTransform: 'uppercase',
   },
-  incompleteVideo: {
-    fontStyle: 'normal',
-    fontSize: '1rem',
-    color: '#FF0000',
-  },
-  full: {
+  video: {
+    width:'100%',
     height: '100%',
+  },
+  videoText: {
+    fontStyle: 'normal',
+    fontSize: '1rem',
+    color: '#000000',
+    marginBottom: 8,
   },
 });
 

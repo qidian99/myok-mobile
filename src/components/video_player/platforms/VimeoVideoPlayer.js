@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
-//import Video from 'react-native-video';
 import VideoPlayer from 'react-native-video-controls';
 import {globalStyles} from 'styles/index';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { WebView } from 'react-native-webview';
  
 const VimeoVideoPlayer = (props) => {
   const [videoUrl, setUrl] = useState('');
@@ -11,11 +11,19 @@ const VimeoVideoPlayer = (props) => {
   const [ended, toggleEnded] = useState(false);
 
   async function getUrl() {
-    fetch(`https://player.vimeo.com/video/${props.id}/config`)
+    fetch(`https://vimeo.com/api/oembed.json?url=${props.url}`)
       .then(res => res.json())
       .then(res => {
-        setUrl(res.request.files.hls.cdns[res.request.files.hls.default_cdn].url);
-        toggleError(false);
+        fetch(`https://player.vimeo.com/video/${res.video_id}/config`)
+        .then(res => res.json())
+        .then(res => {
+          setUrl(res.request.files.hls.cdns[res.request.files.hls.default_cdn].url);
+          toggleError(false);
+        })
+        .catch((error) => {
+          toggleError(true);
+          console.error('Error: ', error);
+        });
       })
       .catch((error) => {
         toggleError(true);
@@ -31,7 +39,7 @@ const VimeoVideoPlayer = (props) => {
 
   useEffect(() => {
     getUrl();
-  });
+  }, []);
 
   return (
     error ?
@@ -41,25 +49,23 @@ const VimeoVideoPlayer = (props) => {
         </Text>
       </View>
     : 
-      videoUrl === '' ?
-        <View style={globalStyles.center}>
-          <Text style={styles.text}>
-            Loading...
-          </Text>
-        </View>
+    videoUrl === '' ?
+      <View style={globalStyles.center}>
+        <Text style={styles.text}>
+          Loading Video...
+        </Text>
+      </View>
     :
       <VideoPlayer 
         source={{ uri: videoUrl }}                                    
         resizeMode='contain'
         paused
-        //fullscreen
         onEnd={onEnd}
         disableFullscreen
         disableSeekbar={!ended}
         disableBack
         style={styles.video} 
       />
-      
   );
 };
 
@@ -69,8 +75,7 @@ const styles = EStyleSheet.create({
     marginBottom: 16,
   },
   video: {
-    margin: 10,
-    height: 200,
+    height: 196,
   },
 });
 
