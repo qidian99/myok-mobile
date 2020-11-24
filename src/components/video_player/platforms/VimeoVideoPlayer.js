@@ -1,48 +1,68 @@
 import React, {useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
-import Video from 'react-native-video';
+import VideoPlayer from 'react-native-video-controls';
 import {globalStyles} from 'styles/index';
 import EStyleSheet from 'react-native-extended-stylesheet';
+
+import {WebView} from 'react-native-webview';
 
 const VimeoVideoPlayer = (props) => {
   const [videoUrl, setUrl] = useState('');
   const [error, toggleError] = useState(false);
+  const [ended, toggleEnded] = useState(false);
 
-  async function getUrl() {
-    fetch(`https://player.vimeo.com/video/${props.id}/config`)
-      .then((res) => res.json())
-      .then((res) => {
-        setUrl(
-          res.request.files.hls.cdns[res.request.files.hls.default_cdn].url,
-        );
-        toggleError(false);
-      })
-      .catch((error) => {
-        toggleError(true);
-        console.error('Error: ', error);
-      });
-  }
+  const onEnd = () => {
+    console.log('Video Ended');
+    toggleEnded(true);
+    props.toggleComplete();
+  };
 
   useEffect(() => {
+    async function getUrl() {
+      fetch(`https://vimeo.com/api/oembed.json?url=${props.url}`)
+        .then((res) => res.json())
+        .then((res) => {
+          fetch(`https://player.vimeo.com/video/${res.video_id}/config`)
+            .then((response) => response.json())
+            .then((data) => {
+              setUrl(
+                data.request.files.hls.cdns[data.request.files.hls.default_cdn]
+                  .url,
+              );
+              toggleError(false);
+            })
+            .catch((err) => {
+              toggleError(true);
+              console.error('Error: ', err);
+            });
+        })
+        .catch((err) => {
+          toggleError(true);
+          console.error('Error: ', err);
+        });
+    }
     getUrl();
-  });
+  }, [props.url]);
 
-  return (
+  return error ? (
     <View style={globalStyles.center}>
-      {error ? (
-        <Text style={styles.text}>Failed to Load</Text>
-      ) : videoUrl === '' ? (
-        <Text style={styles.text}>Loading...</Text>
-      ) : (
-        <Video
-          source={{uri: videoUrl}}
-          resizeMode="contain"
-          fullscreen
-          controls
-          style={styles.video}
-        />
-      )}
+      <Text style={styles.text}>Failed to Load</Text>
     </View>
+  ) : videoUrl === '' ? (
+    <View style={globalStyles.center}>
+      <Text style={styles.text}>Loading Video...</Text>
+    </View>
+  ) : (
+    <VideoPlayer
+      source={{uri: videoUrl}}
+      resizeMode="contain"
+      paused
+      onEnd={onEnd}
+      disableFullscreen
+      disableSeekbar={!ended}
+      disableBack
+      style={styles.video}
+    />
   );
 };
 
@@ -52,11 +72,7 @@ const styles = EStyleSheet.create({
     marginBottom: 16,
   },
   video: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
+    height: 196,
   },
 });
 
