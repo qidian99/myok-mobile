@@ -26,6 +26,8 @@ const CSRF_ERROR_MSG = 'CSRF validation failed';
 const API_V = API_ENDPOINT + '/' + API_VERSION;
 const LOGIN_ENDPOINT = API_ENDPOINT + '/user/login';
 const VERIFICATION_ENDPOINT = API_V + '/verification';
+const GET_DISTRICT_BY_STATE_ENDPOINT = API_ENDPOINT + '/district';
+const GET_SCHOOL_BY_DISTRICT_ENDPOINT = API_ENDPOINT + '/school';
 
 const parseSetCookie = (response) => {
   const combinedCookieHeader = response.headers.get('Set-Cookie');
@@ -101,6 +103,28 @@ const authorizedFetch = async (url, body = null, method = 'POST') => {
 
   return {...responsePaylod, ...setCookie};
 };
+
+const get = async (url, query) => {
+  const headers = {
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
+  };
+
+  const options = {
+    method: 'GET',
+    headers,
+  };
+
+  const queryString = Object.keys(query)
+    .map((k) => escape(k) + '=' + escape(query[k]))
+    .join('&');
+
+  const response = await fetch(url + '?' + queryString, options);
+  const responsePaylod = await response.json();
+
+  return responsePaylod;
+};
+
 const getErrorMessgage = (res) => {
   if (Array.isArray(res)) {
     return res[0];
@@ -126,6 +150,23 @@ class API {
     //   securityQuestion: true,
     //   tos: true,
     // };
+  }
+  static async getDistrictByState(state, district) {
+    const districts = await get(GET_DISTRICT_BY_STATE_ENDPOINT, {
+      state,
+      district,
+    });
+
+    return districts;
+  }
+  static async getSchoolByDistrict(state, district, school) {
+    const schools = await get(GET_SCHOOL_BY_DISTRICT_ENDPOINT, {
+      state,
+      district,
+      school,
+    });
+
+    return schools;
   }
   static async sendSMSOTP(phone) {
     console.log('sendSMSOTP', phone);

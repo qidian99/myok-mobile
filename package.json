@@ -29,6 +29,7 @@
     "react-native": "0.63.3",
     "react-native-appearance": "^0.3.4",
     "react-native-dotenv": "^2.4.2",
+    "react-native-dropdown-picker": "^3.7.1",
     "react-native-extended-stylesheet": "https://github.com/qidian99/react-native-extended-stylesheet",
     "react-native-gesture-handler": "^1.8.0",
     "react-native-paper": "^4.3.0",

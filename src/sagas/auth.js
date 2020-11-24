@@ -128,6 +128,37 @@ function* submitSecurityQuestionAsync(action) {
   }
 }
 
+function* getDistrictByState(action) {
+  const {state, district} = action;
+  try {
+    const districts = yield call(API.getDistrictByState, state, district);
+    yield put({
+      type: actions.GET_DISTRICT_BY_STATE,
+      districts,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+function* getSchoolByDistrict(action) {
+  const {state, district, school} = action;
+  try {
+    const schools = yield call(
+      API.getSchoolByDistrict,
+      state,
+      district,
+      school,
+    );
+    yield put({
+      type: actions.GET_SCHOOL_BY_DISTRICT,
+      schools,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export function* authSaga() {
   yield takeLatest(actions.LOGIN_ADULT_ASYNC, loginAdultAsync);
   yield takeLatest(actions.LOGIN_CHILD_ASYNC, onboardChildAsync);
@@ -139,6 +170,9 @@ export function* authSaga() {
   yield takeLatest(actions.SIGNUP_CHILD_ASYNC, onboardChildAsync);
   yield takeLatest(actions.RESET_PASSWORD_ASYNC, resetPasswordAsync);
   yield takeLatest(actions.SIGNUP_CHILD_ASYNC, forgetPasswordAsync);
+
+  yield takeLatest(actions.GET_DISTRICT_BY_STATE_ASYNC, getDistrictByState);
+  yield takeLatest(actions.GET_SCHOOL_BY_DISTRICT_ASYNC, getSchoolByDistrict);
 
   yield takeLatest(
     actions.FETCH_SECURITY_QUESTION_ASYNC,

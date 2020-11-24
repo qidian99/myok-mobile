@@ -8,6 +8,8 @@ const INITIAL_STATE = {
   expires: null,
   securityQuestion: false,
   tos: false,
+  schools: [],
+  districts: [],
 };
 
 export const authReducer = (state = INITIAL_STATE, action) => {
@@ -37,6 +39,20 @@ export const authReducer = (state = INITIAL_STATE, action) => {
     }
     case actions.LOGOOUT: {
       return INITIAL_STATE;
+    }
+    case actions.GET_DISTRICT_BY_STATE: {
+      const {districts} = action;
+      return {
+        ...state,
+        districts,
+      };
+    }
+    case actions.GET_SCHOOL_BY_DISTRICT: {
+      const {schools} = action;
+      return {
+        ...state,
+        schools,
+      };
     }
     default:
       return state;
