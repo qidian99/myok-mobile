@@ -15,6 +15,7 @@ const Profile = ({update}) => {
   // console.log(route);
 
   const user = useSelector((state) => state.auth.user);
+  console.log('User: ' + user);
 
   const [firstName, changeFirstName] = useState(user.first_name);
   const [lastName, changeLastName] = useState(user.last_name);
