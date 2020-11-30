@@ -52,7 +52,7 @@ const YouTubeVideoPlayer = (props) => {
         onMessage={(event) => {
           onEnd();
         }}
-
+        originWhitelist={['*']}
         source={{
           html: `
             <div id="player"></div>
@@ -71,6 +71,7 @@ const YouTubeVideoPlayer = (props) => {
                   playerVars: {
                     'controls': 0,
                     'modestbranding': 1,
+                    'playsinline': 1,
                   },
                   events: {
                     'onStateChange': onPlayerStateChange
@@ -80,10 +81,10 @@ const YouTubeVideoPlayer = (props) => {
 
               function onPlayerStateChange(event) {        
                 if(event.data === 0) {  
-                  window.ReactNativeWebView.postMessage("End")
+                  window.ReactNativeWebView.postMessage("End");
                 }
             }
-            </script>`
+            </script>`, baseUrl: 'https://www.youtube.com'
         }}
       />
     
