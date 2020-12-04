@@ -59,8 +59,6 @@ const parseSetCookie = (response) => {
 const authorizedFetch = async (url, body = null, method = 'POST') => {
   let headers;
   await CookieManager.clearAll();
-  const test = await CookieManager.getAll();
-  console.log({test});
 
   const {token, cookie, expires} = store.getState().auth;
 
