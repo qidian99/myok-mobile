@@ -9,6 +9,7 @@ import {
   ImageBackground,
   View,
   StyleSheet,
+  Platform,
 } from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
@@ -83,7 +84,7 @@ PushNotification.configure({
 
   // Should the initial notification be popped automatically
   // default: true
-  popInitialNotification: true,
+  popInitialNotification: false,
 
   /**
    * (optional) default: true
@@ -94,6 +95,32 @@ PushNotification.configure({
    */
   requestPermissions: true,
 });
+
+if (Platform.OS === "android") {
+  // Create channels on Android
+  PushNotification.createChannel(
+    {
+      channelId: 'document', // (required)
+      channelName: 'Document Channel', // (required)
+      channelDescription: 'Channel for document related notifications', // (optional) default: undefined.
+      soundName: 'default', // (optional) See `soundName` parameter of `localNotification` function
+      importance: 4, // (optional) default: 4. Int value of the Android notification importance
+      vibrate: true, // (optional) default: true. Creates the default vibration patten if true.
+    },
+    (created) => console.log(`createChannel document returned '${created}'`), // (optional) callback returns whether the channel was created, false means it already existed.
+  );
+  PushNotification.createChannel(
+    {
+      channelId: 'message', // (required)
+      channelName: 'Message Channel', // (required)
+      channelDescription: 'Channel for message related notifications', // (optional) default: undefined.
+      soundName: 'default', // (optional) See `soundName` parameter of `localNotification` function
+      importance: 4, // (optional) default: 4. Int value of the Android notification importance
+      vibrate: true, // (optional) default: true. Creates the default vibration patten if true.
+    },
+    (created) => console.log(`createChannel message returned '${created}'`), // (optional) callback returns whether the channel was created, false means it already existed.
+  );
+}
 
 const APP_BACKGROUND = require('assets/image/isafe_background.jpeg');
 
