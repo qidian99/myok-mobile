@@ -1,12 +1,15 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import DocumentRow from './DocumentRow';
 import ChildRow from './ChildRow';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import {useTheme} from 'react-native-paper';
 
 const DashboardListContainer = ({documents, children, colors}) => {
   const {containerStyle, titleContainerStyle, dataContainerStyle} = styles;
   const titleTextStyle = {...styles.titleTextStyle, color: colors.background};
+
+  const theme = useTheme();
 
   // Trim only first three rows
   let title, rows, size;
@@ -44,8 +47,14 @@ const DashboardListContainer = ({documents, children, colors}) => {
   return (
     <View style={containerStyle}>
       <View style={[titleContainerStyle, {backgroundColor: colors.darkBlue}]}>
-        <Text style={titleTextStyle}>{title}</Text>
-        <Text style={titleTextStyle}>VIEW ALL</Text>
+        <Text style={[titleTextStyle, {color: theme.colors.text}]}>
+          {title}
+        </Text>
+        <TouchableOpacity onPress={() => {}}>
+          <Text style={[titleTextStyle, {color: theme.colors.text}]}>
+            VIEW ALL
+          </Text>
+        </TouchableOpacity>
       </View>
       <View style={[dataContainerStyle, {backgroundColor: colors.primary}]}>
         {rows}

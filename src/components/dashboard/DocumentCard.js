@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {mapDocumentTypeToIcon, mapDocumentStatus} from 'util/general';
 
 const DocumentCard = ({item, colors}) => {
@@ -29,35 +29,37 @@ const DocumentCard = ({item, colors}) => {
   );
 
   return (
-    <View style={cardContainerStyle}>
-      <View style={cardTopStyle}>
-        <View style={imageContainerStyle}>
-          <Image
-            style={{width: '100%', height: '100%'}}
-            source={mapDocumentTypeToIcon(document_type_id)}
-            color={colors.primary}
-            resizeMode={'contain'}
-          />
+    <TouchableOpacity activeOpacity={0.82} onPress={() => {}}>
+      <View style={cardContainerStyle}>
+        <View style={cardTopStyle}>
+          <View style={imageContainerStyle}>
+            <Image
+              style={{width: '100%', height: '100%'}}
+              source={mapDocumentTypeToIcon(document_type_id)}
+              color={colors.primary}
+              resizeMode={'contain'}
+            />
+          </View>
         </View>
-      </View>
-      <View style={[cardBottomStyle, {backgroundColor: colors.darkBlue}]}>
-        <View style={{paddingBottom: 7, marginHorizontal: 10}}>
-          <Text
-            numberOfLines={1}
-            style={[titleTextStyle, {color: colors.background}]}>
-            {title}
+        <View style={[cardBottomStyle, {backgroundColor: colors.darkBlue}]}>
+          <View style={{paddingBottom: 7, marginHorizontal: 10}}>
+            <Text
+              numberOfLines={1}
+              style={[titleTextStyle, {color: colors.background}]}>
+              {title}
+            </Text>
+          </View>
+          <Text style={[viewDocumentStyle, {color: colors.background}]}>
+            VIEW
           </Text>
         </View>
-        <Text style={[viewDocumentStyle, {color: colors.background}]}>
-          VIEW
-        </Text>
+        <View style={[statusContainerStyle, {backgroundColor: statusColor}]}>
+          <Text style={[statusTextStyle, {color: colors.background}]}>
+            {statusText}
+          </Text>
+        </View>
       </View>
-      <View style={[statusContainerStyle, {backgroundColor: statusColor}]}>
-        <Text style={[statusTextStyle, {color: colors.background}]}>
-          {statusText}
-        </Text>
-      </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
