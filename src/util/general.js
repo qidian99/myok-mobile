@@ -1,3 +1,4 @@
+import {Dimensions, Platform} from 'react-native';
 import {store} from 'reducers';
 
 export const timeout = (ms) =>
@@ -52,3 +53,7 @@ export const mapDocumentStatus = (has_responded, has_agreed) => {
 
   return {statusText: 'Pending', statusColor: PENDING_COLOR};
 };
+export const isAndroid = Platform.OS === 'android';
+
+export const deviceHeight = Dimensions.get('window').height;
+export const deviceWidth = Dimensions.get('window').width;
