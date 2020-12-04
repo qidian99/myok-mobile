@@ -1,11 +1,5 @@
 import React, {useState, useCallback} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {useTheme} from 'react-native-paper';
 import {fetchDocuments} from 'sagas/actions';
@@ -13,6 +7,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import MaterialIcon from 'react-native-vector-icons/dist/MaterialIcons';
 import {mapDocumentStatus} from 'util/general';
+import TextInput from 'components/common/TextInput';
 
 const DocumentHeader = () => {
   const {colors} = useTheme();
@@ -249,8 +244,11 @@ const styles = EStyleSheet.create({
   inputContainerStyle: {
     paddingHorizontal: 4,
     paddingVertical: 3,
+    // borderWidth: 10,
   },
   inputStyle: {
+    // height: 'auto',
+    height: 32,
     color: '#2374A5',
     fontSize: '0.85rem',
     width: 120,

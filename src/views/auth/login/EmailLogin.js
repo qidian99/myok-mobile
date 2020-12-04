@@ -13,6 +13,10 @@ import AuthHeader from 'components/auth/AuthHeader';
 import AuthContainer from 'components/auth/AuthContainer';
 import AuthInput from 'components/auth/AuthInput';
 import {CenterButton} from 'components/auth/AuthButton';
+import {ScrollView} from 'react-native-gesture-handler';
+import {Header} from '@react-navigation/stack';
+import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import {useTheme} from 'react-native-paper';
 
 const EmailLogin = () => {
   const [checked, setChecked] = React.useState('push');
@@ -35,50 +39,85 @@ const EmailLogin = () => {
 
   const {verificationTextStyle} = styles;
 
+  const theme = useTheme();
+  // const offset = useBottomTabBarHeight();
   return (
     <SafeAreaView>
       <KeyboardAvoidingView
+        keyboardVerticalOffset={20}
         behavior={Platform.OS === 'ios' ? 'position' : 'height'}>
-        <View style={globalStyles.container}>
-          <AuthContainer>
-            <View style={globalStyles.authCard}>
-              <AuthHeader
-                title="Login with Email &amp; Password"
-                intro="Welcome back! Please select a verification code option and enter your login information."
-              />
-              <Text style={verificationTextStyle}>
-                Select a verification code option:
-              </Text>
-              <RadioButton
-                text="Push App Notification"
-                selected={checked === 'push'}
-                onPress={() => setChecked('push')}
-              />
-              <RadioButton
-                text="Email Verification Code"
-                selected={checked === 'email'}
-                onPress={() => setChecked('email')}
-              />
-              <AuthInput
-                title="Email Address"
-                value={email}
-                hint="Email address"
-                onChangeText={onEmailChange}
-              />
-              <AuthInput
-                title="Password"
-                value={password}
-                hint="Password"
-                onChangeText={onPasswordChange}
-                secureTextEntry
-              />
-              <CenterButton
-                text="Send Code"
-                disabled={email.length === 0 || password.length === 0}
-              />
-            </View>
-          </AuthContainer>
-        </View>
+        <ScrollView>
+          <View style={globalStyles.container}>
+            <AuthContainer>
+              <View style={globalStyles.authCard}>
+                <AuthHeader
+                  title="Login with Email &amp; Password"
+                  intro="Welcome back! Please select a verification code option and enter your login information."
+                />
+                <Text style={verificationTextStyle}>
+                  Select a verification code option:
+                </Text>
+                <RadioButton
+                  color={theme.colors.primary}
+                  text="Push App Notification"
+                  selected={checked === 'push'}
+                  onPress={() => setChecked('push')}
+                />
+                <RadioButton
+                  color={theme.colors.primary}
+                  text="Email Verification Code"
+                  selected={checked === 'email'}
+                  onPress={() => setChecked('email')}
+                />
+                <AuthInput
+                  title="Email Address"
+                  value={email}
+                  hint="Email address"
+                  onChangeText={onEmailChange}
+                />
+                <AuthInput
+                  title="Password"
+                  value={password}
+                  hint="Password"
+                  onChangeText={onPasswordChange}
+                  secureTextEntry
+                />
+                {/* <AuthInput
+                  title="Password"
+                  value={password}
+                  hint="Password"
+                  onChangeText={onPasswordChange}
+                  secureTextEntry
+                />
+                <AuthInput
+                  title="Password"
+                  value={password}
+                  hint="Password"
+                  onChangeText={onPasswordChange}
+                  secureTextEntry
+                />
+                <AuthInput
+                  title="Password"
+                  value={password}
+                  hint="Password"
+                  onChangeText={onPasswordChange}
+                  secureTextEntry
+                />
+                <AuthInput
+                  title="Password"
+                  value={password}
+                  hint="Password"
+                  onChangeText={onPasswordChange}
+                  secureTextEntry
+                /> */}
+                <CenterButton
+                  text="Send Code"
+                  disabled={email.length === 0 || password.length === 0}
+                />
+              </View>
+            </AuthContainer>
+          </View>
+        </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );

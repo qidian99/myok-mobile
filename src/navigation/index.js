@@ -48,7 +48,7 @@ const Header = ({scene, previous, navigation}) => {
       source={HEADER_BACKGROUND}
       style={{
         width: '100%',
-        height: 0.15 * deviceHeight < 140 ? 0.15 * deviceHeight : 140, // TODO: make it dynamic, in particular for iPhone X and above
+        height: 0.12 * deviceHeight < 140 ? 0.12 * deviceHeight : 140, // TODO: make it dynamic, in particular for iPhone X and above
       }}>
       <View
         style={{
