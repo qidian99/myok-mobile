@@ -32,8 +32,8 @@ const DocumentDeatils = ({dispatchFetchDocuments, documents}) => {
 
         <VideoPlayer
           style={styles.video}
-          // url="https://www.youtube.com/watch?v=M7lc1UVf-VE"
-          url="https://vimeo.com/76979871"
+          url="https://www.youtube.com/watch?v=fCLI6kxFFTE"
+          // url="https://vimeo.com/76979871"
           toggleComplete={() => {
             toggleComplete(true);
           }}
