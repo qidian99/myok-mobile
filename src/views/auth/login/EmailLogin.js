@@ -44,7 +44,7 @@ const EmailLogin = () => {
   return (
     <SafeAreaView>
       <KeyboardAvoidingView
-        keyboardVerticalOffset={20}
+        keyboardVerticalOffset={80}
         behavior={Platform.OS === 'ios' ? 'position' : 'height'}>
         <ScrollView>
           <View style={globalStyles.container}>

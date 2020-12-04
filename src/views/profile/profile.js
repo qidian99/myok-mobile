@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, KeyboardAvoidingView, Platform} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 
 import TextInput from 'components/common/TextInput';
@@ -51,8 +51,11 @@ const Profile = ({update}) => {
   };
 
   return (
-    <View style={styles.container}>
-      <ScrollView style={styles.inputContainer}>
+    <KeyboardAvoidingView
+      keyboardVerticalOffset={80}
+      behavior={Platform.OS === 'ios' ? 'position' : 'height'}
+      style={styles.container}>
+      <ScrollView contentContainerStyle={styles.inputContainer}>
         <Text style={styles.title}>Personal Info</Text>
 
         <Text style={styles.label}>First Name</Text>
@@ -142,8 +145,6 @@ const Profile = ({update}) => {
             toggleButtonEnable(true);
           }}
         />
-      </ScrollView>
-      <View style={styles.buttonContainer}>
         <Button
           style={styles.button}
           mode="contained"
@@ -153,8 +154,8 @@ const Profile = ({update}) => {
           labelStyle={{fontSize: 16}}>
           Save Changes
         </Button>
-      </View>
-    </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -169,13 +170,13 @@ const styles = EStyleSheet.create({
   container: {
     // backgroundColor: 'white',
     margin: 24,
-    marginBottom: 80,
+    // marginBottom: 80,
     borderRadius: 5,
   },
   inputContainer: {
     padding: 12,
-    // paddingVertical: 24,
-    paddingBottom: 120,
+    paddingVertical: 24,
+    // paddingBottom: 120,
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
   },
   field: {
