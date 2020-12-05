@@ -106,3 +106,8 @@ export const searchDocuments = (query) => ({
 export const fetchChildren = () => ({
   type: actions.FETCH_CHILDREN_AYSNC,
 });
+
+/* Documents */
+export const fetchAnnouncments = () => ({
+  type: actions.FETCH_ANNOUNCEMENTS_ASYNC,
+});

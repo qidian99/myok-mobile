@@ -24,6 +24,7 @@
     "@react-navigation/native": "^5.8.2",
     "@react-navigation/stack": "^5.11.1",
     "@vimeo/player": "^2.14.1",
+    "chance": "^1.1.7",
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "myok-component": "file:../myok-component",

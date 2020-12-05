@@ -5,6 +5,7 @@ import {authSaga} from './auth';
 import {documentSaga} from './document';
 import {childSaga} from './child';
 import {userSaga} from './user';
+import {announcementSaga} from './announement';
 // Redux Saga: Root Saga
 export function* rootSaga() {
   yield all([
@@ -12,5 +13,7 @@ export function* rootSaga() {
     fork(documentSaga),
     fork(childSaga),
     fork(userSaga),
+    fork(userSaga),
+    fork(announcementSaga),
   ]);
 }

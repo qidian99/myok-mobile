@@ -1,5 +1,9 @@
 import {store} from 'reducers';
 import {timeout} from './general';
+import moment from 'moment';
+import Chance from 'chance';
+
+const chance = new Chance();
 
 export const MOCK_ENDPOINT = 'http://localhost:8886/api/myok';
 export const MOCK_JWT =
@@ -55,6 +59,19 @@ export const MOCK_DOCUMENTS = [
     'This is the body of mock document 3',
   ),
 ];
+
+export const generateMockAnnouncement = () => ({
+  title: chance.paragraph({sentences: chance.integer({min: 1, max: 5})}),
+  body: chance.sentence({words: chance.integer({min: 2, max: 5})}),
+  date: moment()
+    .subtract(chance.integer({min: 0, max: 10}), 'days')
+    .format(),
+});
+
+export const MOCK_ANNOUNCEMENTS = Array(4)
+  .fill(null)
+  .map((_) => generateMockAnnouncement());
+
 const mockFetch = async (url, body = null, method = 'POST') => {
   let headers;
 
@@ -228,6 +245,14 @@ class API {
     await timeout(1000);
     await mockFetch(MOCK_ENDPOINT);
     return MOCK_CHILDREN;
+  }
+
+  /* Announcement */
+  static async fetchAnnoucements() {
+    console.log('fetchAnnoucements');
+    await timeout(1000);
+    await mockFetch(MOCK_ENDPOINT);
+    return MOCK_ANNOUNCEMENTS;
   }
 }
 
