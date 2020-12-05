@@ -92,6 +92,7 @@ const HomeBottomTabs = (props) => (
     source={APP_BACKGROUND}
     style={{width: '100%', height: '100%'}}>
     <MaterialBottomTabs.Navigator
+      initialRouteName="Announcements"
       style={{}}
       barStyle={{backgroundColor: '#195174'}}>
       {MODE === 'DEV' && (

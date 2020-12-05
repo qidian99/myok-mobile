@@ -19,7 +19,7 @@ const sagaMiddleware = createSagaMiddleware();
 const rootReducer = combineReducers({
   auth: authReducer,
   document: documentReducer,
-  annoucement: announcementReducer,
+  announcement: announcementReducer,
   child: childReducer,
 });
 

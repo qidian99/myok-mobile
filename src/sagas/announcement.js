@@ -1,15 +1,16 @@
 // Imports: Dependencies
 import {delay, takeEvery, takeLatest, put, call} from 'redux-saga/effects';
 import {actions} from 'util/actions';
+
 import API from 'util/mock';
 
 function* fetchAnnoucementsAsync(action) {
   try {
-    const annoucements = yield call(API.fetchAnnoucements);
+    const announcements = yield call(API.fetchAnnoucements);
     // Dispatch Action To Redux Store
     yield put({
-      type: actions.FETCH_DOCUMENTS,
-      annoucements,
+      type: actions.FETCH_ANNOUNCEMENTS,
+      announcements,
     });
   } catch (error) {
     console.log(error);

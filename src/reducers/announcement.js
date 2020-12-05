@@ -19,7 +19,6 @@ export const announcementReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         announcements,
-        k,
       };
     }
     default:

@@ -60,9 +60,12 @@ export const MOCK_DOCUMENTS = [
   ),
 ];
 
+let announcementId = 0;
+
 export const generateMockAnnouncement = () => ({
-  title: chance.paragraph({sentences: chance.integer({min: 1, max: 5})}),
-  body: chance.sentence({words: chance.integer({min: 2, max: 5})}),
+  id: announcementId++,
+  title: chance.sentence({words: chance.integer({min: 2, max: 5})}),
+  body: chance.paragraph({sentences: chance.integer({min: 1, max: 5})}),
   date: moment()
     .subtract(chance.integer({min: 0, max: 10}), 'days')
     .format(),
@@ -249,7 +252,7 @@ class API {
 
   /* Announcement */
   static async fetchAnnoucements() {
-    console.log('fetchAnnoucements');
+    console.log('fetchAnnoucements', MOCK_ANNOUNCEMENTS);
     await timeout(1000);
     await mockFetch(MOCK_ENDPOINT);
     return MOCK_ANNOUNCEMENTS;

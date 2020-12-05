@@ -108,6 +108,6 @@ export const fetchChildren = () => ({
 });
 
 /* Documents */
-export const fetchAnnouncments = () => ({
+export const fetchAnnouncements = () => ({
   type: actions.FETCH_ANNOUNCEMENTS_ASYNC,
 });
