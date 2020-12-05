@@ -3,6 +3,7 @@ import {actions} from 'util/actions';
 
 const INITIAL_STATE = {
   announcements: [],
+  loading: false,
 };
 
 export const announcementReducer = (state = INITIAL_STATE, action) => {
@@ -18,7 +19,14 @@ export const announcementReducer = (state = INITIAL_STATE, action) => {
       );
       return {
         ...state,
+        loading: false,
         announcements,
+      };
+    }
+    case actions.FETCH_ANNOUNCEMENTS_LOADING: {
+      return {
+        ...state,
+        loading: true,
       };
     }
     default:

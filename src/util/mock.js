@@ -71,7 +71,7 @@ export const generateMockAnnouncement = () => ({
     .format(),
 });
 
-export const MOCK_ANNOUNCEMENTS = Array(4)
+export const MOCK_ANNOUNCEMENTS = Array(7)
   .fill(null)
   .map((_) => generateMockAnnouncement());
 

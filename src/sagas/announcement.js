@@ -6,10 +6,15 @@ import API from 'util/mock';
 
 function* fetchAnnoucementsAsync(action) {
   try {
+    yield put({
+      type: actions.FETCH_ANNOUNCEMENTS_LOADING,
+    });
+
     const announcements = yield call(API.fetchAnnoucements);
     // Dispatch Action To Redux Store
     yield put({
       type: actions.FETCH_ANNOUNCEMENTS,
+      loading: false,
       announcements,
     });
   } catch (error) {
