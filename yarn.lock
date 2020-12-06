@@ -1781,6 +1781,11 @@ astral-regex@^1.0.0:
   resolved "https://registry.npmjs.org/astral-regex/-/astral-regex-1.0.0.tgz"
   integrity sha512-+Ryf6g3BKoRc7jfp7ad8tM4TtMiaWvbF/1/sQcZPkkS7ag3D5nMBCe2UfOTONtAkaG0tO0ij3C5Lwmf1EiyjHg==
 
+async@0.1.x:
+  version "0.1.22"
+  resolved "https://registry.yarnpkg.com/async/-/async-0.1.22.tgz#0fc1aaa088a0e3ef0ebe2d8831bab0dcf8845061"
+  integrity sha1-D8GqoIig4+8Ovi2IMbqw3PiEUGE=
+
 async@^2.4.0:
   version "2.6.3"
   resolved "https://registry.npmjs.org/async/-/async-2.6.3.tgz"
@@ -2114,6 +2119,15 @@ capture-exit@^2.0.0:
   integrity sha512-PiT/hQmTonHhl/HFGN+Lx3JJUznrVYJ3+AQsnthneZbvW7x+f08Tk7yLJTLEOUvBTbduLeeBkxEaYXUOUrRq6g==
   dependencies:
     rsvp "^4.8.4"
+
+capture@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/capture/-/capture-0.1.0.tgz#57310481f4839dc6e4d12e1ca6315c4f44902e5b"
+  integrity sha1-VzEEgfSDncbk0S4cpjFcT0SQLls=
+  dependencies:
+    async "0.1.x"
+    optimist "0.3.x"
+    string "1.1.x"
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -4450,6 +4464,11 @@ jetifier@^1.6.2:
   resolved "https://registry.npmjs.org/jetifier/-/jetifier-1.6.6.tgz"
   integrity sha512-JNAkmPeB/GS2tCRqUzRPsTOHpGDah7xP18vGJfIjZC+W2sxEHbxgJxetIjIqhjQ3yYbYNEELkM/spKLtwoOSUQ==
 
+jetifier@^1.6.6:
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/jetifier/-/jetifier-1.6.6.tgz#fec8bff76121444c12dc38d2dad6767c421dab68"
+  integrity sha512-JNAkmPeB/GS2tCRqUzRPsTOHpGDah7xP18vGJfIjZC+W2sxEHbxgJxetIjIqhjQ3yYbYNEELkM/spKLtwoOSUQ==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz"
@@ -5591,6 +5610,13 @@ open@^6.2.0:
   dependencies:
     is-wsl "^1.1.0"
 
+optimist@0.3.x:
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/optimist/-/optimist-0.3.7.tgz#c90941ad59e4273328923074d2cf2e7cbc6ec0d9"
+  integrity sha1-yQlBrVnkJzMokjB00s8ufLxuwNk=
+  dependencies:
+    wordwrap "~0.0.2"
+
 optionator@^0.8.1:
   version "0.8.3"
   resolved "https://registry.npmjs.org/optionator/-/optionator-0.8.3.tgz"
@@ -5900,7 +5926,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.5.0, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -6000,6 +6026,11 @@ react-native-iphone-x-helper@^1.3.0:
   resolved "https://registry.npmjs.org/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.0.tgz"
   integrity sha512-+/bcZWFeZt0xSS/+3CHM5K7qPL4vDO/3ARLIowzFpUPGZiPsv9+NET+XNqqseRYwFJwYMmtX+Q4TZKxAVy09ew==
 
+react-native-orientation@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-orientation/-/react-native-orientation-3.0.0.tgz#91a0a55be2d1f14ec6d0111a3bfbb5550a2e788b"
+  integrity sha1-kaClW+LR8U7G0BEaO/u1VQoueIs=
+
 react-native-paper-dropdown@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/react-native-paper-dropdown/-/react-native-paper-dropdown-0.0.5.tgz#d5358519c0e503bd24f742d43306503d9d618150"
@@ -6042,6 +6073,20 @@ react-native-screens@^2.12.0:
   version "2.13.0"
   resolved "https://registry.npmjs.org/react-native-screens/-/react-native-screens-2.13.0.tgz"
   integrity sha512-B0kPYq5ZK/2G7pPhcAFLflDfm+HXktdVEeLFHnP/+oPnao+b28hXsOBCi0IgK72gxbdPtnpZME8KONRIKOBDug==
+
+react-native-signature-capture@^0.4.10:
+  version "0.4.10"
+  resolved "https://registry.yarnpkg.com/react-native-signature-capture/-/react-native-signature-capture-0.4.10.tgz#ee355a7ca3e8341d50304572258607b9876a34a6"
+  integrity sha512-4VbZ6wJVLUdai3WfSiTR2YacTxVuDamBrYl7lxbCrsqa0QyBSiupc5Yz5/Qg7GOuD72jhVXpWJvwJQSmMRy4dQ==
+  dependencies:
+    prop-types "^15.5.10"
+
+react-native-signature@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-signature/-/react-native-signature-1.0.0.tgz#8d76eb6effb65feb49a3c99b34c029dfa3e47451"
+  integrity sha1-jXbrbv+2X+tJo8mbNMAp36PkdFE=
+  dependencies:
+    react-native-orientation "3.0.0"
 
 react-native-tab-view@^2.15.2:
   version "2.15.2"
@@ -6937,6 +6982,11 @@ string.prototype.trimstart@^1.0.1:
     define-properties "^1.1.3"
     es-abstract "^1.18.0-next.1"
 
+string@1.1.x:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/string/-/string-1.1.0.tgz#5d66d4493300d4f8183e2ae68a25c7e1d6c2eeca"
+  integrity sha1-XWbUSTMA1PgYPirmiiXH4dbC7so=
+
 string_decoder@~1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/string_decoder/-/string_decoder-1.1.1.tgz"
@@ -7532,6 +7582,11 @@ wordwrap@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/wordwrap/-/wordwrap-1.0.0.tgz"
   integrity sha1-J1hIEIkUVqQXHI0CJkQa3pDLyus=
+
+wordwrap@~0.0.2:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-0.0.3.tgz#a3d5da6cd5c0bc0008d37234bbaf1bed63059107"
+  integrity sha1-o9XabNXAvAAI03I0u68b7WMFkQc=
 
 wrap-ansi@^5.1.0:
   version "5.1.0"
