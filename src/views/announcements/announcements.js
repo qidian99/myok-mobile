@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {View, Text, ScrollView, RefreshControl} from 'react-native';
 import {connect, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
-
+import DocumentDetails from './../documents/documentDetails';
 import {globalStyles} from 'styles';
 import {fetchAnnouncements as fetchAnnouncementsAction} from 'sagas/actions';
 
@@ -11,6 +11,13 @@ import AnnouncementCard from 'components/announcment/AnnouncementCard';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {ActivityIndicator, useTheme} from 'react-native-paper';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+
+// const Announcements = () => (
+//   // <View style={globalStyles.center}>
+//   //   <Text style={globalStyles.title}>Announcements</Text>
+//   // </View>
+//   <DocumentDetails/>
+// );
 
 const Announcements = ({fetchAnnouncements, loading, announcements}) => {
   useEffect(() => {

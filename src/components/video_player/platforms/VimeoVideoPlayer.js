@@ -10,7 +10,7 @@ const VimeoVideoPlayer = (props) => {
   };
 
   const onSeek = () => {
-    alert('do not skip the video');
+    // alert("do not skip the video");
   };
 
   return (
@@ -73,7 +73,6 @@ const styles = EStyleSheet.create({
   },
   video: {
     height: 196,
-    //width: '100%',
   },
 });
 
