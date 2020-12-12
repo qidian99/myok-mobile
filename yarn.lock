@@ -1198,6 +1198,13 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/picker/-/picker-1.6.0.tgz#ddb2b04ca251b79980e3052ece4e685b7abf0444"
   integrity sha512-ijB33rCW3m9vu8jbXAcEh+icCmK0pyvCXiGfAwPgGSaFLsmE27dsle3022EbE+dqqQgpxUNtOkrd5C3B+/dcuA==
 
+"@react-native-community/push-notification-ios@^1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/push-notification-ios/-/push-notification-ios-1.8.0.tgz#7d43cb37b9e644ff3069aafa91befe71688a2dc4"
+  integrity sha512-vxvkeampafjmtDoQBN8Q4azP21l6cMX93+OQZemyIWZmG++OjCVDQVitobf/kWLm5zyGwdylejbpMGo75qo7rA==
+  dependencies:
+    invariant "^2.2.4"
+
 "@react-native-picker/picker@^1.9.2":
   version "1.9.2"
   resolved "https://registry.yarnpkg.com/@react-native-picker/picker/-/picker-1.9.2.tgz#c5e35f97d7982d2971ee3d74b1ba8ecf4b716627"
@@ -1791,6 +1798,11 @@ astral-regex@^1.0.0:
   resolved "https://registry.yarnpkg.com/astral-regex/-/astral-regex-1.0.0.tgz#6c8c3fb827dd43ee3918f27b82782ab7658a6fd9"
   integrity sha512-+Ryf6g3BKoRc7jfp7ad8tM4TtMiaWvbF/1/sQcZPkkS7ag3D5nMBCe2UfOTONtAkaG0tO0ij3C5Lwmf1EiyjHg==
 
+async@0.1.x:
+  version "0.1.22"
+  resolved "https://registry.yarnpkg.com/async/-/async-0.1.22.tgz#0fc1aaa088a0e3ef0ebe2d8831bab0dcf8845061"
+  integrity sha1-D8GqoIig4+8Ovi2IMbqw3PiEUGE=
+
 async@^2.4.0:
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.3.tgz#d72625e2344a3656e3a3ad4fa749fa83299d82ff"
@@ -2125,6 +2137,15 @@ capture-exit@^2.0.0:
   dependencies:
     rsvp "^4.8.4"
 
+capture@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/capture/-/capture-0.1.0.tgz#57310481f4839dc6e4d12e1ca6315c4f44902e5b"
+  integrity sha1-VzEEgfSDncbk0S4cpjFcT0SQLls=
+  dependencies:
+    async "0.1.x"
+    optimist "0.3.x"
+    string "1.1.x"
+
 caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
@@ -2154,6 +2175,11 @@ chalk@^4.0.0:
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
+
+chance@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/chance/-/chance-1.1.7.tgz#e99dde5ac16681af787b5ba94c8277c090d6cfe8"
+  integrity sha512-bua/2cZEfzS6qPm0vi3JEvGNbriDLcMj9lKxCQOjUcCJRcyjA7umP0zZm6bKWWlBN04vA0L99QGH/CZQawr0eg==
 
 char-regex@^1.0.2:
   version "1.0.2"
@@ -4490,6 +4516,11 @@ jetifier@^1.6.2:
   resolved "https://registry.yarnpkg.com/jetifier/-/jetifier-1.6.6.tgz#fec8bff76121444c12dc38d2dad6767c421dab68"
   integrity sha512-JNAkmPeB/GS2tCRqUzRPsTOHpGDah7xP18vGJfIjZC+W2sxEHbxgJxetIjIqhjQ3yYbYNEELkM/spKLtwoOSUQ==
 
+jetifier@^1.6.6:
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/jetifier/-/jetifier-1.6.6.tgz#fec8bff76121444c12dc38d2dad6767c421dab68"
+  integrity sha512-JNAkmPeB/GS2tCRqUzRPsTOHpGDah7xP18vGJfIjZC+W2sxEHbxgJxetIjIqhjQ3yYbYNEELkM/spKLtwoOSUQ==
+
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -5646,6 +5677,13 @@ open@^6.2.0:
   dependencies:
     is-wsl "^1.1.0"
 
+optimist@0.3.x:
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/optimist/-/optimist-0.3.7.tgz#c90941ad59e4273328923074d2cf2e7cbc6ec0d9"
+  integrity sha1-yQlBrVnkJzMokjB00s8ufLxuwNk=
+  dependencies:
+    wordwrap "~0.0.2"
+
 optionator@^0.8.1:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/optionator/-/optionator-0.8.3.tgz#84fa1d036fe9d3c7e21d99884b601167ec8fb495"
@@ -5955,7 +5993,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.5.0, prop-types@^15.6.2, prop-types@^15.7.2:
+prop-types@^15.5.0, prop-types@^15.5.10, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -6070,6 +6108,11 @@ react-native-iphone-x-helper@^1.3.0:
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
 
+react-native-orientation@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-orientation/-/react-native-orientation-3.0.0.tgz#91a0a55be2d1f14ec6d0111a3bfbb5550a2e788b"
+  integrity sha1-kaClW+LR8U7G0BEaO/u1VQoueIs=
+
 react-native-paper-dropdown@0.0.5:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/react-native-paper-dropdown/-/react-native-paper-dropdown-0.0.5.tgz#d5358519c0e503bd24f742d43306503d9d618150"
@@ -6091,6 +6134,11 @@ react-native-picker-select@^8.0.3:
   dependencies:
     "@react-native-community/picker" "1.6.0"
     lodash.isequal "^4.5.0"
+
+react-native-push-notification@^6.1.3:
+  version "6.1.3"
+  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-6.1.3.tgz#e377e91fc931d541f23b3a156f3451bae5f441a2"
+  integrity sha512-qNbFCkObCXwSFQbK6hJyx1Bym1D7V4XM8iN2L6eL3GAdNLmeBTdLdx3mPbKJtuaDJ1+deniFTQ2rz6hU4ELOXA==
 
 react-native-reanimated@^1.13.1:
   version "1.13.2"
@@ -6120,6 +6168,20 @@ react-native-screens@^2.12.0:
   version "2.15.0"
   resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.15.0.tgz#9b97c1881c4fcdf304bf363f0013225901625f44"
   integrity sha512-qTSQPy0WKHtlb8xt5gY0Gt6sdvfQUQAnFSqgsggW9UEvySbkHzpqOrOYNA79Ca8oXO0dCFwp6X8buIiDefa7+Q==
+
+react-native-signature-capture@^0.4.10:
+  version "0.4.10"
+  resolved "https://registry.yarnpkg.com/react-native-signature-capture/-/react-native-signature-capture-0.4.10.tgz#ee355a7ca3e8341d50304572258607b9876a34a6"
+  integrity sha512-4VbZ6wJVLUdai3WfSiTR2YacTxVuDamBrYl7lxbCrsqa0QyBSiupc5Yz5/Qg7GOuD72jhVXpWJvwJQSmMRy4dQ==
+  dependencies:
+    prop-types "^15.5.10"
+
+react-native-signature@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-signature/-/react-native-signature-1.0.0.tgz#8d76eb6effb65feb49a3c99b34c029dfa3e47451"
+  integrity sha1-jXbrbv+2X+tJo8mbNMAp36PkdFE=
+  dependencies:
+    react-native-orientation "3.0.0"
 
 react-native-tab-view@^2.15.2:
   version "2.15.2"
@@ -7033,6 +7095,11 @@ string.prototype.trimstart@^1.0.1:
     call-bind "^1.0.0"
     define-properties "^1.1.3"
 
+string@1.1.x:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/string/-/string-1.1.0.tgz#5d66d4493300d4f8183e2ae68a25c7e1d6c2eeca"
+  integrity sha1-XWbUSTMA1PgYPirmiiXH4dbC7so=
+
 string_decoder@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-1.1.1.tgz#9cf1611ba62685d7030ae9e4ba34149c3af03fc8"
@@ -7628,6 +7695,11 @@ wordwrap@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
   integrity sha1-J1hIEIkUVqQXHI0CJkQa3pDLyus=
+
+wordwrap@~0.0.2:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-0.0.3.tgz#a3d5da6cd5c0bc0008d37234bbaf1bed63059107"
+  integrity sha1-o9XabNXAvAAI03I0u68b7WMFkQc=
 
 wrap-ansi@^5.1.0:
   version "5.1.0"

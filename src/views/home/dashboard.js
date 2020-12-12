@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, ScrollView} from 'react-native';
 import {fetchDocuments, fetchChildren} from 'sagas/actions';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -20,7 +20,7 @@ const Dashboard = ({
   const {colors} = useTheme();
 
   return (
-    <View style={styles.containerStyle}>
+    <ScrollView contentContainerStyle={styles.containerStyle}>
       <View style={styles.recentDocContainerStyle}>
         <Text style={[styles.recentDocTextStyle, {color: colors.primary}]}>
           Document Types
@@ -35,7 +35,7 @@ const Dashboard = ({
       />
       <DashboardListContainer documents={documents} colors={colors} />
       <DashboardListContainer children={children} colors={colors} />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -57,7 +57,7 @@ const mapDispatchToProps = (dispatch) =>
 
 const styles = EStyleSheet.create({
   containerStyle: {
-    margin: 24,
+    padding: 24,
   },
   recentDocContainerStyle: {
     width: '100%',

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "26677228181",
+    "project_id": "myok-mobile",
+    "storage_bucket": "myok-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26677228181:android:3f71ab0ce13aced285e19c",
+        "android_client_info": {
+          "package_name": "com.isd_myok"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "26677228181-j2njqil4507c19vtr4fg4arrnqkkq5le.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.isd_myok",
+            "certificate_hash": "266044c2a432b357a2afebe16eac0d4f6ea2694e"
+          }
+        },
+        {
+          "client_id": "26677228181-ksmlm9ocjttvrhibg9b03q1n0rh3d2le.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEq9uXwUzVs4S7p0yBRXMgZa6cbPSfQQs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "26677228181-ksmlm9ocjttvrhibg9b03q1n0rh3d2le.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

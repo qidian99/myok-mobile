@@ -1,11 +1,20 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, Platform, TouchableOpacity} from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const DOBInput = ({date, onChange, title = 'Date of Birth'}) => {
   const {containerStyle, titleStyle, entryContainerStyle} = styles;
+  const [show, setShow] = useState(false);
 
-  return (
+  const showOverlay = () => {
+    setShow(true);
+  };
+
+  const hideOverlay = () => {
+    setShow(false);
+  };
+
+  return Platform.OS === 'ios' ? (
     <View style={containerStyle}>
       <Text style={titleStyle}>{title}</Text>
       <DateTimePicker
@@ -14,7 +23,28 @@ const DOBInput = ({date, onChange, title = 'Date of Birth'}) => {
         mode="date"
         is24Hour={true}
         onChange={onChange}
+        // display="calendar"
       />
+    </View>
+  ) : (
+    <View style={containerStyle}>
+      <Text style={titleStyle}>{title}</Text>
+      <TouchableOpacity onPress={showOverlay}>
+        <Text>{date.toDateString()}</Text>
+      </TouchableOpacity>
+      {show && (
+        <DateTimePicker
+          style={entryContainerStyle}
+          value={date}
+          mode="date"
+          is24Hour={true}
+          onChange={(event, selectedDate) => {
+            hideOverlay();
+            onChange(event, selectedDate);
+          }}
+          display="calendar"
+        />
+      )}
     </View>
   );
 };

@@ -1,67 +1,67 @@
-import React, {useEffect, useState} from 'react';
-import {View, Text} from 'react-native';
-import VideoPlayer from 'react-native-video-controls';
-import {globalStyles} from 'styles/index';
+import React from 'react';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import {WebView} from 'react-native-webview';
 
 const VimeoVideoPlayer = (props) => {
-  const [videoUrl, setUrl] = useState('');
-  const [error, toggleError] = useState(false);
-  const [ended, toggleEnded] = useState(false);
-
   const onEnd = () => {
     console.log('Video Ended');
-    toggleEnded(true);
     props.toggleComplete();
   };
 
-  useEffect(() => {
-    async function getUrl() {
-      fetch(`https://vimeo.com/api/oembed.json?url=${props.url}`)
-        .then((res) => res.json())
-        .then((res) => {
-          fetch(`https://player.vimeo.com/video/${res.video_id}/config`)
-            .then((response) => response.json())
-            .then((data) => {
-              setUrl(
-                data.request.files.hls.cdns[data.request.files.hls.default_cdn]
-                  .url,
-              );
-              toggleError(false);
-            })
-            .catch((err) => {
-              toggleError(true);
-              console.error('Error: ', err);
-            });
-        })
-        .catch((err) => {
-          toggleError(true);
-          console.error('Error: ', err);
-        });
-    }
-    getUrl();
-  }, [props.url]);
+  const onSeek = () => {
+    // alert("do not skip the video");
+  };
 
-  return error ? (
-    <View style={globalStyles.center}>
-      <Text style={styles.text}>Failed to Load</Text>
-    </View>
-  ) : videoUrl === '' ? (
-    <View style={globalStyles.center}>
-      <Text style={styles.text}>Loading Video...</Text>
-    </View>
-  ) : (
-    <VideoPlayer
-      source={{uri: videoUrl}}
-      resizeMode="contain"
-      paused
-      onEnd={onEnd}
-      disableFullscreen
-      disableSeekbar={!ended}
-      disableBack
+  return (
+    <WebView
+      automaticallyAdjustContentInsets={false}
       style={styles.video}
+      onMessage={(event) => {
+        switch (event.nativeEvent.data) {
+          case 'End':
+            onEnd();
+            break;
+          case 'Seek':
+            onSeek();
+            break;
+          default:
+            break;
+        }
+      }}
+      source={{
+        html: `
+          <div id="player"></div>
+
+          <script src="https://player.vimeo.com/api/player.js"></script>
+          <script>
+            var options = {
+              url: '${props.url}',
+              responsive: true,
+            };
+
+            var videoPlayer = new Vimeo.Player('player', options);
+            var time = 0;
+
+            videoPlayer.on('ended', function() {
+              window.ReactNativeWebView.postMessage("End");
+            });
+
+            videoPlayer.on('seeked', function(data) {
+              if(data.seconds > time) {
+                videoPlayer.setCurrentTime(time);
+                window.ReactNativeWebView.postMessage("Seek");
+              }
+            });
+
+            videoPlayer.on('timeupdate', function(data) {
+              if (data.seconds < time + 1 && data.seconds > time) {
+                time = data.seconds;
+              }
+            });
+          
+          </script>`,
+      }}
     />
   );
 };

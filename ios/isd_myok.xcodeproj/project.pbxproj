@@ -44,6 +44,7 @@
 		00E356EE1AD99517003FC87E /* isd_myokTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = isd_myokTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* isd_myokTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = isd_myokTests.m; sourceTree = "<group>"; };
+		03BF0FB2257A903400F5501F /* isd_myok.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = isd_myok.entitlements; path = isd_myok/isd_myok.entitlements; sourceTree = "<group>"; };
 		0C2748A7179A336BAE3C998B /* libPods-isd_myok-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-isd_myok-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		10126A26A64172B703E52FFE /* Pods-isd_myok-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-isd_myok-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-isd_myok-tvOSTests/Pods-isd_myok-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* isd_myok.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = isd_myok.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +126,7 @@
 		13B07FAE1A68108700A75B9A /* isd_myok */ = {
 			isa = PBXGroup;
 			children = (
+				03BF0FB2257A903400F5501F /* isd_myok.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -194,7 +196,6 @@
 				10126A26A64172B703E52FFE /* Pods-isd_myok-tvOSTests.debug.xcconfig */,
 				E1C22E5C1361ED6A69CECBDB /* Pods-isd_myok-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -291,10 +292,13 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = D95XV2CPK4;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = D95XV2CPK4;
 						LastSwiftMigration = 1120;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -679,6 +683,8 @@
 			baseConfigurationReference = 88522E8FC7FDD608EB011C6C /* Pods-isd_myok-isd_myokTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				DEVELOPMENT_TEAM = D95XV2CPK4;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -702,7 +708,9 @@
 			baseConfigurationReference = C7141C2B43EB290286B581A0 /* Pods-isd_myok-isd_myokTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = D95XV2CPK4;
 				INFOPLIST_FILE = isd_myokTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -723,7 +731,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = isd_myok/isd_myok.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D95XV2CPK4;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = isd_myok/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -732,8 +744,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.isafedirect.myok-mobile";
 				PRODUCT_NAME = isd_myok;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -746,7 +759,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = isd_myok/isd_myok.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D95XV2CPK4;
 				INFOPLIST_FILE = isd_myok/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -754,8 +771,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.isafedirect.myok-mobile";
 				PRODUCT_NAME = isd_myok;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

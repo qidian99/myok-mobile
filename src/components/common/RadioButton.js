@@ -1,8 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, TouchableOpacity, Text} from 'react-native';
+import Animated, {useSharedValue, Easing} from 'react-native-reanimated';
 
 const Radio = ({size, color, selected}) => {
   const {unChecked} = styles;
+
+  const [opacity] = useState(new Animated.Value(selected ? 1 : 0));
+
+  useEffect(() => {
+    let toValue = 0;
+    if (selected) {
+      toValue = 1;
+    }
+    Animated.timing(opacity, {
+      toValue,
+      duration: 300,
+      easing: Easing.inOut(Easing.ease),
+    }).start();
+  }, [opacity, selected]);
+
   return (
     <View
       style={[
@@ -15,16 +31,19 @@ const Radio = ({size, color, selected}) => {
           borderColor: color,
         },
       ]}>
-      {selected ? (
-        <View
-          style={{
+      <Animated.View
+        style={[
+          {
             backgroundColor: color,
             borderRadius: size,
             width: size * 2,
             height: size * 2,
-          }}
-        />
-      ) : null}
+          },
+          {
+            opacity,
+          },
+        ]}
+      />
     </View>
   );
 };
@@ -37,6 +56,7 @@ const RadioButton = ({
   onPress = () => {},
 }) => {
   const {radioButtonContainerStyle, textStyle} = styles;
+
   return (
     <TouchableOpacity
       activeOpacity={1.0}

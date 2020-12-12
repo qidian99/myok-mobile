@@ -8,6 +8,7 @@ import {rootSaga} from 'sagas';
 import {persistStore, persistReducer} from 'redux-persist';
 import AsyncStorage from '@react-native-community/async-storage';
 import {childReducer} from './child';
+import {announcementReducer} from './announcement';
 
 const persistConfig = {
   key: 'root',
@@ -18,6 +19,7 @@ const sagaMiddleware = createSagaMiddleware();
 const rootReducer = combineReducers({
   auth: authReducer,
   document: documentReducer,
+  announcement: announcementReducer,
   child: childReducer,
 });
 

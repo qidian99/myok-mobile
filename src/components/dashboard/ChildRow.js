@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 
 const ChildRow = ({child, colors, isLast}) => {
   const {first_name, parent_code, dob} = child;
@@ -43,11 +43,11 @@ const ChildRow = ({child, colors, isLast}) => {
         </Text>
       </View>
       <View style={refreshCodeContainer}>
-        <View style={buttonContainer}>
+        <TouchableOpacity style={buttonContainer} onPress={() => {}}>
           <Text style={[buttonTextStyle, {color: colors.background}]}>
             Refresh Code
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );

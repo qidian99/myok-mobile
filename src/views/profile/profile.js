@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView, KeyboardAvoidingView, Platform} from 'react-native';
 import {useRoute} from '@react-navigation/native';
 
 import TextInput from 'components/common/TextInput';
@@ -9,6 +9,7 @@ import {bindActionCreators} from 'redux';
 import {changeProfile} from 'sagas/actions';
 import {globalStyles} from 'styles/index';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import _ from 'lodash';
 
 const Profile = ({update}) => {
   const route = useRoute();
@@ -17,14 +18,20 @@ const Profile = ({update}) => {
   const user = useSelector((state) => state.auth.user);
   console.log('User: ' + user);
 
-  const [firstName, changeFirstName] = useState(user.first_name);
-  const [lastName, changeLastName] = useState(user.last_name);
+  const [firstName, changeFirstName] = useState(
+    _.get(user, 'first_name') || 'First',
+  );
+  const [lastName, changeLastName] = useState(
+    _.get(user, 'last_name') || 'Fast',
+  );
   const [address, changeAddress] = useState('9999 Address Drive');
   const [city, changeCity] = useState('Carlsbad');
   const [state, changeState] = useState('CA');
   const [zip, changeZip] = useState('99999');
   const [phone, changePhone] = useState('012-345-6789');
-  const [email, changeEmail] = useState(user.email);
+  const [email, changeEmail] = useState(
+    _.get(user, 'email') || 'email@example.com',
+  );
 
   const [buttonEnable, toggleButtonEnable] = useState(false);
 
@@ -44,8 +51,11 @@ const Profile = ({update}) => {
   };
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
+    <KeyboardAvoidingView
+      keyboardVerticalOffset={80}
+      behavior={Platform.OS === 'ios' ? 'position' : 'height'}
+      style={styles.container}>
+      <ScrollView contentContainerStyle={styles.inputContainer}>
         <Text style={styles.title}>Personal Info</Text>
 
         <Text style={styles.label}>First Name</Text>
@@ -135,7 +145,6 @@ const Profile = ({update}) => {
             toggleButtonEnable(true);
           }}
         />
-
         <Button
           style={styles.button}
           mode="contained"
@@ -145,8 +154,8 @@ const Profile = ({update}) => {
           labelStyle={{fontSize: 16}}>
           Save Changes
         </Button>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -154,11 +163,21 @@ const styles = EStyleSheet.create({
   button: {
     borderRadius: 5,
   },
-  container: {
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    margin: 24,
-    borderRadius: 5,
+  buttonContainer: {
     padding: 12,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+  },
+  container: {
+    // backgroundColor: 'white',
+    margin: 24,
+    // marginBottom: 80,
+    borderRadius: 5,
+  },
+  inputContainer: {
+    padding: 12,
+    paddingVertical: 24,
+    // paddingBottom: 120,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
   },
   field: {
     height: 40,

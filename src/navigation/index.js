@@ -27,6 +27,7 @@ import {DrawerContent} from './drawer';
 import {createTestStack} from './test';
 import Announcements from 'views/announcements/announcements';
 import {HeaderBackImage} from './StackScreen';
+import {deviceHeight, isAndroid} from 'util/general';
 const HEADER_BACKGROUND = require('assets/image/father_children.png');
 const APP_BACKGROUND = require('assets/image/isafe_background.jpeg');
 
@@ -47,7 +48,7 @@ const Header = ({scene, previous, navigation}) => {
       source={HEADER_BACKGROUND}
       style={{
         width: '100%',
-        height: 140, // TODO: make it dynamic, in particular for iPhone X and above
+        height: 0.12 * deviceHeight < 140 ? 0.12 * deviceHeight : 140, // TODO: make it dynamic, in particular for iPhone X and above
       }}>
       <View
         style={{
@@ -77,7 +78,7 @@ const Header = ({scene, previous, navigation}) => {
             // alignItems: 'center',
             paddingBottom: 0,
             paddingHorizontal: 0,
-            marginLeft: -32,
+            marginLeft: isAndroid ? 16 : -32,
             // borderWidth: 1,
           }}
         />
@@ -91,6 +92,7 @@ const HomeBottomTabs = (props) => (
     source={APP_BACKGROUND}
     style={{width: '100%', height: '100%'}}>
     <MaterialBottomTabs.Navigator
+      initialRouteName="Announcements"
       style={{}}
       barStyle={{backgroundColor: '#195174'}}>
       {MODE === 'DEV' && (

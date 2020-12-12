@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {mapDocumentTypeToIcon, mapDocumentStatus} from 'util/general';
 
 const DocumentRow = ({document, colors, isLast}) => {
@@ -49,18 +49,20 @@ const DocumentRow = ({document, colors, isLast}) => {
         <Text style={subtitleTextStyle} numberOfLines={1}>
           {`${first_name} | ${inserted}`}
         </Text>
-        <View style={[statusContainerStyle, {backgroundColor: statusColor}]}>
+        <TouchableOpacity
+          style={[statusContainerStyle, {backgroundColor: statusColor}]}
+          onPress={() => {}}>
           <Text style={[statusTextStyle, {color: colors.background}]}>
             {statusText}
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
-      <View style={viewDocumentContainerStyle}>
+      <TouchableOpacity style={viewDocumentContainerStyle} onPress={() => {}}>
         <Image
           source={require('assets/image/aup_view_icon.png')}
           style={{width: 30, height: 15}}
         />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };

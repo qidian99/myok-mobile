@@ -13,7 +13,7 @@ const Main = ({loggedIn}) => {
     // return HomeStack();
     // return createTestStack();
   }
-  // return <HomeNavigator />;
+  return <HomeNavigator />;
   return createAuthStack();
 };
 

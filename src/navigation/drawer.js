@@ -15,6 +15,8 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {PreferencesContext} from 'context/preferencesContext';
 import Animated from 'react-native-reanimated';
+import {useSelector} from 'react-redux';
+import _ from 'lodash';
 
 export function DrawerContent(props) {
   const paperTheme = useTheme();
@@ -31,6 +33,8 @@ export function DrawerContent(props) {
     inputRange: [0, 0.5, 0.7, 0.8, 1],
     outputRange: [-100, -85, -70, -45, 0],
   });
+
+  const authState = useSelector((state) => state.auth);
 
   return (
     <DrawerContentScrollView {...props}>
@@ -56,9 +60,21 @@ export function DrawerContent(props) {
               size={50}
             />
           </TouchableOpacity>
-          <Title style={styles.title}>Dawid Urbaniak</Title>
-          <Caption style={styles.caption}>@trensik</Caption>
-          <View style={styles.row}>
+          <Title style={styles.title}>
+            {_.chain(authState)
+              .get(['user', 'name'])
+              .startCase(_.toLower)
+              .value() || 'Username'}
+          </Title>
+          <Caption style={styles.caption}>
+            {_.chain(authState)
+              .get(['user', 'roles'])
+              .values()
+              .get(0)
+              .startCase(_.toLower)
+              .value() || 'Subscription User'}
+          </Caption>
+          {/* <View style={styles.row}>
             <View style={styles.section}>
               <Paragraph style={[styles.paragraph, styles.caption]}>
                 202
@@ -71,7 +87,7 @@ export function DrawerContent(props) {
               </Paragraph>
               <Caption style={styles.caption}>Obserwujący</Caption>
             </View>
-          </View>
+          </View> */}
         </View>
         <Drawer.Section style={styles.drawerSection}>
           <DrawerItem

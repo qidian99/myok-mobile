@@ -10,6 +10,8 @@ target 'isd_myok' do
 
   pod 'react-native-video', :path => '../node_modules/react-native-video'
 
+  pod 'react-native-signature-capture', :path => '../node_modules/react-native-signature-capture'
+
   target 'isd_myokTests' do
     inherit! :complete
     # Pods for testing

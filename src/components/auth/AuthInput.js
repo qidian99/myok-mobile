@@ -3,6 +3,7 @@ import {View, Text, TextInput, StyleSheet} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import MaterialIcon from 'react-native-vector-icons/dist/MaterialIcons';
 import DropDownPicker from 'react-native-dropdown-picker';
+import {isAndroid} from 'util/general';
 
 const AuthInput = ({
   title,
@@ -82,7 +83,7 @@ const AuthInput = ({
               value={value}
               placeholder={hint}
               onChangeText={onChangeText}
-              style={inputStyle}
+              style={[isAndroid && {paddingVertical: 0}, inputStyle]}
               placeholderTextColor="#2374A5"
               autoCapitalize="none"
               secureTextEntry={secureTextEntry}
