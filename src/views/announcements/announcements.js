@@ -94,12 +94,15 @@ const styles = EStyleSheet.create({
     width: '100%',
   },
   empty: {
+    display: 'flex',
+    width: '100%',
     borderWidth: 1,
     borderColor: '#FFF',
     padding: 8,
     backgroundColor: '#2374A5',
   },
   loading: {
+    flex: 1,
     padding: 16,
   },
   title: {

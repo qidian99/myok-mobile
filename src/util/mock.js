@@ -253,7 +253,7 @@ class API {
   /* Announcement */
   static async fetchAnnoucements() {
     console.log('fetchAnnoucements', MOCK_ANNOUNCEMENTS);
-    await timeout(1000);
+    await timeout(10000);
     await mockFetch(MOCK_ENDPOINT);
     return MOCK_ANNOUNCEMENTS;
   }
