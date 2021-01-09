@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {View, Text, ScrollView,Image} from 'react-native';
 import {Button} from 'react-native-paper';
 import {globalStyles} from 'styles/index';
 import {fetchDocuments} from 'sagas/actions';
@@ -64,9 +64,24 @@ const DocumentDeatils = ({dispatchFetchDocuments, documents}) => {
       "I have read and understood the school's Rules for Acceptable and Responsible Internet Use and give permission for my child to access the Internet. I understand that the school will take all reasonable precautions to ensure that the students will not gain access to inappropriate material.",
   };
 
+  const mockStatus = 'important';
+
   return (
     <ScrollView>
       <View style={styles.container}>
+        <View style={styles.statusContainer}>
+          <Image
+            source={
+              mockStatus==='required' ? require('assets/image/seal_required.png')
+            : mockStatus==='requested' ? require('assets/image/seal_requested.png')
+            : mockStatus==='important' ? require('assets/image/seal_important.png') 
+            : mockStatus==='not_mandatory' ? require('assets/image/seal_not_mandatory.png')
+            : null
+            }
+            style={styles.status}
+          />
+        </View>
+
         <Text style={styles.title}>{documents[0].title}</Text>
 
         <Text style={styles.body}>{mockBody(documents[0].body)}</Text>
@@ -176,6 +191,16 @@ const styles = EStyleSheet.create({
   denyButton: {
     borderRadius: 5,
     flex: 1,
+  },
+  status: {
+    height: 60,
+    width: 500,
+    alignSelf: 'center'
+  },
+  statusContainer: {
+    marginTop: 10,
+    marginBottom: 10,
+    justifyContent: 'center',
   },
   title: {
     fontStyle: 'normal',
